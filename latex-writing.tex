@@ -3,6 +3,7 @@
 
 
 \usepackage[figuresright]{rotating}
+\usepackage{ctex}
 %\usepackage[fontset=mac]{ctex} %This package used for texstudio in mac.
 
 \title{科技论文写作排版}
@@ -160,6 +161,17 @@ Latex在处理图形编号时，会自动根据$\backslash$begin\{figure\}和$\b
 	\captionsetup[figure]{skip=3pt}
 	\captionsetup{labelformat=default,labelsep=space} %去除图片编号中的冒号
 \end{lstlisting}
+
+去除图表caption中的冒号。
+\begin{lstlisting}
+	\usepackage{caption}
+	\captionsetup[table]{labelsep=space} % 表
+	\captionsetup[figure]{labelsep=space} % 图
+	
+	\captionsetup{labelformat=default,labelsep=space} %去除冒号
+\end{lstlisting}
+  
+
 
 \subsection{图形的浮动和环绕}
 
