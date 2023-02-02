@@ -1,26 +1,32 @@
 %!TEX program = xelatex
-\documentclass[cn,10pt,math=newtx,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook} 
+%\documentclass[cn,12pt,math=newtx,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook} 
 
+\documentclass[cn,12pt]{book}
+%\usepackage[figuresright]{rotating}
+%\usepackage{ctex}
+\usepackage{ctex} %This package used for texstudio in mac.
+\usepackage{geometry} %page setting 
+\usepackage{listings}
 
-\usepackage[figuresright]{rotating}
-\usepackage{ctex}
-%\usepackage[fontset=mac]{ctex} %This package used for texstudio in mac.
+% fontset option have adobe fandol founder macnew macold ubuntu windows none.
 
-\title{科技论文写作排版}
+\usepackage{elegant} % This package of sty file, which lay the fold,  is found on internet and added to this project.
+%\title{科技论文写作排版}
+\title{\LaTeX{} Writing}
 %\subtitle{\LaTeX{} 经典之作}
 
 \author{Kang Yun}
 %\institute{Elegant\LaTeX{} Program}
 \date{May 2, 2021}
-\version{0.1}
+%\version{0.1}
 %\bioinfo{自定义}{信息}
 
-\extrainfo{各人自扫门前雪，休管他人瓦上霜。—— 陈元靓}
+%\extrainfo{各人自扫门前雪，休管他人瓦上霜。—— 陈元靓}
 
 \setcounter{tocdepth}{3}
 
-\logo{logo-blue.png}
-\cover{cover.jpg}
+%\logo{logo-blue.png}
+%\cover{cover.jpg}
 
 % 本文档命令
 %\usepackage{array}
@@ -96,7 +102,7 @@ TexLive这个发行版中附带了一个功能相对简单的编辑器Texworks�
 
 那么排版出来的结果是
 
-xxxxxxxxxxxxx
+
 使用$\backslash$textup\{\}和$\backslash$upshape, $\backslash$textit\{\}和$\backslash$itshape来分别主动调用当前字体族的直立体与意大利斜体，用$\backslash$textmd\{\}和$\backslash$mdseries, $\backslash$textbf\{\}和$\backslash$bfseries来分别调用当前字体形状的正常体与粗体。
 
 如果想调用第四种低体，可以采用$\backslash$newfonfamily$\backslash$newfontname\{FontName\}来自定义新字体族，FontName为新字体名称；在正文中采用\{$\backslash$newfontname This is a new font\}。
