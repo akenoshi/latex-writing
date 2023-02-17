@@ -1,16 +1,23 @@
 %!TEX program = xelatex
 %\documentclass[cn,12pt,math=newtx,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook} 
 
-\documentclass[cn,12pt]{book}
+\documentclass[12pt]{book}
 %\usepackage[figuresright]{rotating}
 %\usepackage{ctex}
-\usepackage{ctex} %This package used for texstudio in mac.
+\usepackage[fontset=windows]{ctex} %This package used for texstudio in mac.
+\usepackage{fontspec}
 \usepackage{geometry} %page setting 
-\usepackage{listings}
+\geometry{a4paper,left=2.6cm,right=2.6cm,top=1.8cm,bottom=1.8cm}
+\usepackage{listings} % code in example
+\usepackage{rotfloat} %sidewaystable and sidewaysfigure 
+\usepackage{graphicx}
+\graphicspath{{./figure/}} %%%%% path should be include in '{}'
+\usepackage{autobreak} % for too long line,autobreak it.
+\usepackage{array}
 
 % fontset option have adobe fandol founder macnew macold ubuntu windows none.
 
-\usepackage{elegant} % This package of sty file, which lay the fold,  is found on internet and added to this project.
+%\usepackage{elegant} % This package of sty file, which lay the fold,  is found on internet and added to this project.
 %\title{科技论文写作排版}
 \title{\LaTeX{} Writing}
 %\subtitle{\LaTeX{} 经典之作}
@@ -48,7 +55,7 @@
 
 \section{Texlive}
 
-Tex是一种排版语言，通过命令来控制文档格式。Tex在设计过程中采用了所思即所得的思想，与常见的文字排版工具Word相反。对于一些不熟悉命令行或缺乏计算机基础的人来说使用起来门槛过高，于是美国计算机学家莱斯利·兰伯特（Leslie Lamport）基于Tex开发了扩展版Tex,即\LaTeX{}。与Tex相比，使用者不需要高深的计算机知识和命令行操作方法也可以使用\LaTeX{}进行文档的排版工作。\LaTeX{}在数学公式方面的排版极为便利，尤其是在对一些复杂的表格和数学公式，也可以轻松完成。
+\TeX{}是一种排版语言，通过命令来控制文档格式。\TeX{}在设计过程中采用了所思即所得的思想，与常见的文字排版工具Word相反。对于一些不熟悉命令行或缺乏计算机基础的人来说使用起来门槛过高，于是美国计算机学家莱斯利·兰伯特（Leslie Lamport）基于\TeX{}开发了扩展版\TeX{},即\LaTeX{}。与\TeX{}相比，使用者不需要高深的计算机知识和命令行操作方法也可以使用\LaTeX{}进行文档的排版工作。\LaTeX{}在数学公式方面的排版极为便利，尤其是在对一些复杂的表格和数学公式，也可以轻松完成。
 
 \LaTeX{}作为一种排版语言，需要一个载体才能进行正常的工作。而让\LaTeX{}发挥作用的一个发行版本TexLive，目前来说是一种比较完成的持续维护更新的发行版本。对与未曾接触过\LaTeX{}的使用者来说是比较容易使用的一个工具。\LaTeX{}和TexLive之间的关系好比，C语言和C语言编译器之间的关系。没有编译器来对语言进行编译，机器便无法识别、工作。而在TexLive这个发行版本的编译器中来自带了一个简易的文本编辑器，可以用来完成一些简单的工作。
 
@@ -64,6 +71,24 @@ TexLive这个发行版中附带了一个功能相对简单的编辑器Texworks�
 （Texworks、Texstudio、Texmaker、Vim、其他）配置
 \chapter{文字处理}
 
+\section{文档类型}
+
+\subsection{中文期刊}
+
+在期刊类型的排版的文档，为了节省版面，经常需要安排双列排版。在documentclass中设定相关选取为：twocolumn即可实现双列排版。但文章标题和摘要（中英文）却又是单列排版，要想实现这种排版，在导言区之后，采用如下代码结构，即可实现标题和中英的单列排版。
+
+\begin{lstlisting}[language=tex,breaklines]
+	\twocolumn[
+	\begin{@twocolumnfalse} % 令双列模式失效。
+	\maketitle % maketitle command must put in this environment.
+	\begin{document} % after this, abstract and main session start.
+	\begin{abstract}
+	\textbf{Abstract}：
+	\noident Keywords:
+	\end{abstract}
+	\end{@twocolumnfalse}
+		]	
+\end{lstlisting}
 
 \section{文章结构}
 
@@ -72,21 +97,21 @@ TexLive这个发行版中附带了一个功能相对简单的编辑器Texworks�
 
 目录在不同的文章类型中的要求不尽相同，学术文章中很少用的目录，而学位论文的排版中则需要出现目录，而且列表和插图也要体现在目录中，因此目录进行深度控制。在\LaTeX{}中采用$\backslash$setcounter\{tocdepth\}\{X\}命来来实现不同深度的目录。X为0时目录中什么都不显示，X为5时，都目录中的内容会出现至子图都会出现在目录中。
 
-利用$\backslash$renewcommand命令，将文档的一些标题从英文转化为中文标题。如：$\backslash$renewcommand$\backslash$abstractname\{$\backslash$hei 摘要\}，将英文abstractname改为摘要。
+利用$\backslash$renewcommand命令，将文档的一些标题从英文转化为中文标题。如：$\backslash$renew command$\backslash$abstractname\{$\backslash$hei 摘要\}，将英文abstractname改为摘要。
 
-\begin{lstlisting}
-	\renewcommand\abstractname{\hei 摘要}
-	\renewcommand\refname{\hei 参考文献}
-	\renewcommand\figurename{\hei 图}
-	\renewcommand\tablename{\hei 表}
-	
-	\newtheorem{dingyi}{\hei 定义~}[section]
-	\newtheorem{dingli}{\hei 定理~}[section]
-	\newtheorem{yinli} [dingli]{\hei 引理~}
-	\newtheorem{tuilun} [dingli]{\hei  推论~}
-	\newtheorem{mingti}[dingli]{\hei 命题~}
-	\newtheorem{lizi}{<!-- -->{例子}}
-\end{lstlisting}
+%\begin{lstlisting}% breaklines,用于自动换行；columns空格控制，fixed默认参数，flexible灵活处理空格，fullflexible强制使用空格。
+%\renewcommand\abstractname{\hei 摘要}
+%\renewcommand\refname{\hei 参考文献}
+%\renewcommand\figurename{\hei 图}
+%\renewcommand\tablename{\hei 表}
+%
+%\newtheorem{dingyi}{\hei 定义~}[section]
+%\newtheorem{dingli}{\hei 定理~}[section]
+%\newtheorem{yinli} [dingli]{\hei 引理~}
+%\newtheorem{tuilun} [dingli]{\hei  推论~}
+%\newtheorem{mingti}[dingli]{\hei 命题~}
+%\newtheorem{lizi}{<!-- -->{例子}}
+%\end{lstlisting}
 
 
 \section{文字格式}
@@ -130,19 +155,19 @@ LaTeX中提供了一些调整字体大小的命令：$\backslash$tiny, $\backsla
 
 \subsection{缩进}
 
-在article及ctexart中，都默认给每一段的段首进行了缩进（在下一篇文章中我们会看到，article中的每一个章节后的首段不会缩进）。我们可以通过$\backslash$setlength\{$\backslash$parindent\}\{parIndent\}来控制缩进距离，比如说，我想控制段首缩进2em，则应写$\backslash$setlength\{$\backslash$parindent\}\{2em\}. 这个命令会使该命令之后的所有段的缩进都变成这个值。如果要取消全部段落的段首缩进，则可以写$\backslash$setlength\{$\backslash$parindent\}\{0em\}.
+在article及ctexart中，都默认给每一段的段首进行了缩进（在下一篇文章中我们会看到，article中的每一个章节后的首段不会缩进）。我们可以通过$\backslash$setlength\{$\backslash$parinden t\}\{parIndent\}来控制缩进距离，比如说，我想控制段首缩进2em，则应写$\backslash$setlength\{$\backslash$par indent\}\{2em\}. 这个命令会使该命令之后的所有段的缩进都变成这个值。如果要取消全部段落的段首缩进，则可以写$\backslash$setlength\{$\backslash$parindent\}\{0em\}.
 
 如果要单独取消某一行的段首缩进，则在该行的段首写$\backslash$noindent即可。
 
 \subsection{行距}
 
-因此，在我们改变行距时，如果想把行距调整成精确的值，一般用 $\backslash$fontsize\{fontSize\}\{baseLineSkip\}$\backslash$selectfont来实现；如果想成比例地调整行距，比如单倍行距，双倍行距，则使用$\backslash$linespread\{lineSpread\}$\backslash$selectfont来实现。 比如说，双倍行距就是$\backslash$linespread\{2\}$\backslash$selectfont
+因此，在我们改变行距时，如果想把行距调整成精确的值，一般用 $\backslash$fontsize\{fontSize\} \{baseLineSkip\}$\backslash$selectfont来实现；如果想成比例地调整行距，比如单倍行距，双倍行距，则使用$\backslash$linespread\{lineSpread\}$\backslash$selectfont来实现。 比如说，双倍行距就是$\backslash$linespread\{2\} $\backslash$selectfont。
 
-此外，我们也可以用一个名叫setspace的宏包。也就是说，在导言区使用$\backslash$usepackage\{setspace\}.然后使用$\backslash$setstretch\{lineSpread\} 来设置linespread（不用加\selectfont）. 这个命令的好处在于会同时修改数学公式、浮动体等的间距，使之与正文间距适应。
+此外，我们也可以用一个名叫setspace的宏包。也就是说，在导言区使用$\backslash$usepackage \{setspace\}.然后使用$\backslash$setstretch\{lineSpread\} 来设置linespread（不用加\selectfont）. 这个命令的好处在于会同时修改数学公式、浮动体等的间距，使之与正文间距适应。
 
 \section{页面布局}
 
-在\LaTeX{}中，设置纸张大小的参数是papersize。而papersize的参数如下：a0paper, a1paper, a2paper, a3paper, a4paper, a5paper, a6paper,b0paper, b1paper, b2paper, b3paper, b4paper, b5paper, b6paper,c0paper, c1paper, c2paper, c3paper, c4paper, c5paper, c6paper,b0j, b1j, b2j, b3j, b4j, b5j, b6j,ansiapaper, ansibpaper, ansicpaper, ansidpaper, ansiepaper,letterpaper, executivepaper, legalpaper 。
+在\LaTeX{}中，设置纸张大小的参数是papersize。而papersize的参数如下：a0paper, a1paper, a2paper, a3paper, a4paper, a5paper, a6paper,b0paper, b1paper, b2paper, b3pa per, b4paper, b5paper, b6paper,c0paper, c1paper, c2paper, c3paper, c4paper, c5paper, c6paper,b0j, b1j, b2j, b3j, b4j, b5j, b6j,ansiapaper, ansibpaper, ansicpaper, ansidpaper, ansiepaper,letterpaper, executivepaper, legalpaper 。
 
 \chapter{图表处理}
 
@@ -151,7 +176,7 @@ LaTeX中提供了一些调整字体大小的命令：$\backslash$tiny, $\backsla
 \subsection{图形编号}
 
 Latex在处理图形编号时，会自动根据$\backslash$begin\{figure\}和$\backslash$end\{figure\}对图形的编号进行自动累加。在实际使用过程中，会经常遇到一些好几个图公用一个图题的情况，如果将这些图都放置在一个环境中，有些图可能会因为纸面大小的关系而无法显示，但是如果分开放置到两个或三个图形环境中，这些图题会自动增加。此时需要使用$\backslash$ContinuedFloat命令，即可让图的编号不自动增加，而是和上一个环境链接起来，当一个图形环境来使用。在液压传动教材中的多图排版中采用如下的方式让图形编号不间断。
-\begin{lstlisting}[language=tex]
+\begin{lstlisting}[language=tex,breaklines]
 	\begin{figure}[htbp]
 		content...
 	\end{figure}	
@@ -161,7 +186,7 @@ Latex在处理图形编号时，会自动根据$\backslash$begin\{figure\}和$\b
 \end{lstlisting}
 
 一般的图形标题都比较短，所以在显示的过程中不会出现比较一些换行的问题。但是对于一些比较长的图题，而且图处于文字环绕的环境中，图题的换行问题就显得比较突出和重要了。图题的换行问题可以利用宏包"caption"配以相应的参数hang即可解决。caption产生的图题中的图号和文字之间产生一个冒号，通过$\backslash$captionsetup的参数labelsep=space即可去除这个冒号。
-\begin{lstlisting}[language=tex]
+\begin{lstlisting}[language=tex,breaklines]
 	\requirepackage[font=small,labelfont={bf,color=sturcturcolor},hang]{caption} %hang解决了图题过长时的自动换行问题
 	\captionsetup[table]{skip=3pt}
 	\captionsetup[figure]{skip=3pt}
@@ -169,7 +194,7 @@ Latex在处理图形编号时，会自动根据$\backslash$begin\{figure\}和$\b
 \end{lstlisting}
 
 去除图表caption中的冒号。
-\begin{lstlisting}
+\begin{lstlisting}[breaklines]
 	\usepackage{caption}
 	\captionsetup[table]{labelsep=space} % 表
 	\captionsetup[figure]{labelsep=space} % 图
@@ -203,7 +228,7 @@ Latex在处理图形编号时，会自动根据$\backslash$begin\{figure\}和$\b
 
 对于经常使用Latex进行论文排版的使用者来说，常见的图片排版问题莫过于多图的并列排版。对于实现多图排版，Latex中要多种方式可以实现。当图片的版幅较大，无法两图并排放在一起，如果缩放不影响显示效果的情况下，可以连用$\backslash$includegraphics来实现，并列排放的效果。另外也可以利用$\backslash$minipage环境来实现多图的并列。
 
-\begin{lstlisting}[language=tex]
+\begin{lstlisting}[language=tex,breaklines]
 	\begin{figure}[htbp] % htbp用来浮动，h-here，t-top，b-buttom
 		\centering
 		\includegraphics[scale=0.9]{fig0203.pdf}
@@ -224,7 +249,7 @@ Latex在处理图形编号时，会自动根据$\backslash$begin\{figure\}和$\b
 
 在对图片进行排版的过程中，可能会遇到图片较小或图片宽度较小、长度方向较大的情况，如果此时对图片进行单独占行进行排版，会留下大量的空白，影响整体的排版的美观性。因此，在排版过程中对图片进行环绕处理。在对图片的环绕处理时利用的$\backslash$begin\{wrapfigure\}和$\backslash$end\{wrapfigure\}环境来实现。wrapfigure的参数主要分为：[行数]、\{位置\}、\{宽度\}。
 
-\begin{lstlisting}[language=tex]
+\begin{lstlisting}[language=tex,breaklines]
 	\begin{wrapfigure}[num]{r}{8cm}% num表示要环绕的行数，r和l分别表示从右侧和左侧环绕；8cm为环绕留给图形的宽度
 		\centering
 		\ifOpenSource
@@ -238,8 +263,8 @@ Latex在处理图形编号时，会自动根据$\backslash$begin\{figure\}和$\b
 \end{lstlisting}
 
 
-对于一些占幅面较大的图片，可能需要横向排布才能显示较全的信息，此时有两种方式来实现图片的旋转功能。$\backslash$includegraphics[angle=xxx]\{fig.png\}或利用$\backslash$begin\{sidewaysfigure\}和$\backslash$end\{sidewaysfigure\}来实现。
-\begin{lstlisting}[language=tex]
+对于一些占幅面较大的图片，可能需要横向排布才能显示较全的信息，此时有两种方式来实现图片的旋转功能。$\backslash$includegraphics[angle=xxx]\{fig.png\}或利用$\backslash$begin\{side waysfigure\}和$\backslash$end\{sidewaysfigure\}来实现。
+\begin{lstlisting}[language=tex,breaklines]
 	\begin{figure}[htbp]
 		\centering
 		\includegraphics[angle=xxx]{imagefile} %图片旋转，可自定义旋转角度
@@ -274,7 +299,7 @@ Latex在处理图形编号时，会自动根据$\backslash$begin\{figure\}和$\b
 
 \section{插入引文}
 
-首先要在导言区调用宏包$\backslash$usepackage\{cite\}；在正文中需要引用文献的地方，输入$\backslash$cite\{bibtex1\}，编译之后正文引用文献的地方显示[1]。在文中需要输入多个参考文献的地方输入$\backslash$cite\{bibtex1,bibtex3,bibtex5\}，其中每个引用文献之间要英文逗号隔开，输出结果为[1,3,5]。如果要输入的参考文献序号是连续的，则需要在导言区调用新的宏包，$\backslash$usepackage[number,sort\&compress]\{natbib\}，正文中的参考文献$\backslash$cite\{bibtex1,bibtex2,bibtex3\}，输出结果为[1-3]。
+首先要在导言区调用宏包$\backslash$usepackage\{cite\}；在正文中需要引用文献的地方，输入$\backslash$cite\{bibtex1\}，编译之后正文引用文献的地方显示[1]。在文中需要输入多个参考文献的地方输入$\backslash$cite\{bibtex1,bibtex3,bibtex5\}，其中每个引用文献之间要英文逗号隔开，输出结果为[1,3,5]。如果要输入的参考文献序号是连续的，则需要在导言区调用新的宏包，$\backslash$usepackage[number,sort\&compress]\{natbib\}，正文中的参考文献$\backslash$cite\{bibtex1,bibtex2, bibtex3\}，输出结果为[1-3]。
 
 有些文档重要求参考文献的引用标志在正文中要体现在右上角，此时要在导言区自定义新命令，$\backslash$newcommand\{$\backslash$upcite\}[1]\{$\backslash$textsuperscript\{$\backslash$textsupercript\{$\backslash$cite\{\#1\}\}\}\}，在正文需要参考文献的地方，用$\backslash$upcite命令来插入参考文献，$\backslash$upcite\{bibtex1\}。
 
@@ -327,7 +352,7 @@ Latex在处理图形编号时，会自动根据$\backslash$begin\{figure\}和$\b
 		F &	页脚
 	\end{tabular}
 \end{table}
-\begin{lstlisting}[language=tex]
+\begin{lstlisting}[language=tex,breaklines]
 	\requirepackage{fancyhdr}
 	\fancyhf{} 
 	%fancyfoot[c]{\color{structurecolor}\scriptsize\thepage} %取消页脚页码
@@ -345,7 +370,7 @@ Latex在处理图形编号时，会自动根据$\backslash$begin\{figure\}和$\b
 
 Latex 默认的章节编号大多是以阿拉伯数字开始的，但是对于一些经常采用非阿拉伯数字编号的使用者来说就显得有点不友好。因此，在进行章节编号的时候，使用者就需要根据自己的需要来对章节的编号进行自定义。Latex中的提供了几类编号方式：$\backslash$arabic 阿拉伯数字，$\backslash$roman 小写的罗马数字，$\backslash$Roman 大写的罗马数字，$\backslash$alph 小写字母，$\backslash$Alph 大写字母。如果使用者希望采用非阿拉伯数字的方式进行编号，利用$\backslash$renewcommand命令进行定义编号的格式。在整理液压传动的时候对章节的编号进行自定义的代码如下：
 
-\begin{lstlisting}[language=tex]
+\begin{lstlisting}[language=tex,breaklines]
 	\renewcommand{\thesection}{\color[RGB]{60,113,183} \arabic{chapter}-\arabic{section}} %设置section的格式为章序号-节序号
 	\renewcommand{\thesubsection}{\chinese{subsection}、} %子节的序号为中文序号+顿号
 	\renewcommand{\thesubsubsection}{\arabic{subsubsection}.} 
@@ -419,146 +444,146 @@ Latex 默认的章节编号大多是以阿拉伯数字开始的，但是对于�
 	\end{tabular}
 \end{sidewaystable}
 
-\begin{sidewaystable}
-	\centering
-	\caption{Common Errors}
-%	\begin{tabular}{|l>{0.05\linewidth}|l|l|l|} 
-		
-%		\multicolumn{1}{|>{\centering}{0.05\linewidth}|}{No} & \multicolumn{1}{c|}{Class} & \multicolumn{1}{c|}{Error Message}                                                              & \multicolumn{1}{c|}{Cause of Error}                                                                                                                                         \\ 
-\begin{tabular}{|>{\centering\hspace{0pt}}m{0.05\linewidth}|>{\hspace{0pt}}m{0.1\linewidth}|>{\hspace{0pt}}m{0.3\linewidth}|>{\hspace{0pt}}m{0.4\linewidth}|} 
-	\hline
-	No  & \multicolumn{1}{>{\centering\hspace{0pt}}m{0.1\linewidth}|}{Class} & \multicolumn{1}{>{\centering\hspace{0pt}}m{0.3\linewidth}|}{Error Message} & \multicolumn{1}{>{\centering\arraybackslash\hspace{0pt}}m{0.4\linewidth}|}{Cause of Error}  \\ 
-	\hline
-		1                        & e\_fileEnd                 & ! File ended while scanning use of \textbackslash{}end.                                         & Generally caused because of missing a brace                                                                                                                                 \\ 
-		\hline
-		2                        & e\_end                     & No message only an asterisk, i.e *                                                              & Missing \textbackslash{}end\{document\}                                                                                                                                     \\ 
-		\hline
-		3                        & e\_illegal                 & LaTeX Error: Illegal character in array arg                                                     & Usage of a letter other than r,l and c in tabular environment                                                                                                               \\ 
-		\hline
-		4                        & e\_tab                     & ! Misplaced alignment tab character                                                             & Missing \textbackslash{}begin\{tabular\} while using tabular environment                                                                                                    \\ 
-		\hline
-		5                        & e\_backslash               & ! Missing \textbackslash{}endcsname inserted                                                    & Usage of a backslash in front of the name of an environment, e.g 
-		\textbackslash{}begin\{\textbackslash{}itemize\}                                                    \\ 
-		\hline
-		6                        & e\_delimiter               & ! LaTeX Error: Bad math environment delimiter                                                   & Missing \textbackslash{}right immediately after the array environment                                                                                                       \\ 
-		\hline
-		7                        & e\_right                   & ! Extra \textbackslash{}right                                                                   & \textbackslash{}right has no matching \textbackslash{}left OR \textbackslash{}end\{array\} is missing                                                                       \\ 
-		\hline
-		8                        & e\_package                 & ! LaTeX Error: Can only be used in preamble                                                     & Usage of \textbackslash{}usepackage outside the preamble                                                                                                                    \\ 
-		\hline
-		9                        & e\_math                    & ! Missing \$ inserted                                                                           & Missing a starting or ending \$ in Math mode, e.g m\_e instead of \$m\_e\$                                                                                                  \\ 
-		\hline
-		10                       & e\_parameter               & ! Illegal parameter number in definition of...                                                  & Usage of parameter number greater than the number of parameters  defined in \textbackslash{}newcommand, e.g \textbackslash{}newcommand\{\textbackslash{}test\}{[}1]\{\#3\}  \\ 
-		\hline
-		11                       & e\_cmd                     & ! LaTeX Error: Command ... already defined                                                      & Trying to define already existing command, e.g \textbackslash{}newcommand\{\textbackslash{}time\}                                                                           \\ 
-		\hline
-		12                       & e\_caption                 & ~! LaTeX Error: \textbackslash{}caption outside float                                           & \textbackslash{}caption\{...\} used outside table environment                                                                                                               \\ 
-		\hline
-		13                       & e\_braces                  & ~! Too many \}'s                                                                                & Missing \textbackslash{}begin\{table\}statement                                                                                                                             \\ 
-		\hline
-		14                       & e\_parbox                  & ~! Argument of \textbackslash{}@caption has an extra \}                                         & Usage of \textbackslash{}parbox in a \textbackslash{}caption                                                                                                                \\ 
-		\hline
-		15                       & e\_item                    & ~! LaTeX Error: Something's wrong--perhaps a missing \textbackslash{}item                       & Missing \textbackslash{}item within enumerate environment                                                                                                                   \\ 
-		\hline
-		16                       & e\_fraction                & ~! Argument of \textbackslash{}end has an extra \}                                              & Misuse of fraction cmd e.g \textbackslash{}frac\{1,2\}                                                                                                                      \\ 
-		\hline
-		17                       & e\_verb                    & ~! LaTeX Error: \textbackslash{}verb ended by end of line                                       & Newline after \textbackslash{}verb, e.g. \textbackslash{}verb*dir*                                                                                                          \\ 
-		\hline
-		18                       & e\_invalid                 & ~! LaTeX Error: Command \textbackslash{}end\{itemize\} invalid in math mode                     & Missing \$ while using math mode in \textbackslash{}itemize                                                                                                                 \\ 
-		\hline
-		19                       & e\_equation                & ~! Display math should end with \$\$                                                            & Usage of \$\$ inside equation mode                                                                                                                                          \\ 
-		\hline
-		20                       & e\_column                  & ~! Misplaced \textbackslash{}omit                                                               & Usage of \textbackslash{}newcommand and \textbackslash{}multicolumn within tabular environment                                                                              \\ 
-		\hline
-		21                       & e\_subscript               & ~! Double subscript.                                                                            & Usage of double subscript                                                                                                                                                   \\ 
-		\hline
-		22                       & e\_cls                     & ~! LaTeX Error: File \`{}artcle.cls' not found.                                                 & Missing .sty or .cls file                                                                                                                                                   \\ 
-		\hline
-		23                       & e\_nofile                  & ~! LaTeX Error: File \`{}file1.tex' not found.                                                  & Missing file1.tex, e.g. \textbackslash{}input\{file1.tex\}                                                                                                                  \\ 
-		\hline
-		24                       & e\_sty                     & ~! LaTeX Error: File \`{}anysize1.sty' not found                                                & Use of unavailable package                                                                                                                                                  \\ 
-		\hline
-		25                       & e\_doc\_class              & ~! LaTeX Error: Can be used only in preamble.                                                   & Usage of \textbackslash{}documentclass outside preamble                                                                                                                     \\ 
-		\hline
-		26                       & e\_circle                  & ~! LaTeX Error: Command \textbackslash{}circle invalid in math mode.                            & Usage of \textbackslash{}circle in math mode                                                                                                                                \\ 
-		\hline
-		27                       & e\_picture                 & ~! Use of \textbackslash{}pictur@ doesn't match its definition.                                 & Bad parameter to \textbackslash{}picture                                                                                                                                    \\ 
-		\hline
-		28                       & e\_line                    & ~! Use of \textbackslash{}put dosen't match its definition                                      & Badly formatted \textbackslash{}line directive                                                                                                                              \\ 
-		\hline
-		29                       & e\_line\_arg               & ~! LaTeX Error: Bad \textbackslash{}line or \textbackslash{}vector argument.                    & Bad \textbackslash{}line parameter                                                                                                                                          \\ 
-		\hline
-		30                       & e\_counter                 & ~! LaTeX Error: No counter '10' defined.                                                        & Counter undefined                                                                                                                                                           \\ 
-		\hline
-		31                       & e\_outer                   & ~! LaTeX Error: Not in outer par mode.                                                          & Using figure inside parbox                                                                                                                                                  \\ 
-		\hline
-		32                       & e\_minipage                & ~! LaTeX Error: Not in outer par mode.                                                          & Using figure minipage                                                                                                                                                       \\ 
-		\hline
-		33                       & e\_lost                    & ~! LaTeX Error: Float(s) lost.                                                                  & Counter undefined                                                                                                                                                           \\ 
-		\hline
-
-	\end{tabular}
-\end{sidewaystable}
-
-
-\begin{sidewaystable}
-	\centering
-	\caption{Common Errors}
-	%	\begin{tabular}{|l>{0.05\linewidth}|l|l|l|} 
-		
-		%		\multicolumn{1}{|>{\centering}{0.05\linewidth}|}{No} & \multicolumn{1}{c|}{Class} & \multicolumn{1}{c|}{Error Message}                                                              & \multicolumn{1}{c|}{Cause of Error}                                                                                                                                         \\ 
-		\begin{tabular}{|>{\centering\hspace{0pt}}m{0.05\linewidth}|>{\hspace{0pt}}m{0.1\linewidth}|>{\hspace{0pt}}m{0.3\linewidth}|>{\hspace{0pt}}m{0.4\linewidth}|} 
-			\hline
-			No  & \multicolumn{1}{>{\centering\hspace{0pt}}m{0.1\linewidth}|}{Class} & \multicolumn{1}{>{\centering\hspace{0pt}}m{0.3\linewidth}|}{Error Message} & \multicolumn{1}{>{\centering\arraybackslash\hspace{0pt}}m{0.4\linewidth}|}{Cause of Error}  \\ 
-			\hline
-			34                       & e\_lonely                  & ~! LaTeX Error: Lonely \textbackslash{}item--perhaps a missing list environment.                & Usage of \textbackslash{}item outside list environment                                                                                                                      \\ 
-			\hline
-			35                       & e\_parg                    & ~! LaTeX Error: Missing p-arg in array arg.                                                     & Missing p argument in tabular environment                                                                                                                                   \\ 
-			\hline
-			36                       & e\_hash                    & ~! You can't use \`{}macro parameter character \#' in vertical mode.                            & Usage of \# in normal mode                                                                                                                                                  \\ 
-			\hline
-			37                       & e\_enlarge                 & ~! LaTeX Error: Suggested extra height (14454.0pt) dangerously 
-			large.                    & Too big a number given in \textbackslash{}enlargethispage                                                                                                                   \\ 
-			\hline
-			38                       & e\_deftab                  & ~! LaTeX Error: Undefined tab position.                                                         & Undefined tabbing                                                                                                                                                           \\                                                                                                                            
-			\hline
-				39                       & e\_pushtab                 & ~! LaTeX Error: \textbackslash{}pushtabs and \textbackslash{}poptabs don't match.               & Unequal numbers of push and pop tabs        
-			\\
-			\hline
-			40                       & e\_overtab                 & ~! LaTeX Error: Tab overflow.                                                                   & Too many \textbackslash{}= in tabbing environment                                                                                                                           \\ 
-			\hline
-			41                       & e\_nest                    & ~! LaTeX Error: Too deeply nested.                                                              & Too many list environments                                                                                                                                                  \\ 
-			\hline
-			42                       & e\_eqnarray                & ~! LaTeX Error: Too many columns in eqnarray environment.                                       & More than three columns in eqnarray                                                                                                                                         \\ 
-			\hline
-			43                       & e\_classpkg                & ~! LaTeX Error: \textbackslash{}usepackage before \textbackslash{}documentclass.                & Usage of usepackage before loading documentclass                                                                                                                            \\ 
-			\hline
-			44                       & e\_load                    & ~! LaTeX Error: Two \textbackslash{}LoadClass commands.                                         & More than one load class command                                                                                                                                            \\ 
-			\hline
-			45                       & e\_require                 & ~! LaTeX Error: \textbackslash{}RequirePackage or \textbackslash{}LoadClass in Options Section. & RequirePackage may not be used with \textbackslash{}DeclareOption                                                                                                           \\ 
-			\hline
-			46                       & e\_twoclass                & ~! LaTeX Error: Two \textbackslash{}documentclass or \textbackslash{}documentstyle commands.    & More than one documentclass declaration                                                                                                                                     \\ 
-			\hline
-			47                       & e\_font                    & ~! LaTeX Error: This NFSS system isn't set up properly.                                         & Invalid font used in \textbackslash{}DeclareErrorFont                                                                                                                       \\ 
-			\hline
-			48                       & e\_superscript             & ~! Double superscript.                                                                          & Usage of two superscripts for the same variable, e.g. 2\^{}3\^{}4                                                                                                           \\ 
-			\hline
-			49                       & e\_clash\_opt              & ~! LaTeX Error: Option clash for package csvtools.                                              & Clashing options for the same package                                                                                                                                       \\ 
-			\hline
-			50                       & e\_unknown\_opt            & ~! LaTeX Error: Unknown option ... for package ...                                              & Unkown option for a package                                                                                                                                                 \\ 
-			\hline
-			51                       & e\_hyphenation             & ~! Improper \textbackslash{}hyphenation will be flushed.                                        & Improper parameter to \textbackslash{}hyphenation                                                                                                                           \\ 
-			\hline
-			52                       & e\_stack\_size             & ~! TeX capacity exceeded, sorry [main memory size=1000000]                                      & Overflow of buffer due to mistake in command definition                                                                                                                     \\ 
-			\hline
-			53                       & e\_environment             & ~! LaTeX Error: Environment ... undefined.                                                      & Undefined environment                                                                                                                                                       \\ 
-			\hline
-			54                       & e\_midline                 & ~! LaTeX Error: \textbackslash{} in mid line                                                    & Command \textbackslash{} may appear only at the beginning of a line                                                                                                         \\ 
-			\hline
-			55                       & e\_infinite                & Goes into infinite loop                                                                         & Usage of \textbackslash{}\textbackslash{}strut\textbackslash{}hrule                                                                                                         \\
-			\hline
-		\end{tabular}
-	\end{sidewaystable}
+%\begin{sidewaystable}
+%	\centering
+%	\caption{Common Errors}
+%%	\begin{tabular}{|l>{0.05\linewidth}|l|l|l|} 
+%		
+%%		\multicolumn{1}{|>{\centering}{0.05\linewidth}|}{No} & \multicolumn{1}{c|}{Class} & \multicolumn{1}{c|}{Error Message}                                                              & \multicolumn{1}{c|}{Cause of Error}                                                                                                                                         \\ 
+%\begin{tabular}{|>{\centering\hspace{0pt}}m{0.05\linewidth}|>{\hspace{0pt}}m{0.1\linewidth}|>{\hspace{0pt}}m{0.3\linewidth}|>{\hspace{0pt}}m{0.4\linewidth}|} 
+%	\hline
+%	No  & \multicolumn{1}{>{\centering\hspace{0pt}}m{0.1\linewidth}|}{Class} & \multicolumn{1}{>{\centering\hspace{0pt}}m{0.3\linewidth}|}{Error Message} & \multicolumn{1}{>{\centering\arraybackslash\hspace{0pt}}m{0.4\linewidth}|}{Cause of Error}  \\ 
+%	\hline
+%		1                        & e\_fileEnd                 & ! File ended while scanning use of \textbackslash{}end.                                         & Generally caused because of missing a brace                                                                                                                                 \\ 
+%		\hline
+%		2                        & e\_end                     & No message only an asterisk, i.e *                                                              & Missing \textbackslash{}end\{document\}                                                                                                                                     \\ 
+%		\hline
+%		3                        & e\_illegal                 & LaTeX Error: Illegal character in array arg                                                     & Usage of a letter other than r,l and c in tabular environment                                                                                                               \\ 
+%		\hline
+%		4                        & e\_tab                     & ! Misplaced alignment tab character                                                             & Missing \textbackslash{}begin\{tabular\} while using tabular environment                                                                                                    \\ 
+%		\hline
+%		5                        & e\_backslash               & ! Missing \textbackslash{}endcsname inserted                                                    & Usage of a backslash in front of the name of an environment, e.g 
+%		\textbackslash{}begin\{\textbackslash{}itemize\}                                                    \\ 
+%		\hline
+%		6                        & e\_delimiter               & ! LaTeX Error: Bad math environment delimiter                                                   & Missing \textbackslash{}right immediately after the array environment                                                                                                       \\ 
+%		\hline
+%		7                        & e\_right                   & ! Extra \textbackslash{}right                                                                   & \textbackslash{}right has no matching \textbackslash{}left OR \textbackslash{}end\{array\} is missing                                                                       \\ 
+%		\hline
+%		8                        & e\_package                 & ! LaTeX Error: Can only be used in preamble                                                     & Usage of \textbackslash{}usepackage outside the preamble                                                                                                                    \\ 
+%		\hline
+%		9                        & e\_math                    & ! Missing \$ inserted                                                                           & Missing a starting or ending \$ in Math mode, e.g m\_e instead of \$m\_e\$                                                                                                  \\ 
+%		\hline
+%		10                       & e\_parameter               & ! Illegal parameter number in definition of...                                                  & Usage of parameter number greater than the number of parameters  defined in \textbackslash{}newcommand, e.g \textbackslash{}newcommand\{\textbackslash{}test\}{[}1]\{\#3\}  \\ 
+%		\hline
+%		11                       & e\_cmd                     & ! LaTeX Error: Command ... already defined                                                      & Trying to define already existing command, e.g \textbackslash{}newcommand\{\textbackslash{}time\}                                                                           \\ 
+%		\hline
+%		12                       & e\_caption                 & ~! LaTeX Error: \textbackslash{}caption outside float                                           & \textbackslash{}caption\{...\} used outside table environment                                                                                                               \\ 
+%		\hline
+%		13                       & e\_braces                  & ~! Too many \}'s                                                                                & Missing \textbackslash{}begin\{table\}statement                                                                                                                             \\ 
+%		\hline
+%		14                       & e\_parbox                  & ~! Argument of \textbackslash{}@caption has an extra \}                                         & Usage of \textbackslash{}parbox in a \textbackslash{}caption                                                                                                                \\ 
+%		\hline
+%		15                       & e\_item                    & ~! LaTeX Error: Something's wrong--perhaps a missing \textbackslash{}item                       & Missing \textbackslash{}item within enumerate environment                                                                                                                   \\ 
+%		\hline
+%		16                       & e\_fraction                & ~! Argument of \textbackslash{}end has an extra \}                                              & Misuse of fraction cmd e.g \textbackslash{}frac\{1,2\}                                                                                                                      \\ 
+%		\hline
+%		17                       & e\_verb                    & ~! LaTeX Error: \textbackslash{}verb ended by end of line                                       & Newline after \textbackslash{}verb, e.g. \textbackslash{}verb*dir*                                                                                                          \\ 
+%		\hline
+%		18                       & e\_invalid                 & ~! LaTeX Error: Command \textbackslash{}end\{itemize\} invalid in math mode                     & Missing \$ while using math mode in \textbackslash{}itemize                                                                                                                 \\ 
+%		\hline
+%		19                       & e\_equation                & ~! Display math should end with \$\$                                                            & Usage of \$\$ inside equation mode                                                                                                                                          \\ 
+%		\hline
+%		20                       & e\_column                  & ~! Misplaced \textbackslash{}omit                                                               & Usage of \textbackslash{}newcommand and \textbackslash{}multicolumn within tabular environment                                                                              \\ 
+%		\hline
+%		21                       & e\_subscript               & ~! Double subscript.                                                                            & Usage of double subscript                                                                                                                                                   \\ 
+%		\hline
+%		22                       & e\_cls                     & ~! LaTeX Error: File \`{}artcle.cls' not found.                                                 & Missing .sty or .cls file                                                                                                                                                   \\ 
+%		\hline
+%		23                       & e\_nofile                  & ~! LaTeX Error: File \`{}file1.tex' not found.                                                  & Missing file1.tex, e.g. \textbackslash{}input\{file1.tex\}                                                                                                                  \\ 
+%		\hline
+%		24                       & e\_sty                     & ~! LaTeX Error: File \`{}anysize1.sty' not found                                                & Use of unavailable package                                                                                                                                                  \\ 
+%		\hline
+%		25                       & e\_doc\_class              & ~! LaTeX Error: Can be used only in preamble.                                                   & Usage of \textbackslash{}documentclass outside preamble                                                                                                                     \\ 
+%		\hline
+%		26                       & e\_circle                  & ~! LaTeX Error: Command \textbackslash{}circle invalid in math mode.                            & Usage of \textbackslash{}circle in math mode                                                                                                                                \\ 
+%		\hline
+%		27                       & e\_picture                 & ~! Use of \textbackslash{}pictur@ doesn't match its definition.                                 & Bad parameter to \textbackslash{}picture                                                                                                                                    \\ 
+%		\hline
+%		28                       & e\_line                    & ~! Use of \textbackslash{}put dosen't match its definition                                      & Badly formatted \textbackslash{}line directive                                                                                                                              \\ 
+%		\hline
+%		29                       & e\_line\_arg               & ~! LaTeX Error: Bad \textbackslash{}line or \textbackslash{}vector argument.                    & Bad \textbackslash{}line parameter                                                                                                                                          \\ 
+%		\hline
+%		30                       & e\_counter                 & ~! LaTeX Error: No counter '10' defined.                                                        & Counter undefined                                                                                                                                                           \\ 
+%		\hline
+%		31                       & e\_outer                   & ~! LaTeX Error: Not in outer par mode.                                                          & Using figure inside parbox                                                                                                                                                  \\ 
+%		\hline
+%		32                       & e\_minipage                & ~! LaTeX Error: Not in outer par mode.                                                          & Using figure minipage                                                                                                                                                       \\ 
+%		\hline
+%		33                       & e\_lost                    & ~! LaTeX Error: Float(s) lost.                                                                  & Counter undefined                                                                                                                                                           \\ 
+%		\hline
+%
+%	\end{tabular}
+%\end{sidewaystable}
+%
+%
+%\begin{sidewaystable}
+%	\centering
+%	\caption{Common Errors}
+%	%	\begin{tabular}{|l>{0.05\linewidth}|l|l|l|} 
+%		
+%		%		\multicolumn{1}{|>{\centering}{0.05\linewidth}|}{No} & \multicolumn{1}{c|}{Class} & \multicolumn{1}{c|}{Error Message}                                                              & \multicolumn{1}{c|}{Cause of Error}                                                                                                                                         \\ 
+%		\begin{tabular}{|>{\centering\hspace{0pt}}m{0.05\linewidth}|>{\hspace{0pt}}m{0.1\linewidth}|>{\hspace{0pt}}m{0.3\linewidth}|>{\hspace{0pt}}m{0.4\linewidth}|} 
+%			\hline
+%			No  & \multicolumn{1}{>{\centering\hspace{0pt}}m{0.1\linewidth}|}{Class} & \multicolumn{1}{>{\centering\hspace{0pt}}m{0.3\linewidth}|}{Error Message} & \multicolumn{1}{>{\centering\arraybackslash\hspace{0pt}}m{0.4\linewidth}|}{Cause of Error}  \\ 
+%			\hline
+%			34                       & e\_lonely                  & ~! LaTeX Error: Lonely \textbackslash{}item--perhaps a missing list environment.                & Usage of \textbackslash{}item outside list environment                                                                                                                      \\ 
+%			\hline
+%			35                       & e\_parg                    & ~! LaTeX Error: Missing p-arg in array arg.                                                     & Missing p argument in tabular environment                                                                                                                                   \\ 
+%			\hline
+%			36                       & e\_hash                    & ~! You can't use \`{}macro parameter character \#' in vertical mode.                            & Usage of \# in normal mode                                                                                                                                                  \\ 
+%			\hline
+%			37                       & e\_enlarge                 & ~! LaTeX Error: Suggested extra height (14454.0pt) dangerously 
+%			large.                    & Too big a number given in \textbackslash{}enlargethispage                                                                                                                   \\ 
+%			\hline
+%			38                       & e\_deftab                  & ~! LaTeX Error: Undefined tab position.                                                         & Undefined tabbing                                                                                                                                                           \\                                                                                                                            
+%			\hline
+%				39                       & e\_pushtab                 & ~! LaTeX Error: \textbackslash{}pushtabs and \textbackslash{}poptabs don't match.               & Unequal numbers of push and pop tabs        
+%			\\
+%			\hline
+%			40                       & e\_overtab                 & ~! LaTeX Error: Tab overflow.                                                                   & Too many \textbackslash{}= in tabbing environment                                                                                                                           \\ 
+%			\hline
+%			41                       & e\_nest                    & ~! LaTeX Error: Too deeply nested.                                                              & Too many list environments                                                                                                                                                  \\ 
+%			\hline
+%			42                       & e\_eqnarray                & ~! LaTeX Error: Too many columns in eqnarray environment.                                       & More than three columns in eqnarray                                                                                                                                         \\ 
+%			\hline
+%			43                       & e\_classpkg                & ~! LaTeX Error: \textbackslash{}usepackage before \textbackslash{}documentclass.                & Usage of usepackage before loading documentclass                                                                                                                            \\ 
+%			\hline
+%			44                       & e\_load                    & ~! LaTeX Error: Two \textbackslash{}LoadClass commands.                                         & More than one load class command                                                                                                                                            \\ 
+%			\hline
+%			45                       & e\_require                 & ~! LaTeX Error: \textbackslash{}RequirePackage or \textbackslash{}LoadClass in Options Section. & RequirePackage may not be used with \textbackslash{}DeclareOption                                                                                                           \\ 
+%			\hline
+%			46                       & e\_twoclass                & ~! LaTeX Error: Two \textbackslash{}documentclass or \textbackslash{}documentstyle commands.    & More than one documentclass declaration                                                                                                                                     \\ 
+%			\hline
+%			47                       & e\_font                    & ~! LaTeX Error: This NFSS system isn't set up properly.                                         & Invalid font used in \textbackslash{}DeclareErrorFont                                                                                                                       \\ 
+%			\hline
+%			48                       & e\_superscript             & ~! Double superscript.                                                                          & Usage of two superscripts for the same variable, e.g. 2\^{}3\^{}4                                                                                                           \\ 
+%			\hline
+%			49                       & e\_clash\_opt              & ~! LaTeX Error: Option clash for package csvtools.                                              & Clashing options for the same package                                                                                                                                       \\ 
+%			\hline
+%			50                       & e\_unknown\_opt            & ~! LaTeX Error: Unknown option ... for package ...                                              & Unkown option for a package                                                                                                                                                 \\ 
+%			\hline
+%			51                       & e\_hyphenation             & ~! Improper \textbackslash{}hyphenation will be flushed.                                        & Improper parameter to \textbackslash{}hyphenation                                                                                                                           \\ 
+%			\hline
+%			52                       & e\_stack\_size             & ~! TeX capacity exceeded, sorry [main memory size=1000000]                                      & Overflow of buffer due to mistake in command definition                                                                                                                     \\ 
+%			\hline
+%			53                       & e\_environment             & ~! LaTeX Error: Environment ... undefined.                                                      & Undefined environment                                                                                                                                                       \\ 
+%			\hline
+%			54                       & e\_midline                 & ~! LaTeX Error: \textbackslash{} in mid line                                                    & Command \textbackslash{} may appear only at the beginning of a line                                                                                                         \\ 
+%			\hline
+%			55                       & e\_infinite                & Goes into infinite loop                                                                         & Usage of \textbackslash{}\textbackslash{}strut\textbackslash{}hrule                                                                                                         \\
+%			\hline
+%		\end{tabular}
+%	\end{sidewaystable}
 
 
 
@@ -591,30 +616,42 @@ $\backslash$fontsize{字号}{行距}
 这个命令对其后所有文本都起作用，在使用此命令后需要用$\backslash$selectfont 才能使字体大小设置起作用。
 
 
-% \usepackage{array}
-
-
 \begin{table}[htbp]
-	\centering
-	\begin{tabular}{|>{\centering\hspace{0pt}}m{0.1\linewidth}|>{\centering\hspace{0pt}}m{0.072\linewidth}|>{\centering\hspace{0pt}}m{0.072\linewidth}|>{\centering\hspace{0pt}}m{0.09\linewidth}|>{\centering\hspace{0pt}}m{0.08\linewidth}|>{\centering\hspace{0pt}}m{0.09\linewidth}|>{\centering\hspace{0pt}}m{0.08\linewidth}|>{\centering\hspace{0pt}}m{0.08\linewidth}|>{\centering\arraybackslash\hspace{0pt}}m{0.09\linewidth}|} 
-		\hline
-		字号     & 初号   & 小除   & 一号      & 小一     & 二号      & 小二     & 三号    & 小三      \\ 
-		\hline
-		大小     & 42pt & 36pt & 26pt    & 24pt   & 22pt    & 18pt   & 16pt  & 15pt    \\ 
-		\hline
-		1.5倍行距 & 63pt & 54pt & 39pt    & 36pt   & 33pt    & 27pt   & 24pt  & 22.5pt  \\ 
-		\hline
-		字号     & 四号   & 小四   & 五号      & 小五     & 六号      & 小六     & 七号    & 小七      \\ 
-		\hline
-		大小     & 14pt & 12pt & 10.5pt  & 9pt    & 7.5pt   & 6.5pt  & 5.5pt & 5pt     \\ 
-		\hline
-		1.5倍行距 & 21pt & 18pt & 15.75pt & 13.5pt & 11.25pt & 9.75pt & 8.2pt & 7.5pt   \\
-		\hline
-	\end{tabular}
+	\resizebox{\textwidth}{!}{%
+		\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+			\hline
+			字号     & 初号   & 小初   & 一号      & 小一     & 二号      & 小二     & 三号    & 小三     \\ \hline
+			大小     & 42pt & 36pt & 26pt    & 24pt   & 22pt    & 18pt   & 16pt  & 15pt   \\ \hline
+			1.5倍行距 & 63pt & 54pt & 39pt    & 36pt   & 33pt    & 27pt   & 24pt  & 22.5pt \\ \hline
+			字号     & 四号   & 小四   & 五号      & 小五     & 六号      & 小六     & 七号    & 小七     \\ \hline
+			大小     & 14pt & 12pt & 10.5pt  & 9pt    & 7.5pt   & 6.5pt  & 5.5pt & 5pt    \\ \hline
+			1.5倍行距 & 21pt & 18pt & 15.75pt & 13.5pt & 11.25pt & 9.75pt & 8.2pt & 7.5pt  \\ \hline
+		\end{tabular}%
+	}
 \end{table}
 
 
-\begin{lstlisting}[language=tex]
+%\begin{table}[htbp]
+%	\centering
+%	\begin{tabular}{|>{\centering\hspace{0pt}}m{0.1\linewidth}|>{\centering\hspace{0pt}}m{0.072\linewidth}|>{\centering\hspace{0pt}}m{0.072\linewidth}|>{\centering\hspace{0pt}}m{0.09\linewidth}|>{\centering\hspace{0pt}}m{0.08\linewidth}|>{\centering\hspace{0pt}}m{0.09\linewidth}|>{\centering\hspace{0pt}}m{0.08\linewidth}|>{\centering\hspace{0pt}}m{0.08\linewidth}|>{\centering\hspace{0pt}}m{0.09\linewidth}|} 
+%		\hline
+%		字号     & 初号   & 小除   & 一号      & 小一     & 二号      & 小二     & 三号    & 小三      \\ 
+%		\hline
+%		大小     & 42pt & 36pt & 26pt    & 24pt   & 22pt    & 18pt   & 16pt  & 15pt    \\ 
+%		\hline
+%		1.5倍行距 & 63pt & 54pt & 39pt    & 36pt   & 33pt    & 27pt   & 24pt  & 22.5pt  \\ 
+%		\hline
+%		字号     & 四号   & 小四   & 五号      & 小五     & 六号      & 小六     & 七号    & 小七      \\ 
+%		\hline
+%		大小     & 14pt & 12pt & 10.5pt  & 9pt    & 7.5pt   & 6.5pt  & 5.5pt & 5pt     \\ 
+%		\hline
+%		1.5倍行距 & 21pt & 18pt & 15.75pt & 13.5pt & 11.25pt & 9.75pt & 8.2pt & 7.5pt   \\
+%		\hline
+%	\end{tabular}
+%\end{table}
+
+
+\begin{lstlisting}[language=tex,breaklines]
 错误：
 Latex font warning: font shape `OT1/cmr/m/n' in size <15> not available
 
@@ -627,7 +664,7 @@ LaTeX font warning: size s stitutions with differences
 
 在进行中文文献排版过程中，写作人员会被要求采用按一定的字号来设置字体，如一号、二号等。在此，提供便利的方法，以供读者在排版供中使用。
 
-\begin{lstlisting}[language=tex]
+\begin{lstlisting}[language=tex,breaklines]
 	\newcommand{\yihao}{\fontsize{26pt}{36pt}\selectfont}           % 一号, 1.4 倍行距
 	\newcommand{\erhao}{\fontsize{22pt}{28pt}\selectfont}          % 二号, 1.25倍行距
 	\newcommand{\xiaoer}{\fontsize{18pt}{18pt}\selectfont}          % 小二, 单倍行距
@@ -645,10 +682,10 @@ LaTeX font warning: size s stitutions with differences
 
 如果需要在文章排版过程中使用一些特殊的字体，则需要根据需求来查找相应的宏包。如"Times New Roman”字体，则需要在导言区加入$\backslash$usepackage\{times\}，使得英文字体默认为Times New Roman
 
-\begin{figure}
+\begin{figure}[htbp]
 \centering
-\includegraphics{Font1.jpg}
-\includegraphics{Font2.jpg}
+\includegraphics[scale=0.8]{font-1.jpg}
+\includegraphics[scale=0.7]{font-2.jpg}
 \end{figure}
 
 \section*{NPU-Template}
