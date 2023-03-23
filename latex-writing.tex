@@ -8,12 +8,23 @@
 \usepackage{fontspec}
 \usepackage{geometry} %page setting 
 \geometry{a4paper,left=2.6cm,right=2.6cm,top=1.8cm,bottom=1.8cm}
+\usepackage[cache=false]{minted} % formate the latex language in latex code with some special characterize.
+
+%%%%%%%%%%%setting for tables%%%%%%%%%
 \usepackage{listings} % code in example
 \usepackage{rotfloat} %sidewaystable and sidewaysfigure 
+\usepackage{array}
+%\usepackage{multicol} % table
+\usepackage{multirow}
+\usepackage{longtable}
+%\usepackage{tabularx}
+%\usepackage{ltablex}
+%%%%%%%%%%%setting for figures%%%%%%%%%
 \usepackage{graphicx}
 \graphicspath{{./figure/}} %%%%% path should be include in '{}'
 \usepackage{autobreak} % for too long line,autobreak it.
-\usepackage{array}
+
+
 
 % fontset option have adobe fandol founder macnew macold ubuntu windows none.
 
@@ -69,6 +80,142 @@ TexLive这个发行版中附带了一个功能相对简单的编辑器Texworks�
 
 \subsection{Vim和sublime}
 （Texworks、Texstudio、Texmaker、Vim、其他）配置
+
+\chapter{宏包介绍}
+
+\section{常用宏包}
+\LaTeX{}中常用的宏包可以分为几个大类：整体环境设置、图形类、表格类、公式类
+
+
+\begin{longtable}[htbp]
+	\centering
+	\begin{tabular}{|>{\centering\hspace{0pt}}m{0.075\linewidth}|>{\hspace{0pt}}m{0.084\linewidth}|>{\hspace{0pt}}m{0.779\linewidth}|} 
+		\hline
+		类别  & \multicolumn{1}{>{\centering\hspace{0pt}}m{0.084\linewidth}|}{宏包名称} & \multicolumn{1}{>{\centering\arraybackslash\hspace{0pt}}m{0.779\linewidth}|}{作用}  \\ 
+		\hline
+		\multirow{8}{0.075\linewidth}{\hspace{0pt}\centering{}格式}   & ctex                                                                & 提供了一个统一的中文\textbackslash{}LaTeX\{\}文档框架，默认包含了cterart、ctexrep、ctexbook三种不同的文档类型。   \\ 
+		\cline{2-3}
+		& geometry                                                            & 对纸张大小、显示页面大小（尺寸）设定。                                                               \\ 
+		\cline{2-3}
+		& layout                                                              & 对页面布局进行设定。                                                                        \\ 
+		\cline{2-3}
+		& fancyhdr                                                            & 页眉页脚设置。                                                                           \\ 
+		\cline{2-3}
+		& afterpage                                                           & 用来处理图标在页面的浮动。float和afterpage的区别是啥？                                                \\ 
+		\cline{2-3}
+		& multicol                                                            & 提供了全文和局部分栏处理功能，但会影响浮动体（图表）的处理，建议在分栏环境内不使用浮动体。                                     \\ 
+		\cline{2-3}
+		& titlesec                                                            & 对文章内的标题格式设定。                                                                      \\ 
+		\cline{2-3}
+		& titlesoc                                                            & 对文章的目录格式设定。                                                                       \\ 
+		\hline
+		\multirow{2}{0.075\linewidth}{\hspace{0pt}\centering{}字体}   & xecjk                                                               & 提供中文字体设置                                                                          \\ 
+		\cline{2-3}
+		& fontspec                                                            & 提供西文字体设置                                                                          \\ 
+		\hline
+		\multirow{5}{0.075\linewidth}{\hspace{0pt}\centering{}插图}   & graphicx                                                            & 提供插图环境                                                                            \\ 
+		\cline{2-3}
+		& subfigure                                                           & 提供多图（子图）环境                                                                        \\ 
+		\cline{2-3}
+		& wrapfigure                                                          & 提供文字环绕图片环境·                                                                       \\ 
+		\cline{2-3}
+		& caption                                                             & 图/表的标题格式设置                                                                        \\ 
+		\cline{2-3}
+		& sidecap                                                             & 提供侧向的图题设置                                                                         \\ 
+		\hline
+		\multirow{9}{0.075\linewidth}{\hspace{0pt}\centering{}表格}   & array                                                               &                                                                                   \\ 
+		\cline{2-3}
+		& table                                                               & 提供表格环境                                                                            \\ 
+		\cline{2-3}
+		& longtable                                                           & 提供跨页表格环境                                                                          \\ 
+		\cline{2-3}
+		& tabularx                                                            & 提供表格内嵌的高级功能环境                                                                     \\ 
+		\cline{2-3}
+		& dcolumn                                                             & 提供表格内小数点处对齐的功能                                                                    \\ 
+		\cline{2-3}
+		& multirow                                                            & 提供单元格合并功能                                                                         \\ 
+		\cline{2-3}
+		& makecell                                                            & 提供单元格内的分割单元功能                                                                     \\ 
+		\cline{2-3}
+		& diagbox                                                             & 提供表头左上角斜线功能                                                                       \\ 
+		\cline{2-3}
+		& booktabs                                                            & 提供三线表环境                                                                           \\ 
+		\hline
+		\multirow{3}{0.075\linewidth}{\hspace{0pt}\centering{}}     & amsmath                                                             & 提供数学符号功能                                                                          \\ 
+		\cline{2-3}
+		& ppchtex                                                             & 提供化学符号                                                                            \\ 
+		\cline{2-3}
+		& harpoon                                                             & 提供一些带箭头的符号                                                                        \\ 
+		\hline
+		\multirow{4}{0.075\linewidth}{\hspace{0pt}\centering{}参考文献} & bibtex                                                              & 提供参考文献类型                                                                          \\ 
+		\cline{2-3}
+		& natbib                                                              & 提供不同的参考文献显示类型                                                                     \\ 
+		\cline{2-3}
+		& gbt7714                                                             & 提供中文的参考文献格式                                                                       \\ 
+		\cline{2-3}
+		& gloss                                                               & 提供附录中的注视表功能                                                                       \\
+		\hline
+	\end{tabular}
+\end{longtable}
+
+\subsection{格式设置类宏包}
+
+\LaTeX{}中用于学术论文排版的整体环境设置宏包有：
+ctex：提供了一个统一的中文\LaTeX{}文档框架，默认包含了cterart、ctexrep、ctexbook三种不同的文档类型。
+geometry：对纸张大小、显示页面大小（尺寸）设定。
+layout：对页面布局进行设定。
+fancyhdr：页眉页脚设置。
+afterpage：用来处理图标在页面的浮动。float和afterpage的区别是啥？
+multicol：提供了全文和局部分栏处理功能，但会影响浮动体（图表）的处理，建议在分栏环境内不使用浮动体。
+titlesec：对文章内的标题格式设定。
+titlesoc：对文章的目录格式设定。
+
+
+\subsection{字体类宏包}
+
+xeCJK：提供中文字体设置
+fontspec：提供西文字体的自定义设置
+
+\subsection{插图类宏包}
+
+在图形排版方面常用到的宏包：
+graphicx：提供插图环境和相关命令。
+subfigure：提供子图环境及题图标题设置。
+wrapfig：提供文字环绕图形的环境。
+caption：图表的标题格式设置。
+sidecap：提供侧向图题的功能。
+
+\subsection{表格类宏包}
+
+
+常用到的表格类宏包：
+array、
+table：提供普通的表格设置功能。
+longtable：提供了跨页表格功能。
+tabularx：提供了表格内嵌套高级功能的功能。
+dcolumn：表格内多位小数的对其功能，从小数点对齐。
+multirow：单元格合并功能。
+makecell：单元格内设置单元格。
+diagbox：左上角表头内斜线表格。
+booktabs：三线表。
+
+
+\subsection{公式类宏包}
+
+常用到的公式类宏包：
+amsmath：提供数学符号。
+ppchtex：提供化学符号。
+harpoon：提供上下带箭头的字符。
+
+\subsection{参考文献类宏包}
+
+bibtex：文献类型。
+natbib：文献引用显示类型。
+footbib：脚注式引用。、
+gbt7714：显示中文文献格式。
+gloss：附录中的注释表。
+
+
 \chapter{文字处理}
 
 \section{文档类型}
@@ -95,7 +242,22 @@ TexLive这个发行版中附带了一个功能相对简单的编辑器Texworks�
 
 \subsection{目录}
 
-目录在不同的文章类型中的要求不尽相同，学术文章中很少用的目录，而学位论文的排版中则需要出现目录，而且列表和插图也要体现在目录中，因此目录进行深度控制。在\LaTeX{}中采用$\backslash$setcounter\{tocdepth\}\{X\}命来来实现不同深度的目录。X为0时目录中什么都不显示，X为5时，都目录中的内容会出现至子图都会出现在目录中。
+目录在不同的文章类型中的要求不尽相同，学术文章中很少用的目录，而学位论文的排版中则需要出现目录，而且列表和插图也要体现在目录中，因此目录进行深度控制。在\LaTeX{}中采用$\backslash$setcounter\{tocdepth\}\{X\}命来来实现不同深度的目录。$\backslash$setcounter\{secnumberdepth\}\{Y\} 来实现章节编号的深度。
+
+\begin{center}
+	
+	\begin{itemize}
+		\item -1 part                    
+		\item  0 chapter               
+		\item  1 section                
+		\item  2 subsection          
+		\item  3 subsubsection     
+		\item  4 paragraph            
+		\item  5 subparagarph   
+	\end{itemize}
+
+\end{center}
+
 
 利用$\backslash$renewcommand命令，将文档的一些标题从英文转化为中文标题。如：$\backslash$renew command$\backslash$abstractname\{$\backslash$hei 摘要\}，将英文abstractname改为摘要。
 
@@ -126,6 +288,8 @@ TexLive这个发行版中附带了一个功能相对简单的编辑器Texworks�
 \{$\backslash$rmfamily This is rmfamily and $\backslash$textrm\{this is textrm\}\}, this is the main font.
 
 那么排版出来的结果是
+
+	{\rmfamily This is a rmfamily and \textrm{This is textrm}}, this is a the main font. %Font is not set, so the difference is not clearly.
 
 
 使用$\backslash$textup\{\}和$\backslash$upshape, $\backslash$textit\{\}和$\backslash$itshape来分别主动调用当前字体族的直立体与意大利斜体，用$\backslash$textmd\{\}和$\backslash$mdseries, $\backslash$textbf\{\}和$\backslash$bfseries来分别调用当前字体形状的正常体与粗体。
