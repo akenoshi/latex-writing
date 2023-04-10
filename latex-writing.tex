@@ -97,35 +97,35 @@ TeXstudio是一款跨平台（Windows、Mac、Linux）的免费软件，用来�
 1.用户根据自己的需要来设置显示语言和字体。读者可以根据自己的需要来设置语言和显示字体。如需要采用中文编写文件，则必须在option>Configure Texstudio 中，设置编译器为xeletex。如果在使用过成中用到了minted环境，则还需要在编译参数前添加一个选项：--shell-escape。
 
 \begin{center}
-	\includegraphics[scale=0.8]{./texstudio-lang.png}
+     \includegraphics[scale=0.8]{./texstudio-lang.png}
 \end{center}
 2.根据排版的文字类型（中文或西文）来设置Texstudio在编译编译过程中调用的编译器类别：latex或xelatex。
 
 \begin{center}
-	\includegraphics[scale=0.8]{./texstudio-build.png}
+     \includegraphics[scale=0.8]{./texstudio-build.png}
 \end{center}
 3.大多数情况下，用户不需要更改xelatex编译器的参数。但在用到minted环境时，需要在xelatex后补充参数'-shell-escape'，即'xelatex.exe -shell-escape -synctex=1 -interaction=nonstopmopde \%.tex'。
 
 
 \begin{center}
-	\includegraphics[scale=0.65]{./texstudio-command.png}
+     \includegraphics[scale=0.65]{./texstudio-command.png}
 \end{center}
 TeXstudio提供了语言拼写检查功能，用户可以自己从软件提供的跳转\href{https://extensions.libreoffice.org/}{链接}，从libreoffice网站来下载相应语言的词典（词库），供软件进行拼写检查。
 
 
 \begin{center}
-	\includegraphics[width=0.8\linewidth]{./lang-check.png}
+     \includegraphics[width=0.8\linewidth]{./lang-check.png}
 \end{center}
 Texstudio的编译过程，对产生的错误和警告会在软件底部的`Message’栏显示给用户。通过双击改错误或警告，光标会自动跳转至相应的位置：如果是tex文档中的写法错误，光标会自动跳转至出现错误的行；如果是其他错误，如宏包调用问题、字体调用问题，则会跳转至相应的宏包文件。
 \begin{figure}[htbp]
-	\centering
-	\begin{minipage}[c]{0.45\linewidth}
-		\includegraphics[scale=0.4]{texstudio-message.png}
-	\end{minipage}
-	\begin{minipage}[c]{0.4\linewidth}
-		\includegraphics[scale=0.4]{texstudio-error.png}
-	\end{minipage}
-	\caption{Message信息栏}
+     \centering
+     \begin{minipage}[c]{0.45\linewidth}
+          \includegraphics[scale=0.4]{texstudio-message.png}
+     \end{minipage}
+     \begin{minipage}[c]{0.4\linewidth}
+          \includegraphics[scale=0.4]{texstudio-error.png}
+     \end{minipage}
+     \caption{Message信息栏}
 \end{figure}
 
 
@@ -145,77 +145,77 @@ Texstudio的编译过程，对产生的错误和警告会在软件底部的`Mess
 
 
 \begin{table}[htbp]
-	\centering
-	\begin{tabular}{|>{\centering\hspace{0pt}}m{0.075\linewidth}|>{\hspace{0pt}}m{0.084\linewidth}|>{\hspace{0pt}}m{0.779\linewidth}|} 
-		\hline
-		类别  & \multicolumn{1}{>{\centering\hspace{0pt}}m{0.084\linewidth}|}{宏包名称} & \multicolumn{1}{>{\centering\arraybackslash\hspace{0pt}}m{0.779\linewidth}|}{作用}  \\ 
-		\hline
-		\multirow{8}{0.075\linewidth}{\hspace{0pt}\centering{}格式}   & ctex                                                                & 提供了一个统一的中文\textbackslash{}LaTeX\{\}文档框架，默认包含了cterart、ctexrep、ctexbook三种不同的文档类型。   \\ 
-		\cline{2-3}
-		& geometry                                                            & 对纸张大小、显示页面大小（尺寸）设定。                                                               \\ 
-		\cline{2-3}
-		& layout                                                              & 对页面布局进行设定。                                                                        \\ 
-		\cline{2-3}
-		& fancyhdr                                                            & 页眉页脚设置。                                                                           \\ 
-		\cline{2-3}
-		& afterpage                                                           & 用来处理图标在页面的浮动。float和afterpage的区别是啥？                                                \\ 
-		\cline{2-3}
-		& multicol                                                            & 提供了全文和局部分栏处理功能，但会影响浮动体（图表）的处理，建议在分栏环境内不使用浮动体。                                     \\ 
-		\cline{2-3}
-		& titlesec                                                            & 对文章内的标题格式设定。                                                                      \\ 
-		\cline{2-3}
-		& titlesoc                                                            & 对文章的目录格式设定。                                                                       \\ 
-		\hline
-		\multirow{2}{0.075\linewidth}{\hspace{0pt}\centering{}字体}   & xecjk                                                               & 提供中文字体设置                                                                          \\ 
-		\cline{2-3}
-		& fontspec                                                            & 提供西文字体设置                                                                          \\ 
-		\hline
-		\multirow{5}{0.075\linewidth}{\hspace{0pt}\centering{}插图}   & graphicx                                                            & 提供插图环境                                                                            \\ 
-		\cline{2-3}
-		& subfigure                                                           & 提供多图（子图）环境                                                                        \\ 
-		\cline{2-3}
-		& wrapfigure                                                          & 提供文字环绕图片环境·                                                                       \\ 
-		\cline{2-3}
-		& caption                                                             & 图/表的标题格式设置                                                                        \\ 
-		\cline{2-3}
-		& sidecap                                                             & 提供侧向的图题设置                                                                         \\ 
-		\hline
-		\multirow{9}{0.075\linewidth}{\hspace{0pt}\centering{}表格}   & array                                                               &                                                                                   \\ 
-		\cline{2-3}
-		& table                                                               & 提供表格环境                                                                            \\ 
-		\cline{2-3}
-		& longtable                                                           & 提供跨页表格环境                                                                          \\ 
-		\cline{2-3}
-		& tabularx                                                            & 提供表格内嵌的高级功能环境                                                                     \\ 
-		\cline{2-3}
-		& dcolumn                                                             & 提供表格内小数点处对齐的功能                                                                    \\ 
-		\cline{2-3}
-		& multirow                                                            & 提供单元格合并功能                                                                         \\ 
-		\cline{2-3}
-		& makecell                                                            & 提供单元格内的分割单元功能                                                                     \\ 
-		\cline{2-3}
-		& diagbox                                                             & 提供表头左上角斜线功能                                                                       \\ 
-		\cline{2-3}
-		& booktabs                                                            & 提供三线表环境                                                                           \\ 
-		\hline
-		\multirow{3}{0.075\linewidth}{\hspace{0pt}\centering{}}     & amsmath                                                             & 提供数学符号功能                                                                          \\ 
-		\cline{2-3}
-		& ppchtex                                                             & 提供化学符号                                                                            \\ 
-		\cline{2-3}
-		& harpoon                                                             & 提供一些带箭头的符号                                                                        \\ 
-		\hline
-		\multirow{4}{0.075\linewidth}{\hspace{0pt}\centering{}参考文献} & bibtex                                                              & 提供参考文献类型                                                                          \\ 
-		\cline{2-3}
-		& natbib                                                              & 提供不同的参考文献显示类型                                                                     \\ 
-		\cline{2-3}
-		& gbt7714                                                             & 提供中文的参考文献格式                                                                       \\ 
-		\cline{2-3}
-		& gloss                                                               & 提供附录中的注视表功能                                                                       \\
-		\hline
-	\end{tabular}
+     \centering
+     \begin{tabular}{|>{\centering\hspace{0pt}}m{0.075\linewidth}|>{\hspace{0pt}}m{0.084\linewidth}|>{\hspace{0pt}}m{0.779\linewidth}|} 
+          \hline
+          类别  & \multicolumn{1}{>{\centering\hspace{0pt}}m{0.084\linewidth}|}{宏包名称} & \multicolumn{1}{>{\centering\arraybackslash\hspace{0pt}}m{0.779\linewidth}|}{作用}  \\ 
+          \hline
+          \multirow{8}{0.075\linewidth}{\hspace{0pt}\centering{}格式}   & ctex                                                                & 提供了一个统一的中文\textbackslash{}LaTeX\{\}文档框架，默认包含了cterart、ctexrep、ctexbook三种不同的文档类型。   \\ 
+          \cline{2-3}
+          & geometry                                                            & 对纸张大小、显示页面大小（尺寸）设定。                                                               \\ 
+          \cline{2-3}
+          & layout                                                              & 对页面布局进行设定。                                                                        \\ 
+          \cline{2-3}
+          & fancyhdr                                                            & 页眉页脚设置。                                                                           \\ 
+          \cline{2-3}
+          & afterpage                                                           & 用来处理图标在页面的浮动。float和afterpage的区别是啥？                                                \\ 
+          \cline{2-3}
+          & multicol                                                            & 提供了全文和局部分栏处理功能，但会影响浮动体（图表）的处理，建议在分栏环境内不使用浮动体。                                     \\ 
+          \cline{2-3}
+          & titlesec                                                            & 对文章内的标题格式设定。                                                                      \\ 
+          \cline{2-3}
+          & titlesoc                                                            & 对文章的目录格式设定。                                                                       \\ 
+          \hline
+          \multirow{2}{0.075\linewidth}{\hspace{0pt}\centering{}字体}   & xecjk                                                               & 提供中文字体设置                                                                          \\ 
+          \cline{2-3}
+          & fontspec                                                            & 提供西文字体设置                                                                          \\ 
+          \hline
+          \multirow{5}{0.075\linewidth}{\hspace{0pt}\centering{}插图}   & graphicx                                                            & 提供插图环境                                                                            \\ 
+          \cline{2-3}
+          & subfigure                                                           & 提供多图（子图）环境                                                                        \\ 
+          \cline{2-3}
+          & wrapfigure                                                          & 提供文字环绕图片环境·                                                                       \\ 
+          \cline{2-3}
+          & caption                                                             & 图/表的标题格式设置                                                                        \\ 
+          \cline{2-3}
+          & sidecap                                                             & 提供侧向的图题设置                                                                         \\ 
+          \hline
+          \multirow{9}{0.075\linewidth}{\hspace{0pt}\centering{}表格}   & array                                                               &                                                                                   \\ 
+          \cline{2-3}
+          & table                                                               & 提供表格环境                                                                            \\ 
+          \cline{2-3}
+          & longtable                                                           & 提供跨页表格环境                                                                          \\ 
+          \cline{2-3}
+          & tabularx                                                            & 提供表格内嵌的高级功能环境                                                                     \\ 
+          \cline{2-3}
+          & dcolumn                                                             & 提供表格内小数点处对齐的功能                                                                    \\ 
+          \cline{2-3}
+          & multirow                                                            & 提供单元格合并功能                                                                         \\ 
+          \cline{2-3}
+          & makecell                                                            & 提供单元格内的分割单元功能                                                                     \\ 
+          \cline{2-3}
+          & diagbox                                                             & 提供表头左上角斜线功能                                                                       \\ 
+          \cline{2-3}
+          & booktabs                                                            & 提供三线表环境                                                                           \\ 
+          \hline
+          \multirow{3}{0.075\linewidth}{\hspace{0pt}\centering{}}     & amsmath                                                             & 提供数学符号功能                                                                          \\ 
+          \cline{2-3}
+          & ppchtex                                                             & 提供化学符号                                                                            \\ 
+          \cline{2-3}
+          & harpoon                                                             & 提供一些带箭头的符号                                                                        \\ 
+          \hline
+          \multirow{4}{0.075\linewidth}{\hspace{0pt}\centering{}参考文献} & bibtex                                                              & 提供参考文献类型                                                                          \\ 
+          \cline{2-3}
+          & natbib                                                              & 提供不同的参考文献显示类型                                                                     \\ 
+          \cline{2-3}
+          & gbt7714                                                             & 提供中文的参考文献格式                                                                       \\ 
+          \cline{2-3}
+          & gloss                                                               & 提供附录中的注视表功能                                                                       \\
+          \hline
+     \end{tabular}
 \end{table}
 
-\subsection{格式设置类宏包}
+\section{格式设置类宏包}
 
 \LaTeX{}中用于学术论文排版的整体环境设置宏包有：
 ctex：提供了一个统一的中文\LaTeX{}文档框架，默认包含了cterart、ctexrep、ctexbook三种不同的文档类型。
@@ -228,12 +228,12 @@ titlesec：对文章内的标题格式设定。
 titlesoc：对文章的目录格式设定。
 
 
-\subsection{字体类宏包}
+\section{字体类宏包}
 
 xeCJK：提供中文字体设置
 fontspec：提供西文字体的自定义设置
 
-\subsection{插图类宏包}
+\section{插图类宏包}
 
 在图形排版方面常用到的宏包：
 graphicx：提供插图环境和相关命令。
@@ -242,7 +242,7 @@ wrapfig：提供文字环绕图形的环境。
 caption：图表的标题格式设置。
 sidecap：提供侧向图题的功能。
 
-\subsection{表格类宏包}
+\section{表格类宏包}
 
 
 常用到的表格类宏包：
@@ -257,7 +257,7 @@ diagbox：左上角表头内斜线表格。
 booktabs：三线表。
 
 
-\subsection{公式类宏包}
+\section{公式类宏包}
 
 常用到的公式类宏包：
 amsmath：提供数学符号。
@@ -284,16 +284,16 @@ gloss：附录中的注释表。
 在期刊类型的排版的文档，为了节省版面，经常需要安排双列排版。在documentclass中设定相关选取为：twocolumn即可实现双列排版。但文章标题和摘要（中英文）却又是单列排版，要想实现这种排版，在导言区之后，采用如下代码结构，即可实现标题和中英的单列排版。
 
 \begin{lstlisting}[language=tex,breaklines]
-	\twocolumn[
-	\begin{@twocolumnfalse} % 令双列模式失效。
-	\maketitle % maketitle command must put in this environment.
-	\begin{document} % after this, abstract and main session start.
-	\begin{abstract}
-	\textbf{Abstract}：
-	\noident Keywords:
-	\end{abstract}
-	\end{@twocolumnfalse}
-		]	
+     \twocolumn[
+     \begin{@twocolumnfalse} % 令双列模式失效。
+     \maketitle % maketitle command must put in this environment.
+     \begin{document} % after this, abstract and main session start.
+     \begin{abstract}
+     \textbf{Abstract}：
+     \noident Keywords:
+     \end{abstract}
+     \end{@twocolumnfalse}
+          ]     
 \end{lstlisting}
 
 \section{文章结构}
@@ -304,17 +304,15 @@ gloss：附录中的注释表。
 目录在不同的文章类型中的要求不尽相同，学术文章中很少用的目录，而学位论文的排版中则需要出现目录，而且列表和插图也要体现在目录中，因此目录进行深度控制。在\LaTeX{}中采用$\backslash$setcounter\{tocdepth\}\{X\}命来来实现不同深度的目录。$\backslash$setcounter\{secnumberdepth\}\{Y\} 来实现章节编号的深度。
 
 \begin{center}
-	
-	\begin{itemize}
-		\item -1 part                    
-		\item  0 chapter               
-		\item  1 section                
-		\item  2 subsection          
-		\item  3 subsubsection     
-		\item  4 paragraph            
-		\item  5 subparagarph   
-	\end{itemize}
-
+     \begin{itemize}
+          \item -1 part                    
+          \item  0 chapter               
+          \item  1 section                
+          \item  2 subsection          
+          \item  3 subsubsection     
+          \item  4 paragraph            
+          \item  5 subparagarph   
+      \end{itemize}
 \end{center}
 
 
@@ -348,7 +346,7 @@ gloss：附录中的注释表。
 
 那么排版出来的结果是
 
-	{\rmfamily This is a rmfamily and \textrm{This is textrm}}, this is a the main font. %Font is not set, so the difference is not clearly.
+{\rmfamily This is a rmfamily and \textrm{This is textrm}}, this is a the main font. %Font is not set, so the difference is not clearly.
 
 
 使用$\backslash$textup\{\}和$\backslash$upshape, $\backslash$textit\{\}和$\backslash$itshape来分别主动调用当前字体族的直立体与意大利斜体，用$\backslash$textmd\{\}和$\backslash$mdseries, $\backslash$textbf\{\}和$\backslash$bfseries来分别调用当前字体形状的正常体与粗体。
@@ -413,16 +411,16 @@ usepackage\{xeCJK\}命令来调用宏包，使用\textbackslash setCJKmainfont
 fontspec和xeCJK的使用方法如下：
 
 \begin{minted}{tex}
-	% 拉丁字母设置
-	\setmainfont{font name}[font features]%中括号内为字体的特征，如黑体、斜体等。
-	\setsansfont{font name}[font features]
-	\setmonofant{font name}[font features]
-	%中文字体设置
-	\setCJKmainfont{font name}[font features]
-	\setCJKsansfont{font name}[font features]
-	\setCJKmonofont{font name}[font features]
-	%举例
-	\setCJKmainfont{SimSun}[BoldFont=SimHei,ItalicFont=KaiTi]
+    % 拉丁字母设置
+     \setmainfont{font name}[font features]%中括号内为字体的特征，如黑体、斜体等。
+     \setsansfont{font name}[font features]
+     \setmonofant{font name}[font features]
+     %中文字体设置
+     \setCJKmainfont{font name}[font features]
+     \setCJKsansfont{font name}[font features]
+     \setCJKmonofont{font name}[font features]
+     %举例
+     \setCJKmainfont{SimSun}[BoldFont=SimHei,ItalicFont=KaiTi]
 \end{minted}
 
 上面的案例中SimHei，KaiTi为操作系统中已经存在的中文字体名称。
@@ -431,10 +429,10 @@ fontspec和xeCJK的使用方法如下：
 在Windows系统中打开终端程序cmd，输入命令``fc-list :lang=zh"来查询系统中的中文字体，会输出所有中文字体在系统中的相关信息。`fc-list'命令在系统安装texlive之后即可直接使用，但cmd程序中对中文的支持并不友好，此处展示了采用git软件输出的结果，如图\ref{fc-list}。该命令中的字符均为英文状态输入，包括冒号。
 
 \begin{figure}[htbp]
-	\centering
-	\includegraphics[width=0.8\linewidth]{lang=zh.jpg}
-	\caption{fc-list命令结果}
-	\label{fc-list}
+     \centering
+     \includegraphics[width=0.8\linewidth]{lang=zh.jpg}
+     \caption{fc-list命令结果}
+     \label{fc-list}
 \end{figure}
 
 图\ref{fc-list}中，红色框位置的内容即为中文字体在系统中的名称，在\LaTeX{}中调用字体，需要输入系统中的字体名称。
@@ -443,38 +441,38 @@ fontspec和xeCJK的使用方法如下：
 
 warning 1
 \begin{minted}{tex}
-	Package fontspec warning: Font "FandolSong-Regular" does not contain
-	requested 
-	(fontspec)                Script ``CJK"
+     Package fontspec warning: Font "FandolSong-Regular" does not contain
+     requested 
+     (fontspec)                Script ``CJK"
 \end{minted}
 
 warning 2
 \begin{minted}{tex}
-	Package xeCJK Warning: Redefining CJKfamily `\CJKrmdefault'
-	(xeCJK)                (FandolSong-Regular(0))
+     Package xeCJK Warning: Redefining CJKfamily `\CJKrmdefault'
+     (xeCJK)                (FandolSong-Regular(0))
 \end{minted}
 
 warning 3
 \begin{minted}{tex}
-	Package xeCJK Warning: Redefining CJKfamily `\CJKsfdefault'
-	(xeCJK)                (FandolHei-Regular)
+     Package xeCJK Warning: Redefining CJKfamily `\CJKsfdefault'
+     (xeCJK)                (FandolHei-Regular)
 \end{minted}
 
 warning 4
 \begin{minted}{tex}
-	Package xeCJK Warning: Redefining CJKfamily `\CJKttdefault'
-	(xeCJK)                (FandolFang-Regular)
+     Package xeCJK Warning: Redefining CJKfamily `\CJKttdefault'
+     (xeCJK)                (FandolFang-Regular)
 \end{minted}
 
 warning1和warning2可以通过对ctex包添加参数来实现。
 \begin{minted}{tex}
-	\usepackage[fontset=none]{ctex}
+     \usepackage[fontset=none]{ctex}
 \end{minted}
 
 warning2-4可以采用打补丁的方式进行修正。
 \begin{minted}{tex}
-	\usepackage{ctex}
-	\usepackage{xpatch}
+     \usepackage{ctex}
+     \usepackage{xpatch}
 \end{minted}
 
 \subsection{局部字体设置}
@@ -482,8 +480,8 @@ warning2-4可以采用打补丁的方式进行修正。
 在\LaTeX{}中如需要对正文中局部字体类型进行自定义，可以通过两类命令来实现：textrm\{\}和rmfamily,textsf\{\}和sffamily,texttt\{\}和ttfamily。这三组命令分别调用衬线字体（罗马体）、无衬线字体、等宽字体（打字机字体）。这两类命令的区别在于：前者是将参数(括号内的部分)设置成对应的字体族，而后者将该命令的作用区域内的文字变成对应的字体族。
 
 \begin{minted}[breaklines=true,breakanywhere,linenos=true]{tex}
-	\textrm{This is a example.} % text系列命令对大括号内的字体起作用
-	{\rmfamily This is a example.} %family系列命令，需要将自己和需要定义字体的内容都放入大括号内。
+     \textrm{This is a example.} % text系列命令对大括号内的字体起作用
+     {\rmfamily This is a example.} %family系列命令，需要将自己和需要定义字体的内容都放入大括号内。
 \end{minted}
 
 \subsection{字体修饰}
@@ -492,16 +490,16 @@ warning2-4可以采用打补丁的方式进行修正。
 在\LaTeX{}中对文字加粗、斜体、强调等操作分别通过以下代码实现：
 
 \begin{minted}{tex}
-	%加粗
-	\textbf{}% 文本加粗
-	\boldmath{} % 数学环境内加粗，需要调用amsmath宏包
-	\boldsymbol{} % 可以对希腊字母加粗，需要调用amsmath宏包
-	
-	%斜体
-	\textit{}
-	
-	%强调
-	\emph{}
+     %加粗
+     \textbf{}% 文本加粗
+     \boldmath{} % 数学环境内加粗，需要调用amsmath宏包
+     \boldsymbol{} % 可以对希腊字母加粗，需要调用amsmath宏包
+     
+     %斜体
+     \textit{}
+     
+     %强调
+     \emph{}
 \end{minted}
 
 特别的，当需要对局部文件进行下划线与其他文字进行区别的时候需要注意，默认的\textbackslash
@@ -509,16 +507,16 @@ underline
 命令可以实现文字的下划线功能，但是当下划线部分的文字段落过长需要换行的时候，该命令就无法实现了。因此，需要对此进行重点说明。
 在\LaTeX{}中英文和中文的下划线换行过程中需要采用不同的宏包进行处理。具体用法如下：
 \begin{minted}{tex}
-	%下划线
-	\underline{} %此命令可以在文字下面生成下划线，但无法在行末进行自动换行。
-	
-	% 在中文环境中进行换行时采用以下宏包和命令
-	\usepackage{CJKfntef} 
-	\uline{} 
-	
-	% 在英文环境中进行换行时采用以下宏包和命令
-	\usepackage{ulem}
-	\uline
+     %下划线
+     \underline{} %此命令可以在文字下面生成下划线，但无法在行末进行自动换行。
+     
+     % 在中文环境中进行换行时采用以下宏包和命令
+     \usepackage{CJKfntef} 
+     \uline{} 
+     
+     % 在英文环境中进行换行时采用以下宏包和命令
+     \usepackage{ulem}
+     \uline
 \end{minted}
 
 
@@ -526,48 +524,48 @@ underline
 
 \LaTeX{}中字体的大小取决于定义文档类型时设定的字体大小，又被称为绝对字体大小。表\ref{absolute-font}列出了标准文档中的字体绝对大小，单位为pt。例如：
 \begin{minted}{tex}
-	\documentclass[a4,12pt]{article} 
+     \documentclass[a4,12pt]{article} 
 \end{minted}
 此处定义了一个期刊文章类型的文档，采用A4纸张大小，绝对字体大小12pt。如在文章中采用\textbackslash tiny字体，则字体的大小会被认为是6pt，参见表\ref{absolute-font}。其他的字体大小可按照类似的方法设定。但在实际使用过程中也可以根据需要采用\textbackslash fontsize\{<size>\}\{<base line-skip>\}进行任意设定。
 
 \begin{longtable}{|c|m{4.5cm}<{\centering}|m{3.5cm}<{\centering}|m{2.5cm}<{\centering}|}
-	\caption{\label{absolute-font}标准文档类中的字号大小。}
-	\\
-	\hline
-	字号 & 10pt & 11pt & 12pt\\
-	\hline
-	\endfirsthead
-	\multicolumn{4}{l}{Continued from previous page} \\
-	\hline
-	
-	字号 & 10pt & 11pt & 12pt \\
-	
-	\hline
-	\endhead
-	\hline\multicolumn{4}{r}{Continued on next page} \\
-	\endfoot
-	\endlastfoot
-	\hline
-	\textbackslash tiny & 5pt & 6pt & 6pt\\
-	\hline
-	\textbackslash scriptsize & 7pt & 8pt & 8pt\\
-	\hline
-	\textbackslash footnotesize & 8pt & 9pt & 10pt\\
-	\hline
-	\textbackslash small & 9pt & 10pt & 10.95pt\\
-	\hline
-	\textbackslash normalsize & 10pt & 10.95pt & 12pt\\
-	\hline
-	\textbackslash large & 12pt & 12pt & 14.4pt\\
-	\hline
-	\textbackslash Large & 14.4pt & 14.4pt & 17.28pt\\
-	\hline
-	\textbackslash LARGE & 17.28pt & 17.28pt & 20.74pt\\
-	\hline
-	\textbackslash huge & 20.74pt & 20.74pt & 24.88pt\\
-	\hline
-	\textbackslash Huge & 24.88pt & 24.88pt & 24.88pt\\
-	\hline
+     \caption{\label{absolute-font}标准文档类中的字号大小。}
+     \\
+     \hline
+     字号 & 10pt & 11pt & 12pt\\
+     \hline
+     \endfirsthead
+     \multicolumn{4}{l}{Continued from previous page} \\
+     \hline
+     
+     字号 & 10pt & 11pt & 12pt \\
+     
+     \hline
+     \endhead
+     \hline\multicolumn{4}{r}{Continued on next page} \\
+     \endfoot
+     \endlastfoot
+     \hline
+     \textbackslash tiny & 5pt & 6pt & 6pt\\
+     \hline
+     \textbackslash scriptsize & 7pt & 8pt & 8pt\\
+     \hline
+     \textbackslash footnotesize & 8pt & 9pt & 10pt\\
+     \hline
+     \textbackslash small & 9pt & 10pt & 10.95pt\\
+     \hline
+     \textbackslash normalsize & 10pt & 10.95pt & 12pt\\
+     \hline
+     \textbackslash large & 12pt & 12pt & 14.4pt\\
+     \hline
+     \textbackslash Large & 14.4pt & 14.4pt & 17.28pt\\
+     \hline
+     \textbackslash LARGE & 17.28pt & 17.28pt & 20.74pt\\
+     \hline
+     \textbackslash huge & 20.74pt & 20.74pt & 24.88pt\\
+     \hline
+     \textbackslash Huge & 24.88pt & 24.88pt & 24.88pt\\
+     \hline
 \end{longtable}
 
 \chapter{图表处理}
@@ -581,60 +579,60 @@ underline
 
 在\LaTeX{}中标准插图方法为：
 \begin{figure}[htbp]
-	\begin{minipage}{0.45\textwidth}
-		\begin{minted}{tex}
-			\begin{figure}[htbp]
-				\centering
-				\includegraphics[scale=0.5]{filename.png}
-				\caption{name of figure}
-			\end{figure}
-		\end{minted}
-	\end{minipage}
-	\begin{minipage}{0.45\textwidth}
-		\centering
-		\includegraphics[scale=0.2]{logo.png}
-		\caption{name of figure}
-	\end{minipage}
+     \begin{minipage}{0.45\textwidth}
+          \begin{minted}{tex}
+               \begin{figure}[htbp]
+                    \centering
+                    \includegraphics[scale=0.5]{filename.png}
+                    \caption{name of figure}
+               \end{figure}
+          \end{minted}
+     \end{minipage}
+     \begin{minipage}{0.45\textwidth}
+          \centering
+          \includegraphics[scale=0.2]{logo.png}
+          \caption{name of figure}
+     \end{minipage}
 \end{figure}
 
 \textbackslash includegraphics命令支持的图片格式为jpg，png，eps，pdf。不支持svg格式的矢量图。如果要插入svg格式的矢量图，则需要采用svg宏包。使用方法如下：
 
 \begin{figure}[htbp]
-	\begin{minipage}{0.45\textwidth}
-		\begin{minted}{tex}
-			\usepackage{svg}
-			\begin{figure}
-				\centering
-				\includesvg{filename.svg}
-				\caption{name of svg}
-			\end{figure}
-		\end{minted}
-	\end{minipage}
-	\begin{minipage}{0.45\textwidth}
-		\centering
-		%\includeinkscape[inkscapeformat=pdf,scale=0.3]{logo-svg.svg}
-		\includesvg[scale=0.3]{logo-svg.svg}
-		\caption{name of svg}
-	\end{minipage}
+     \begin{minipage}{0.45\textwidth}
+          \begin{minted}{tex}
+               \usepackage{svg}
+               \begin{figure}
+                    \centering
+                    \includesvg{filename.svg}
+                    \caption{name of svg}
+               \end{figure}
+          \end{minted}
+     \end{minipage}
+     \begin{minipage}{0.45\textwidth}
+          \centering
+          %\includeinkscape[inkscapeformat=pdf,scale=0.3]{logo-svg.svg}
+          \includesvg[scale=0.3]{logo-svg.svg}
+          \caption{name of svg}
+     \end{minipage}
 \end{figure}
 如果在使用svg格式的矢量图时，出现字体和大小不正常现实的时候，采用\textbackslash usepackage[inkscapelatex=false]\{svg\}。
 
 插入图片的时候，可以给\textbackslash includegraphics命令加上option选项，可以实现比例和长宽的自定义。
 \begin{figure}[htbp]
-	\begin{minipage}{0.45\textwidth}
-		\begin{minted}{tex}
-			\begin{figure}
-				\centering
-				\includegraphics[width=5cm]{finename.png}
-				\caption{name of figure}
-			\end{figure}
-		\end{minted}
-	\end{minipage}
-	\begin{minipage}{0.45\textwidth}
-		\centering
-		\includegraphics[width=3cm]{logo.png}
-		\caption{name of figure}
-	\end{minipage}
+     \begin{minipage}{0.45\textwidth}
+          \begin{minted}{tex}
+               \begin{figure}
+                    \centering
+                    \includegraphics[width=5cm]{finename.png}
+                    \caption{name of figure}
+               \end{figure}
+          \end{minted}
+     \end{minipage}
+     \begin{minipage}{0.45\textwidth}
+          \centering
+          \includegraphics[width=3cm]{logo.png}
+          \caption{name of figure}
+     \end{minipage}
 \end{figure}
 
 \textbackslash caption命令在\textbackslash includegrpahics 的前后决定了图题在图片的前后位置。
@@ -644,26 +642,26 @@ underline
 第一种，采用psfig宏包。
 
 \begin{minted}{tex}
-	\usepackage{psfig}
-	\psfig{figure=图片文件名,height=高度} \\
-	\psfig{figure=图片文件名,width=宽度}
+     \usepackage{psfig}
+     \psfig{figure=图片文件名,height=高度} \\
+     \psfig{figure=图片文件名,width=宽度}
 \end{minted}
 
 第二种，采用epsfig宏包。
 
 \begin{minted}{tex}
-	\usepackage{epsfig}
-	\epsfig{figure=图片文件名,height=高度} \\ %或者
-	\epsfig{figure=图片文件名,width=宽度}
+     \usepackage{epsfig}
+     \epsfig{figure=图片文件名,height=高度} \\ %或者
+     \epsfig{figure=图片文件名,width=宽度}
 \end{minted}
 
 
 第三种，采用epsf宏包。
 
 \begin{minted}{tex}
-	\usepackage{epsf}
-	\epsfxsize=宽度\epsffile{图片文件名} \\ %或者
-	\epsfysize=高度\epsffile{图片文件名}
+     \usepackage{epsf}
+     \epsfxsize=宽度\epsffile{图片文件名} \\ %或者
+     \epsfysize=高度\epsffile{图片文件名}
 \end{minted}
 
 其中的"高度"和"宽度"是指希望图片打印的高度和宽度, 必须给出单位, 可用厘米(cm)或英寸(in)。
@@ -673,12 +671,12 @@ underline
 
 在\LaTeX{}文章排版过程中，会遇到一种情形：希望引用文献中的图片，但是无法找到文献中的图片原文件，采用截图的方式可能会使图片的清晰程度下降。可以利用includegraphics的不同参数选项来实现。举例如下：
 \begin{minted}{tex}
-	\usepacage{graphicx}
-	
-	\begin{figure}
-		\centering
-		\includegraphics[page=xx,viewport=xx yy zz nn,clip,scale=rate]{./filename.pdf}
-	\end{figure}
+     \usepacage{graphicx}
+     
+     \begin{figure}
+          \centering
+          \includegraphics[page=xx,viewport=xx yy zz nn,clip,scale=rate]{./filename.pdf}
+     \end{figure}
 \end{minted}
 
 includegraphics的选项中，page表示页码，viewport表示希望引用的图的位置，用xx yy表示图片的左下角的坐标值，zz nn表示图片的右上角的坐标值，scale用来设置缩放比例。在\LaTeX{}中，默认纸张的左下角为坐标原点。filename.pdf即含有希望引用图片的原文件。
@@ -697,121 +695,116 @@ figure的参数中，h表示当前位置，t表示顶部，b表示底部，p表�
 对一些特殊的期刊文章，需要在文章的开始地方有问题环绕图片的情形。此时需要wrapfig宏包提供的wrapfigure环境来实现。wrapfigure的参数：[number]\{r\}\{0.5$\backslash$textwidth\}行数，位置，宽度
 
 \begin{minted}[breaklines,breakanywhere]{tex}
-	\usepackage{wrapfig}
-	\begin{wrapfigure}[number]{r}{0.5\textwidth}
-		\centering
-		\includegraphics[scale=0.8]{filename}
-		\caption{title of fig}
-	\end{minted}
-	
-	3.子图
-	
-	在文章排版过程中遇到需要多图并列的效果，需要由subfigure宏包提供的子图环境来实现。
-	
-	\begin{minted}{tex}
-		\usepackage{graphicx}
-		\usepackage{folat}
-		\usepackage{subfigure}
-		\begin{document}
-			\begin{figure}[H]
-				\centering  %图片全局居中
-				\subfigure[name1]{
-					\label{Fig.sub.1}
-					\includegraphics[width=0.45\textwidth]{filename1}}
-				\subfigure[name2]{
-					\label{Fig.sub.2}
-					\includegraphics[width=0.45\textwidth]{filename2}}
-				\caption{Main name}
-			\end{figure}
-		\end{document}
-	\end{minted}
-	4.（多行）并列
-	
-	学术文献中经常会让多张结果照片并列显示，有时可能还会出现多行并列显示。这个功能可以通过minipage环境来实现。
-	\begin{minted}{tex}
-		\begin{figure}[htbp]
-			\centering
-			\begin{minipage}[c]{0.45\linewidth}
-				\includegraphics[scale=0.15]{filename1.png}
-			\end{minipage}
-			\begin{minipage}[c]{0.45\linewidth}
-				\includegraphics[scale=0.15]{filename2.png}
-			\end{minipage}
-			\caption{name of figure}
-		\end{figure}
-	\end{minted}
-	
-	5.图题设置
-	
-	\LaTeX{}默认的图题中含有冒号，根据需要将冒号去掉或改成点。
-	\begin{minted}{tex}
-		\usepackage{caption}
-		\captionsetup[figure]{label=period} %period 表示图xx和标题之间有符号``点“。
-		\captionsetup[table]{label=space} %space 表示图xx和标题之间为空格。
-	\end{minted}
-	
-	在排版过程遇到图片或图题距离上下的距离或图片和图题之间的距离需要调整的情形，可以采用一下代码。
-	\begin{minted}{tex}
-		\vspace{-1cm} %调整图片与上文的垂直距离
-		\setlength{\abovecaptionskip}{-0.5cm} %调整图片标题与图距的距离
-		\setlength{\belowcaptionskip}{-0.5cm} %调整图片标题与下文之间距离
-	\end{minted}
-	
-	\subsection{图片引用}
+     \usepackage{wrapfig}
+     \begin{wrapfigure}[number]{r}{0.5\textwidth}
+          \centering
+          \includegraphics[scale=0.8]{filename}
+          \caption{title of fig}
+\end{minted}
 
-	在文章中对图片进行交叉引用方法如下：
-	
-	\begin{minted}{tex}
-		\usepackage{graphicx}
-		\usepackage{float} 
-		\usepackage{subfigure}
-		\usepackage{caption}
-		\begin{document}
-			\begin{figure}[H]
-				\centering  %图片全局居中
-				\subfigure[name1]{
-					\label{Fig.sub.1}
-					\includegraphics[width=0.45\textwidth]{filename1}}
-				\subfigure[name2]{
-					\label{Fig.sub.2}
-					\includegraphics[width=0.45\textwidth]{filename2}}
-				\caption{Main name}
-				\label{Fig.main}
-			\end{figure}
-		\end{document}
-	\end{minted}
-	
+3.子图
 
+在文章排版过程中遇到需要多图并列的效果，需要由subfigure宏包提供的子图环境来实现。
 
-\section{图}
+\begin{minted}{tex}
+     \usepackage{graphicx}
+     \usepackage{folat}
+\usepackage{subfigure}
+     \begin{document}
+          \begin{figure}[H]
+               \centering  %图片全局居中
+               \subfigure[name1]{
+               \label{Fig.sub.1}
+               \includegraphics[width=0.45\textwidth]{filename1}}
+               \subfigure[name2]{
+               \label{Fig.sub.2}
+               \includegraphics[width=0.45\textwidth]{filename2}}
+               \caption{Main name}
+          \end{figure}
+     \end{document}
+\end{minted}
+4.（多行）并列
+
+学术文献中经常会让多张结果照片并列显示，有时可能还会出现多行并列显示。这个功能可以通过minipage环境来实现。
+\begin{minted}{tex}
+     \begin{figure}[htbp]
+          \centering
+               \includegraphics[scale=0.15]{filename1.png}
+          \end{minipage}
+          \begin{minipage}[c]{0.45\linewidth}
+               \includegraphics[scale=0.15]{filename2.png}
+          \end{minipage}
+          \caption{name of figure}
+     \end{figure}
+\end{minted}
+
+5.图题设置
+
+\LaTeX{}默认的图题中含有冒号，根据需要将冒号去掉或改成点。
+\begin{minted}{tex}
+     \usepackage{caption}
+     \captionsetup[figure]{label=period} %period 表示图xx和标题之间有符号``点“。
+     \captionsetup[table]{label=space} %space 表示图xx和标题之间为空格。
+\end{minted}
+
+在排版过程遇到图片或图题距离上下的距离或图片和图题之间的距离需要调整的情形，可以采用一下代码。
+\begin{minted}{tex}
+     \vspace{-1cm} %调整图片与上文的垂直距离
+     \setlength{\abovecaptionskip}{-0.5cm} %调整图片标题与图距的距离
+     \setlength{\belowcaptionskip}{-0.5cm} %调整图片标题与下文之间距离
+\end{minted}
+
+\subsection{图片引用}
+
+在文章中对图片进行交叉引用方法如下：
+
+\begin{minted}{tex}
+     \usepackage{graphicx}
+     \usepackage{float} 
+     \usepackage{subfigure}
+     \usepackage{caption}
+     \begin{document}
+          \begin{figure}[H]
+          \centering  %图片全局居中
+          \subfigure[name1]{
+               \label{Fig.sub.1}
+               \includegraphics[width=0.45\textwidth]{filename1}}
+               \subfigure[name2]{
+                    \label{Fig.sub.2}
+                    \includegraphics[width=0.45\textwidth]{filename2}}
+               \caption{Main name}
+               \label{Fig.main}
+          \end{figure}
+\end{minted}
+
 
 \subsection{图形编号}
 
 Latex在处理图形编号时，会自动根据$\backslash$begin\{figure\}和$\backslash$end\{figure\}对图形的编号进行自动累加。在实际使用过程中，会经常遇到一些好几个图公用一个图题的情况，如果将这些图都放置在一个环境中，有些图可能会因为纸面大小的关系而无法显示，但是如果分开放置到两个或三个图形环境中，这些图题会自动增加。此时需要使用$\backslash$ContinuedFloat命令，即可让图的编号不自动增加，而是和上一个环境链接起来，当一个图形环境来使用。在液压传动教材中的多图排版中采用如下的方式让图形编号不间断。
 \begin{lstlisting}[language=tex,breaklines]
-	\begin{figure}[htbp]
-		content...
-	\end{figure}	
-	\begin{figure}[htbp]
-		\ContinuedFloat %链接上下两个图形环境，使其编号不自动增加
-	\end{figure}
+     \begin{figure}[htbp]
+          content...
+     \end{figure}
+     \begin{figure}[htbp]
+          \ContinuedFloat %链接上下两个图形环境，使其编号不自动增加
+     \end{figure}
 \end{lstlisting}
 
 一般的图形标题都比较短，所以在显示的过程中不会出现比较一些换行的问题。但是对于一些比较长的图题，而且图处于文字环绕的环境中，图题的换行问题就显得比较突出和重要了。图题的换行问题可以利用宏包"caption"配以相应的参数hang即可解决。caption产生的图题中的图号和文字之间产生一个冒号，通过$\backslash$captionsetup的参数labelsep=space即可去除这个冒号。
 \begin{lstlisting}[language=tex,breaklines]
-	\requirepackage[font=small,labelfont={bf,color=sturcturcolor},hang]{caption} %hang解决了图题过长时的自动换行问题
-	\captionsetup[table]{skip=3pt}
-	\captionsetup[figure]{skip=3pt}
-	\captionsetup{labelformat=default,labelsep=space} %去除图片编号中的冒号
+     \requirepackage[font=small,labelfont={bf,color=sturcturcolor},hang]{caption} %hang解决了图题过长时的自动换行问题
+     \captionsetup[table]{skip=3pt}
+     \captionsetup[figure]{skip=3pt}
+     \captionsetup{labelformat=default,labelsep=space} %去除图片编号中的冒号
 \end{lstlisting}
 
 去除图表caption中的冒号。
 \begin{lstlisting}[breaklines]
-	\usepackage{caption}
-	\captionsetup[table]{labelsep=space} % 表
-	\captionsetup[figure]{labelsep=space} % 图
-	
-	\captionsetup{labelformat=default,labelsep=space} %去除冒号
+     \usepackage{caption}
+     \captionsetup[table]{labelsep=space} % 表
+     \captionsetup[figure]{labelsep=space} % 图
+     
+     \captionsetup{labelformat=default,labelsep=space} %去除冒号
 \end{lstlisting}
   
 
@@ -820,88 +813,88 @@ Latex在处理图形编号时，会自动根据$\backslash$begin\{figure\}和$\b
 
 通常我们在 Latex 插入图片时，要为图片单独设置一个环境，即$\backslash$begin\{figure\}和$\backslash$end\{figure\}。
 \begin{lstlisting}[language=tex]
-	\begin{figure}
-		\includegraphics[keyvals]{imagefile}
-	\end{figure}
+     \begin{figure}
+          \includegraphics[keyvals]{imagefile}
+     \end{figure}
 \end{lstlisting}
 
 在这个环境中可以设置输入图片的类型，$\backslash$includegraphics命令来实现对输入图片的操作。常用的一些基本参数如下：
 
 \begin{table}[h]
-	\centering
-	\begin{tabular}{ll}
-		height &	图形的高度（可为任何 TEX 度量单位）。\\
-		totalheight	& 图形的全部高度，可为任何 TEX 度量单位（ 6/95 增加）。\\
-		width &	图形的宽度（可为任何 TEX 度量单位）。\\
-		scale	& 图形的缩放因子，设定 scale=2 会使 插入的图形的大小为其自然大小的两倍。\\
-		angle &	设定旋转的角度，以度为单位，顺时钟方向为正。\\
-	\end{tabular}
+     \centering
+     \begin{tabular}{ll}
+          height &     图形的高度（可为任何 TEX 度量单位）。\\
+          totalheight     & 图形的全部高度，可为任何 TEX 度量单位（ 6/95 增加）。\\
+          width &     图形的宽度（可为任何 TEX 度量单位）。\\
+          scale     & 图形的缩放因子，设定 scale=2 会使 插入的图形的大小为其自然大小的两倍。\\
+          angle &     设定旋转的角度，以度为单位，顺时钟方向为正。\\
+     \end{tabular}
 \end{table}
 
 对于经常使用Latex进行论文排版的使用者来说，常见的图片排版问题莫过于多图的并列排版。对于实现多图排版，Latex中要多种方式可以实现。当图片的版幅较大，无法两图并排放在一起，如果缩放不影响显示效果的情况下，可以连用$\backslash$includegraphics来实现，并列排放的效果。另外也可以利用$\backslash$minipage环境来实现多图的并列。
 
 \begin{lstlisting}[language=tex,breaklines]
-	\begin{figure}[htbp] % htbp用来浮动，h-here，t-top，b-buttom
-		\centering
-		\includegraphics[scale=0.9]{fig0203.pdf}
-		\includegraphics[scale=0.9]{fig0204.pdf}
-	\end{figure}
+     \begin{figure}[htbp] % htbp用来浮动，h-here，t-top，b-buttom
+          \centering
+          \includegraphics[scale=0.9]{fig0203.pdf}
+          \includegraphics[scale=0.9]{fig0204.pdf}
+     \end{figure}
 \end{lstlisting}
 
 \begin{lstlisting}[language=tex]
-	\begin{minipage}[t]{0.48\textwidth} %设置图形宽度
-		\centering
-		\includegraphics{fig0124.pdf}  
-	\end{minipage}
-	\begin{minipage}[t]{0.48\textwidth}
-		\centering
-		\includegraphics{fig0125.pdf}  
-	\end{minipage}
+     \begin{minipage}[t]{0.48\textwidth} %设置图形宽度
+          \centering
+          \includegraphics{fig0124.pdf}  
+     \end{minipage}
+     \begin{minipage}[t]{0.48\textwidth}
+          \centering
+          \includegraphics{fig0125.pdf}  
+     \end{minipage}
 \end{lstlisting}
 
 在对图片进行排版的过程中，可能会遇到图片较小或图片宽度较小、长度方向较大的情况，如果此时对图片进行单独占行进行排版，会留下大量的空白，影响整体的排版的美观性。因此，在排版过程中对图片进行环绕处理。在对图片的环绕处理时利用的$\backslash$begin\{wrapfigure\}和$\backslash$end\{wrapfigure\}环境来实现。wrapfigure的参数主要分为：[行数]、\{位置\}、\{宽度\}。
 
 \begin{lstlisting}[language=tex,breaklines]
-	\begin{wrapfigure}[num]{r}{8cm}% num表示要环绕的行数，r和l分别表示从右侧和左侧环绕；8cm为环绕留给图形的宽度
-		\centering
-		\ifOpenSource
-		\includegraphics[width=5cm]{logo.png}
-		\else
-		\includegraphics{fig0201.pdf}
-		\fi
-		\caption{能量转换示意}
-		\label{fig:fig0201}
-	\end{wrapfigure}
+     \begin{wrapfigure}[num]{r}{8cm}% num表示要环绕的行数，r和l分别表示从右侧和左侧环绕；8cm为环绕留给图形的宽度
+          \centering
+          \ifOpenSource
+          \includegraphics[width=5cm]{logo.png}
+          \else
+          \includegraphics{fig0201.pdf}
+          \fi
+          \caption{能量转换示意}
+          \label{fig:fig0201}
+     \end{wrapfigure}
 \end{lstlisting}
 
 
 对于一些占幅面较大的图片，可能需要横向排布才能显示较全的信息，此时有两种方式来实现图片的旋转功能。$\backslash$includegraphics[angle=xxx]\{fig.png\}或利用$\backslash$begin\{side waysfigure\}和$\backslash$end\{sidewaysfigure\}来实现。
 \begin{lstlisting}[language=tex,breaklines]
-	\begin{figure}[htbp]
-		\centering
-		\includegraphics[angle=xxx]{imagefile} %图片旋转，可自定义旋转角度
-		\caption{text}
-	\end{figure}
+     \begin{figure}[htbp]
+          \centering
+          \includegraphics[angle=xxx]{imagefile} %图片旋转，可自定义旋转角度
+          \caption{text}
+     \end{figure}
 \end{lstlisting}
 
 \begin{lstlisting}[language=tex]
-	\begin{sidewaysfigure} %图片横向排版环境
-		\centering 
-		\includegraphics[width=4in]{graphic.eps} 
-		\caption{Sidewaysfigure Figure} 
-	\end{sidewaysfigure}
+     \begin{sidewaysfigure} %图片横向排版环境
+          \centering 
+          \includegraphics[width=4in]{graphic.eps} 
+          \caption{Sidewaysfigure Figure} 
+     \end{sidewaysfigure}
 \end{lstlisting}
 
 通常情况下，图片和文字是按照一定顺序来进行排放的。但是有些期刊的排版会要求作者将图片和文字分开排版，即文字在前，图片和表格在后的排版方式。在Latex中实现这种文字在前、图片在后的排版方式，仅需引入一个endfloat宏包即可实现。
 
 \begin{lstlisting}[language=tex]
-	\usepackage[noheads,nolists,nomarkers]{endfloat}
-	\renewcommand{\efloatseparator}{\mbox{}}
+     \usepackage[noheads,nolists,nomarkers]{endfloat}
+     \renewcommand{\efloatseparator}{\mbox{}}
 \end{lstlisting}
 
 \section{表}
 
-\section{公式}
+\chapter{公式}
 
 \section{常用公式录入}
 
@@ -915,7 +908,7 @@ Latex在处理图形编号时，会自动根据$\backslash$begin\{figure\}和$\b
 行内公式，顾名思义，公式在文字的行内，属于文字公式混排。此类公式没有公式编号，通常由一对``\$"包裹，例如：
 
 \begin{example}
-	勾股定理可表示为：$a^{2}+b^{2}=c^{2}$。
+     勾股定理可表示为：$a^{2}+b^{2}=c^{2}$。
 \end{example}
 
 \subsection{行间公式}
@@ -926,23 +919,23 @@ ref命令来进行引用，或利用amsmath宏包提供的\eqref（会默认对�
 label进行自定义；也可以采用\textbackslash
 tag对公式进行自定义编号；或者采用\textbackslash notag取消公式编号。
 \begin{example}
-	\begin{equation}
-		a^{2} + b^{2} = c^{2} \label{Pythagoras}
-	\end{equation}
-	公式\eqref{Pythagoras}被称为勾股定理。
+     \begin{equation}
+          a^{2} + b^{2} = c^{2} \label{Pythagoras}
+     \end{equation}
+     公式\eqref{Pythagoras}被称为勾股定理。
 \end{example}
 
 如果需要不提供编号的行间公式，可以采用\textbackslash[和\textbackslash]提供的行间公式环境或者利用displaymath环境提供的行间公式。
 \begin{example}
-	\[ a^{2} + b^{2} = c^{2} \]
-	
-	\begin{displaymath}
-		a^{2} + b^{2} = c^{2}
-	\end{displaymath}
-	
-	\begin{equation*}
-		a^{2} + b^{2} = c^{2}
-	\end{equation*}
+     \[ a^{2} + b^{2} = c^{2} \]
+     
+     \begin{displaymath}
+          a^{2} + b^{2} = c^{2}
+     \end{displaymath}
+     
+     \begin{equation*}
+          a^{2} + b^{2} = c^{2}
+     \end{equation*}
 \end{example}
 
 \subsection{行间多行公式}
@@ -950,30 +943,30 @@ tag对公式进行自定义编号；或者采用\textbackslash notag取消公式
 
 在数学证明方面，可能会出现很长的、需要折行的公式，通过amsmath宏包提供的multline环境来完成。
 \begin{example}
-	\begin{multline}
-		a + b + c + d = e + f + g + h \\
-		= i + j + k + l\\
-		= m + n + o + p\\
-		= q + r + s = t
-	\end{multline}
+     \begin{multline}
+          a + b + c + d = e + f + g + h \\
+          = i + j + k + l\\
+          = m + n + o + p\\
+          = q + r + s = t
+     \end{multline}
 \end{example}
 
 在证明过程中可能会用到多个公式联立，并在等号处对其。此时，可以采用align环境。
 
 \begin{example}
-	\begin{align}
-		x + y &= 5 \\
-		3x + y &= 8
-	\end{align}
+     \begin{align}
+          x + y &= 5 \\
+          3x + y &= 8
+     \end{align}
 \end{example}
 
 
 如果不需要多行公式对其时，则可以采用gather环境完成。
 \begin{example}
-	\begin{gather}
-		x +y = 5\\ %\\用来分割各行
-		2x + y = 8
-	\end{gather}
+     \begin{gather}
+          x +y = 5\\ %\\用来分割各行
+          2x + y = 8
+     \end{gather}
 \end{example}
 
 multline、gather和align环境都会自动生成公式符号，如果不需要公式编号的时候，在gather和align后面添加“*”，即multline*、gather*和align*。需要注意的是，aligh和gather环境会给每一个公式添加编号；如果只需要一个公式编号，则需要将align或gather嵌套如equation环境中即可。
@@ -981,149 +974,41 @@ multline、gather和align环境都会自动生成公式符号，如果不需要�
 \subsection{单侧括号公式块}
 
 \begin{example}
-	\begin{equation}
-		\left.
-		\begin{align}
-			x + y &> 10 \\
-			x - y &> 2
-		\end{align}
-		\right \}\Rightarrow x^{2}-y^{2} > 20
-	\end{equation}
+     \begin{equation}
+          \left.
+          \begin{align}
+               x + y &> 10 \\
+               x - y &> 2
+          \end{align}
+          \right \}\Rightarrow x^{2}-y^{2} > 20
+     \end{equation}
 \end{example}
 
 对一个分段函数来说
 \begin{example}
-	\[ |x| = \left\{
-	\begin{array}{rl}
-		-x & \text{if } x < 0,\\
-		0 & \text{if } x = 0,\\
-		x & \text{if } x > 0.
-	\end{array} \right. \]
+     \[ |x| = \left\{
+     \begin{array}{rl}
+          -x & \text{if } x < 0,\\
+          0 & \text{if } x = 0,\\
+          x & \text{if } x > 0.
+     \end{array} \right. \]
 \end{example}
 
 也可以采用amsmath宏包提供的case环境来实现。
 
 \begin{example}
-	\[ |x| =
-	\begin{cases}
-		-x & \text{if } x < 0,\\
-		0 & \text{if } x = 0,\\
-		x & \text{if } x > 0.
-	\end{cases} \]
+     \[ |x| =
+     \begin{cases}
+          -x & \text{if } x < 0,\\
+          0 & \text{if } x = 0,\\
+          x & \text{if } x > 0.
+     \end{cases} \]
 \end{example}
 
-
-
-
-\section{常用公式录入}
-
-
-\LaTeX{}中数学公式的排版，大部分功能都由amsmath宏包提供。amsfont、amssymb宏包提供了大量的数学符号；amsthm宏包提供了扩展的\LaTeX{}定理证明格式。
-
-
-\subsection{行内公式}
-
-
-行内公式，顾名思义，公式在文字的行内，属于文字公式混排。此类公式没有公式编号，通常由一对``\$"包裹，例如：
-
-\begin{example}
-	勾股定理可表示为：$a^{2}+b^{2}=c^{2}$。
-\end{example}
-
-\subsection{行间公式}
-
-行间公式处于文字段落之外，可以采用equation环境书写，此时行间公式默认有公式编号。采用equation*环境可以提供不带编号的行间公式。利用\textbackslash
-ref命令来进行引用，或利用amsmath宏包提供的\eqref（会默认对引用添加括号）命令来进行引用。如果需要自定以公式编号，可以采用\textbackslash
-label进行自定义；也可以采用\textbackslash
-tag对公式进行自定义编号；或者采用\textbackslash notag取消公式编号。
-\begin{example}
-	\begin{equation}
-		a^{2} + b^{2} = c^{2} \label{Pythagoras}
-	\end{equation}
-	公式\eqref{Pythagoras}被称为勾股定理。
-\end{example}
-
-如果需要不提供编号的行间公式，可以采用\textbackslash[和\textbackslash]提供的行间公式环境或者利用displaymath环境提供的行间公式。
-\begin{example}
-	\[ a^{2} + b^{2} = c^{2} \]
-	
-	\begin{displaymath}
-		a^{2} + b^{2} = c^{2}
-	\end{displaymath}
-	
-	\begin{equation*}
-		a^{2} + b^{2} = c^{2}
-	\end{equation*}
-\end{example}
-
-\subsection{行间多行公式}
-
-在数学证明方面，可能会出现很长的、需要折行的公式，通过amsmath宏包提供的multline环境来完成。
-\begin{example}
-	\begin{multline}
-		a + b + c + d = e + f + g + h \\
-		= i + j + k + l\\
-		= m + n + o + p\\
-		= q + r + s = t
-	\end{multline}
-\end{example}
-
-在证明过程中可能会用到多个公式联立，并在等号处对其。此时，可以采用align环境。
-
-\begin{example}
-	\begin{align}
-		x + y &= 5 \\
-		3x + y &= 8
-	\end{align}
-\end{example}
-
-
-如果不需要多行公式对其时，则可以采用gather环境完成。
-\begin{example}
-	\begin{gather}
-		x +y = 5\\ %\\用来分割各行
-		2x + y = 8
-	\end{gather}
-\end{example}
-
-multline、gather和align环境都会自动生成公式符号，如果不需要公式编号的时候，在gather和align后面添加“*”，即multline*、gather*和align*。需要注意的是，aligh和gather环境会给每一个公式添加编号；如果只需要一个公式编号，则需要将align或gather嵌套如equation环境中即可。
-
-\subsection{单侧括号公式块}
-
-\begin{example}
-	\begin{equation}
-		\left.
-		\begin{aligned}
-			x + y &> 10 \\
-			x - y &> 2
-		\end{aligned}
-		\right \} \Rightarrow x^{2}-y^{2} > 20
-	\end{equation}
-\end{example}
-
-对一个分段函数来说
-\begin{example}
-	\[ |x| = \left\{
-	\begin{array}{rl}
-		-x & \text{if } x < 0,\\
-		0 & \text{if } x = 0,\\
-		x & \text{if } x > 0.
-	\end{array} \right. \]
-\end{example}
-
-也可以采用amsmath宏包提供的case环境来实现。
-
-\begin{example}
-	\[ |x| =
-	\begin{cases}
-		-x & \text{if } x < 0,\\
-		0 & \text{if } x = 0,\\
-		x & \text{if } x > 0.
-	\end{cases} \]
-\end{example}
 
 
 \chapter{参考文献}
+
 \section{参考文献引用}
 
 
@@ -1134,19 +1019,19 @@ multline、gather和align环境都会自动生成公式符号，如果不需要�
 
 thebibliography方法相对简单，直接将参考文献的内容存放的document环境之内，清晰明了。当参考文献的数量相对较少，或对参考文献的格式没有特殊的要求时，相对来说是一种比较方便的引用方法。
 \begin{minted}{tex}
-	\documentclass{article}
-	
-	\begin{document}
-		
-		\section{Introduction}
-		
-		这是一个测试案例，用来介绍引用参考文献的引用方法\cite{ref1}。%ref1只是一个引用符号，可以是任何字符。
-		
-		\begin{thebibliography}{99}%99是指参考文献的最大数量，可以自行设定
-			\bibitem{ref1} xxxxxxxxxxx %和前面的ref1对应，后面添加参考文献的内容。
-			\bibitem{ref2} xxxxxxx
-		\end{thebibliography}
-	\end{document}
+     \documentclass{article}
+     
+     \begin{document}
+          
+          \section{Introduction}
+          
+          这是一个测试案例，用来介绍引用参考文献的引用方法\cite{ref1}。%ref1只是一个引用符号，可以是任何字符。
+          
+          \begin{thebibliography}{99}%99是指参考文献的最大数量，可以自行设定
+               \bibitem{ref1} xxxxxxxxxxx %和前面的ref1对应，后面添加参考文献的内容。
+               \bibitem{ref2} xxxxxxx
+          \end{thebibliography}
+     \end{document}
 \end{minted}
 
 
@@ -1154,40 +1039,40 @@ thebibliography方法相对简单，直接将参考文献的内容存放的docum
 
 对参考文献的排版有特殊的格式要求、管理的便捷、大量的参考文献条目、希望\TeX{}文档整体有条理时，可以采用bib文件的方式来进行参考文献管理。
 \begin{minted}{tex}
-	@article{name1,
-		title = {标题},
-		author = {作者，多个作者用and连接},
-		year = {年份},
-		journal = {期刊名称},
-		volume = {卷},
-		pages = {页码},
-		abstract = {摘要},
-	}
-	
-	@mastersthesis{name2,  %masterthesis 表示学位论文。
-		type = {硕士},
-		title = {标题},
-		author = {作者},
-		year = {年份},
-		abstract = {摘要},
-		school = {武汉科技大学},
-	}
+     @article{name1,
+          title = {标题},
+          author = {作者，多个作者用and连接},
+          year = {年份},
+          journal = {期刊名称},
+          volume = {卷},
+          pages = {页码},
+          abstract = {摘要},
+     }
+     
+     @mastersthesis{name2,  %masterthesis 表示学位论文。
+          type = {硕士},
+          title = {标题},
+          author = {作者},
+          year = {年份},
+          abstract = {摘要},
+          school = {武汉科技大学},
+     }
 \end{minted}
 
 在\LaTeX{}文档中，需要引用文献的地方插入文献使用$\backslash$cite命令。在文档结束之前的地方插入bib文件名称。
 
 \begin{minted}{tex}
-	\documentclass{article}
-	
-	\begin{document}
-		
-		\section{Introduction}
-		
-		xxxxxxxxxxx
-		
-		\bibliographystyle{style} %style为希望展示的参考文献格式
-		\bibliography{reference} %reference为bib文件的名称，
-	\end{document}
+     \documentclass{article}
+     
+     \begin{document}
+          
+          \section{Introduction}
+          
+          xxxxxxxxxxx
+          
+          \bibliographystyle{style} %style为希望展示的参考文献格式
+          \bibliography{reference} %reference为bib文件的名称，
+     \end{document}
 \end{minted}
 
 \section{文献检索}
@@ -1241,69 +1126,69 @@ ScienceDirect出品，免费使用，支持多平台使用（网页、Windows、
 bib格式的参考文献必须具备的内容：author,title,journal,volume,year,number。举例如下：
 
 \begin{minted}[breaklines,breakanywhere]{tex}
-	@article{name1, %name1为正文中需要引用的关键词，即\cite{name1}。
-		title = {文章标题},
-		author = {作者, 多个作者用 and 连接},
-		journal = {期刊名},
-		volume = {卷},
-		number = {页码},
-		pages={},
-		year = {年份},
-		publisher={出版社}
-	}
+     @article{name1, %name1为正文中需要引用的关键词，即\cite{name1}。
+          title = {文章标题},
+          author = {作者, 多个作者用 and 连接},
+          journal = {期刊名},
+          volume = {卷},
+          number = {页码},
+          pages={},
+          year = {年份},
+          publisher={出版社}
+     }
 \end{minted}
 
 在\LaTeX{}文档中，首先在导言区调用cite宏包，在正文区内设置需要显示的参考文献风格类型，设置参考文献bib文件的位置。\LaTeX{}默认提供的参考文献样式有8种：
 \begin{minted}[breaklines,breakanywhere]{tex}
-	\centering
-	plain，按字母的顺序排列，比较次序为作者、年度和标题.
-	unsrt，样式同plain，只是按照引用的先后排序.
-	alpha，用作者名首字母+年份后两位作标号，以字母顺序排序.
-	abbrv，类似plain，将月份全拼改为缩写，更显紧凑.
-	ieeetr，国际电气电子工程师协会期刊样式.
-	acm，美国计算机学会期刊样式.
-	siam，美国工业和应用数学学会期刊样式.
-	apalike，美国心理学学会期刊样式.
+     \centering
+     plain，按字母的顺序排列，比较次序为作者、年度和标题.
+     unsrt，样式同plain，只是按照引用的先后排序.
+     alpha，用作者名首字母+年份后两位作标号，以字母顺序排序.
+     abbrv，类似plain，将月份全拼改为缩写，更显紧凑.
+     ieeetr，国际电气电子工程师协会期刊样式.
+     acm，美国计算机学会期刊样式.
+     siam，美国工业和应用数学学会期刊样式.
+     apalike，美国心理学学会期刊样式.
 \end{minted}
 
 完整的引用案例如下：
 
 \begin{minted}[breaklines,breakanywhere]{tex}
-	\documentclass{article}
-	\usepackage{cite}
-	
-	\begin{document}
-		这是一个参考文献引用方法的举例\cite{key}。
-		\bibliographystyle{unsrt} %设置参考文献的显示风格。
-		\bibliography{reference} % reference为存放参考文献的bib文件名，该文件默认和tex主文档放在同一个目录下；如果发生了路径变化，则需要提供相对路径。
-		
-	\end{document}
+     \documentclass{article}
+     \usepackage{cite}
+     
+     \begin{document}
+          这是一个参考文献引用方法的举例\cite{key}。
+          \bibliographystyle{unsrt} %设置参考文献的显示风格。
+          \bibliography{reference} % reference为存放参考文献的bib文件名，该文件默认和tex主文档放在同一个目录下；如果发生了路径变化，则需要提供相对路径。
+          
+     \end{document}
 \end{minted}
 参考文献的引用需要在导言区添加相应的宏包，在正文中需要引用参考文献的地方，添加相应的文献。添加单个或多个不连续的文献，方式如下：
 
 \begin{minted}{tex}
-	\usepackage{cite}%导言区添加
-	
-	文献表明：这个问题可以通过这种方式来解决\cite{bibtex1,bibtex3,bibtex5}。%正文区
+     \usepackage{cite}%导言区添加
+     
+     文献表明：这个问题可以通过这种方式来解决\cite{bibtex1,bibtex3,bibtex5}。%正文区
 \end{minted}
 
 输入结果如下：
 
 \begin{minted}{tex}
-	文献表明：这个问题可以通过这种方式来解决[1,3,5]。
+     文献表明：这个问题可以通过这种方式来解决[1,3,5]。
 \end{minted}
 
 添加多个连续的参考文献，方式如下：
 
 \begin{minted}{tex}
-	\usepackage{cite} %导言区
-	\usepackage[number,sort&compress]{natbib} %导言区
-	文献表明：这个问题可以通过这种方式来解决\cite{key1,key2,key3}
+     \usepackage{cite} %导言区
+     \usepackage[number,sort&compress]{natbib} %导言区
+     文献表明：这个问题可以通过这种方式来解决\cite{key1,key2,key3}
 \end{minted}
 
 输出结果如下：
 \begin{minted}{tex}
-	文献表明：这个问题可以通过这种方式来解决[1-3]。
+     文献表明：这个问题可以通过这种方式来解决[1-3]。
 \end{minted}
 
 
@@ -1312,17 +1197,17 @@ bib格式的参考文献必须具备的内容：author,title,journal,volume,year
 
 中文参考文献可以遵循GB/T 7714-2015。使用\LaTeX{}对中文学术论文进行排版时，可以按照GB/T 7714-2015来设置参考文献的格式。用法如下：
 \begin{minted}[breaklines,breakanywhere]{tex}
-	\documentclass{article}
-	\usepackage{ctex}%ctex宏包中包含了cite，可以不必单独调用宏包。
-	\usepackage{gbt7714}
-	
-	\begin{document}
-		
-		充足的睡眠有利用身体健康\cite{key1}
-		
-		\bibliographstyle{gbt7714-numerical} %利用GB/T 7714-2015宏包来设置参考文献的格式
-		\bibliography{ref} %ref代表存放参考文献的bib文件名称。
-	\end{document}
+     \documentclass{article}
+     \usepackage{ctex}%ctex宏包中包含了cite，可以不必单独调用宏包。
+     \usepackage{gbt7714}
+     
+     \begin{document}
+          
+          充足的睡眠有利用身体健康\cite{key1}
+          
+          \bibliographstyle{gbt7714-numerical} %利用GB/T 7714-2015宏包来设置参考文献的格式
+          \bibliography{ref} %ref代表存放参考文献的bib文件名称。
+     \end{document}
 \end{minted}
 
 \section{格式}
@@ -1350,52 +1235,52 @@ bib格式的参考文献必须具备的内容：author,title,journal,volume,year
 在用 LaTeX 排版文章、书籍时，缺省定义了四种页眉页脚的格式：
 
 \begin{table}[h]
-	\centering
-	\begin{tabular}{ll}
-		empty      & 没有页眉和页脚              \\
-		plain      & 没有页眉，页脚中部放置页码        \\
-		headings   & 没有页脚，页眉包含章节的标题和页码    \\
-		myheadings & 没有页脚，页眉页码和使用者所定义的信息 
-	\end{tabular}
+     \centering
+     \begin{tabular}{ll}
+          empty      & 没有页眉和页脚              \\
+          plain      & 没有页眉，页脚中部放置页码        \\
+          headings   & 没有页脚，页眉包含章节的标题和页码    \\
+          myheadings & 没有页脚，页眉页码和使用者所定义的信息 
+     \end{tabular}
 \end{table}
 
 对于article 类文档缺省使用 plain 格式，而 book类文档则使用 headings 格式。一般情况下，Latex提供的这四种格式基本可以满足大多数的排版需求。但是在某些特殊的情况下，特别是使用者想在某一些页面使用自定义的页眉页脚或全文使用自定义的页眉页脚，这时就会遇到很多限制和麻烦。例如，仅想在某些页面不出现任何页眉页脚，而其余部分按照正常情况还显示页眉页脚，这个时候就可以使用$\backslash$pagestyle命令，其用法为$\backslash$pagestyle\{empty\}，将其放置在需要取消页眉页脚的部分，变可实现取消页眉页脚的作用。用法如下：
 \begin{lstlisting}[language=tex]
-	%\input{preface}   %引言部分
-	\newpage  %原文档为双面，故此处插入空白页面
-	\thispagestyle{empty}  %清除引言部分的页眉页脚信息
+     %\input{preface}   %引言部分
+     \newpage  %原文档为双面，故此处插入空白页面
+     \thispagestyle{empty}  %清除引言部分的页眉页脚信息
 \end{lstlisting}
 \begin{lstlisting}[language=tex]
-	\usepackage{cite}
-	
-	这里是正文\cite{bib2,bibt2,bibt3}
+     \usepackage{cite}
+     
+     这里是正文\cite{bib2,bibt2,bibt3}
 \end{lstlisting}
 
 但对于那些完全需要自定义页眉页脚的格式的使用者来说，还需要使用额外的宏包"fancyhdr"。该宏包的主要通过定义$\backslash$fancyhead和$\backslash$fancyfoot两个命令对页眉页脚进行控制，这两个命令的参数如下。在编辑教材的时候，由于书籍采用了双面显示，奇数页的页眉不同且没有页脚的显示方式，故利用"fancyhdr"对页眉页脚进行了重新定义。使用的代码如下。
 \begin{table}[h]
-	\centering
-	\begin{tabular}{ll}
-		E &	偶数页\\
-		O &	奇数页 \\
-		L &	页眉或页脚的左边部分\\
-		C &	页眉或页脚的中间部分\\
-		R &	页眉或页脚的右边部分\\
-		H &	页眉\\
-		F &	页脚
-	\end{tabular}
+     \centering
+     \begin{tabular}{ll}
+          E &     偶数页\\
+          O &     奇数页 \\
+          L &     页眉或页脚的左边部分\\
+          C &     页眉或页脚的中间部分\\
+          R &     页眉或页脚的右边部分\\
+          H &     页眉\\
+          F &     页脚
+     \end{tabular}
 \end{table}
 \begin{lstlisting}[language=tex,breaklines]
-	\requirepackage{fancyhdr}
-	\fancyhf{} 
-	%fancyfoot[c]{\color{structurecolor}\scriptsize\thepage} %取消页脚页码
-	\if@twoside
-	\fancyhead[CO]{\color{structurecolor}\cnormal\leftmark} %leftmark章节名称，奇数页页眉中部显示章节名称
-	\fancyhead[OR]{\color{structurecolor}\cnormal\thepage} %奇数页右侧页码
-	\fancyhead[EL]{\color{structurecolor}\cnormal\thepage} %偶数页左侧页码
-	\fancyhead[CE]{\color{structurecolor}\cnormal\@title} % @title教材名称，偶数页页眉中部显示教材名称
-	\else
-	\fancyhead[R]{\color{structurecolor}\cnormal\rightmark}
-	\fi
+     \requirepackage{fancyhdr}
+     \fancyhf{} 
+     %fancyfoot[c]{\color{structurecolor}\scriptsize\thepage} %取消页脚页码
+     \if@twoside
+     \fancyhead[CO]{\color{structurecolor}\cnormal\leftmark} %leftmark章节名称，奇数页页眉中部显示章节名称
+     \fancyhead[OR]{\color{structurecolor}\cnormal\thepage} %奇数页右侧页码
+     \fancyhead[EL]{\color{structurecolor}\cnormal\thepage} %偶数页左侧页码
+     \fancyhead[CE]{\color{structurecolor}\cnormal\@title} % @title教材名称，偶数页页眉中部显示教材名称
+     \else
+     \fancyhead[R]{\color{structurecolor}\cnormal\rightmark}
+     \fi
 \end{lstlisting}
 
 \subsection{章节编号}
@@ -1403,9 +1288,9 @@ bib格式的参考文献必须具备的内容：author,title,journal,volume,year
 Latex 默认的章节编号大多是以阿拉伯数字开始的，但是对于一些经常采用非阿拉伯数字编号的使用者来说就显得有点不友好。因此，在进行章节编号的时候，使用者就需要根据自己的需要来对章节的编号进行自定义。Latex中的提供了几类编号方式：$\backslash$arabic 阿拉伯数字，$\backslash$roman 小写的罗马数字，$\backslash$Roman 大写的罗马数字，$\backslash$alph 小写字母，$\backslash$Alph 大写字母。如果使用者希望采用非阿拉伯数字的方式进行编号，利用$\backslash$renewcommand命令进行定义编号的格式。在整理液压传动的时候对章节的编号进行自定义的代码如下：
 
 \begin{lstlisting}[language=tex,breaklines]
-	\renewcommand{\thesection}{\color[RGB]{60,113,183} \arabic{chapter}-\arabic{section}} %设置section的格式为章序号-节序号
-	\renewcommand{\thesubsection}{\chinese{subsection}、} %子节的序号为中文序号+顿号
-	\renewcommand{\thesubsubsection}{\arabic{subsubsection}.} 
+     \renewcommand{\thesection}{\color[RGB]{60,113,183} \arabic{chapter}-\arabic{section}} %设置section的格式为章序号-节序号
+     \renewcommand{\thesubsection}{\chinese{subsection}、} %子节的序号为中文序号+顿号
+     \renewcommand{\thesubsubsection}{\arabic{subsubsection}.} 
 \end{lstlisting}
 
 
@@ -1413,209 +1298,209 @@ Latex 默认的章节编号大多是以阿拉伯数字开始的，但是对于�
 \section{常见错误}
 
 \begin{sidewaystable}
-	\centering
-	\caption{Ambiguous Errors}
-	\begin{tabular}{|c|l|l|l|} 
-		\hline
-		No & \multicolumn{1}{c|}{Class} & \multicolumn{1}{c|}{Error Message}                            & \multicolumn{1}{c|}{Cause of Error}                                                                                          \\ 
-		\hline
-		1  & e\_des                     & ! LaTeX Error: There's no line here to end                    & Usage of \textbackslash{}\textbackslash{} at the end of a long label in 'description' environment                            \\ 
-		\hline
-		2  & e\_center                  & ! LaTeX Error: There's no line here to end                    & Usage of \textbackslash{}\textbackslash{} after the heading line in 'center' environment                                     \\ 
-		\hline
-		3  & e\_foot                    & ! Argument of \textbackslash{}@sect has an extra \}           & Usage of a fragile command 'footnote' within \textbackslash{}section                                                         \\ 
-		\hline
-		4  & e\_ragged                  & ! Argument of \textbackslash{}@caption has an extra \}        & Usage of \textbackslash{}\textbackslash{} within \textbackslash{}raggedright or \textbackslash{}raggedleft environment       \\ 
-		\hline
-		5  & e\_and                     & ! Extra alignment tab has been changed to \textbackslash{}cr  & Too many s in a row of a table or array or eqnarray.                                                                         \\ 
-		\hline
-		6  & e\_cline                   & ! Extra alignment tab has been changed to \textbackslash{}cr  & Reference no non existing column in \textbackslash{}cline                                                                    \\ 
-		\hline
-		7  & e\_col                     & ! Extra alignment tab has been changed to \textbackslash{}cr. & Usage @ in tabular* environment                                                                                              \\ 
-		\hline
-		8  & e\_num                     & ~! Missing number treated as zero                             & Usage of non numeric parameter after \textbackslash{}\textbackslash{}                                                        \\ 
-		\hline
-		9  & e\_asterisk                & Missing * at the end of the line                              & * is not printed when used without brace after \textbackslash{}\textbackslash{}                                              \\ 
-		\hline
-		10 & e\_pbox\_miss              & ! Missing number, treated as zero.                            & \textbackslash{}parbox[t]\{\} ..Missing argument to parbox                                                                   \\ 
-		\hline
-		11 & e\_mis\_circle             & ! Missing number, treated as zero.                            & Missing numeric parameter to \textbackslash{}circle                                                                          \\ 
-		\hline
-		12 & e\_list                    & ! Argument of \textbackslash{}lst@next has an extra \}        & Usage of 1stlisting inside fragile command \textbackslash{}parbox                                                            \\ 
-		\hline
-		13 & e\_capacity                & ! TeX capacity exceeded, sorry [input stack size=1500]        & Usage of 1stlisting inside fragile command \textbackslash{}parbox                                                            \\ 
-		\hline
-		14 & e\_runaway                 & Runaway argument?                                             & Generally because of missing braces, e.g \textbackslash{}cline\{1-2 instead of 
-		\textbackslash{}cline\{1-2\}           \\ 
-		\hline
-		15 & e\_verbatim                & Runaway argument?                                             & Usage of verbatim within scope of another command e.g: \textbackslash{}ifthenelse                                            \\ 
-		\hline
-		16 & e\_undefined               & ! Undefined control sequence                                  & Usage of an unknown command                                                                                                  \\ 
-		\hline
-		17 & e\_footnote                & ! Undefined control sequence                                  & Usage of \textbackslash{}footnote within \textbackslash{}footnote                                                            \\ 
-		\hline
-		18 & e\_integral                & ! Missing \{ inserted.                                        & Integral bounds are malformed                                                                                                \\ 
-		\hline
-		19 & e\_zeta                    & ! Missing \{ inserted.                                        & Extra subscript before integral upper limit term                                                                             \\ 
-		\hline
-		20 & e\_bezier                  & ! Illegal unit of measure (pt inserted).                      & Missing numeric argument to \textbackslash{}qbezier                                                                          \\ 
-		\hline
-		21 & e\_too\_bezier             & ! Illegal unit of measure (pt inserted).                      & Too many arguments to \textbackslash{}qbezier                                                                                \\ 
-		\hline
-		22 & e\_unit                    & ! Illegal unit of measure (pt inserted)                       & \textbackslash{}parbox[t]\{2\} ..Illegal unit of second parameter                                                            \\ 
-		\hline
-		23 & e\_symfoot                 & ! LaTeX Error: Counter too large.                             & More than 9 footnotes when using symbolic footnotes                                                                          \\ 
-		\hline
-		24 & e\_large\_count            & ! LaTeX Error: Counter too large.                             & Trying to display a corresponding letter for a counter vallue 26                                                             \\ 
-		\hline
-		25 & e\_begin                   & ! LaTeX Error: Missing \textbackslash{}begin\{document\}      & Either text has been placed before \textbackslash{}begin\{document\} or 
-		\textbackslash{}begin\{document\} is missing  \\ 
-		\hline
-		26 & e\_margin                  & ! LaTeX Error: Missing \textbackslash{}begin\{document\}.     & Misuse of \textbackslash{}marginsize                                                                                         \\
-		\hline
-	\end{tabular}
+     \centering
+     \caption{Ambiguous Errors}
+     \begin{tabular}{|c|l|l|l|} 
+          \hline
+          No & \multicolumn{1}{c|}{Class} & \multicolumn{1}{c|}{Error Message}                            & \multicolumn{1}{c|}{Cause of Error}                                                                                          \\ 
+          \hline
+          1  & e\_des                     & ! LaTeX Error: There's no line here to end                    & Usage of \textbackslash{}\textbackslash{} at the end of a long label in 'description' environment                            \\ 
+          \hline
+          2  & e\_center                  & ! LaTeX Error: There's no line here to end                    & Usage of \textbackslash{}\textbackslash{} after the heading line in 'center' environment                                     \\ 
+          \hline
+          3  & e\_foot                    & ! Argument of \textbackslash{}@sect has an extra \}           & Usage of a fragile command 'footnote' within \textbackslash{}section                                                         \\ 
+          \hline
+          4  & e\_ragged                  & ! Argument of \textbackslash{}@caption has an extra \}        & Usage of \textbackslash{}\textbackslash{} within \textbackslash{}raggedright or \textbackslash{}raggedleft environment       \\ 
+          \hline
+          5  & e\_and                     & ! Extra alignment tab has been changed to \textbackslash{}cr  & Too many s in a row of a table or array or eqnarray.                                                                         \\ 
+          \hline
+          6  & e\_cline                   & ! Extra alignment tab has been changed to \textbackslash{}cr  & Reference no non existing column in \textbackslash{}cline                                                                    \\ 
+          \hline
+          7  & e\_col                     & ! Extra alignment tab has been changed to \textbackslash{}cr. & Usage @ in tabular* environment                                                                                              \\ 
+          \hline
+          8  & e\_num                     & ~! Missing number treated as zero                             & Usage of non numeric parameter after \textbackslash{}\textbackslash{}                                                        \\ 
+          \hline
+          9  & e\_asterisk                & Missing * at the end of the line                              & * is not printed when used without brace after \textbackslash{}\textbackslash{}                                              \\ 
+          \hline
+          10 & e\_pbox\_miss              & ! Missing number, treated as zero.                            & \textbackslash{}parbox[t]\{\} ..Missing argument to parbox                                                                   \\ 
+          \hline
+          11 & e\_mis\_circle             & ! Missing number, treated as zero.                            & Missing numeric parameter to \textbackslash{}circle                                                                          \\ 
+          \hline
+          12 & e\_list                    & ! Argument of \textbackslash{}lst@next has an extra \}        & Usage of 1stlisting inside fragile command \textbackslash{}parbox                                                            \\ 
+          \hline
+          13 & e\_capacity                & ! TeX capacity exceeded, sorry [input stack size=1500]        & Usage of 1stlisting inside fragile command \textbackslash{}parbox                                                            \\ 
+          \hline
+          14 & e\_runaway                 & Runaway argument?                                             & Generally because of missing braces, e.g \textbackslash{}cline\{1-2 instead of 
+          \textbackslash{}cline\{1-2\}           \\ 
+          \hline
+          15 & e\_verbatim                & Runaway argument?                                             & Usage of verbatim within scope of another command e.g: \textbackslash{}ifthenelse                                            \\ 
+          \hline
+          16 & e\_undefined               & ! Undefined control sequence                                  & Usage of an unknown command                                                                                                  \\ 
+          \hline
+          17 & e\_footnote                & ! Undefined control sequence                                  & Usage of \textbackslash{}footnote within \textbackslash{}footnote                                                            \\ 
+          \hline
+          18 & e\_integral                & ! Missing \{ inserted.                                        & Integral bounds are malformed                                                                                                \\ 
+          \hline
+          19 & e\_zeta                    & ! Missing \{ inserted.                                        & Extra subscript before integral upper limit term                                                                             \\ 
+          \hline
+          20 & e\_bezier                  & ! Illegal unit of measure (pt inserted).                      & Missing numeric argument to \textbackslash{}qbezier                                                                          \\ 
+          \hline
+          21 & e\_too\_bezier             & ! Illegal unit of measure (pt inserted).                      & Too many arguments to \textbackslash{}qbezier                                                                                \\ 
+          \hline
+          22 & e\_unit                    & ! Illegal unit of measure (pt inserted)                       & \textbackslash{}parbox[t]\{2\} ..Illegal unit of second parameter                                                            \\ 
+          \hline
+          23 & e\_symfoot                 & ! LaTeX Error: Counter too large.                             & More than 9 footnotes when using symbolic footnotes                                                                          \\ 
+          \hline
+          24 & e\_large\_count            & ! LaTeX Error: Counter too large.                             & Trying to display a corresponding letter for a counter vallue 26                                                             \\ 
+          \hline
+          25 & e\_begin                   & ! LaTeX Error: Missing \textbackslash{}begin\{document\}      & Either text has been placed before \textbackslash{}begin\{document\} or 
+          \textbackslash{}begin\{document\} is missing  \\ 
+          \hline
+          26 & e\_margin                  & ! LaTeX Error: Missing \textbackslash{}begin\{document\}.     & Misuse of \textbackslash{}marginsize                                                                                         \\
+          \hline
+     \end{tabular}
 \end{sidewaystable}
 
 %\begin{sidewaystable}
-%	\centering
-%	\caption{Common Errors}
-%%	\begin{tabular}{|l>{0.05\linewidth}|l|l|l|} 
-%		
-%%		\multicolumn{1}{|>{\centering}{0.05\linewidth}|}{No} & \multicolumn{1}{c|}{Class} & \multicolumn{1}{c|}{Error Message}                                                              & \multicolumn{1}{c|}{Cause of Error}                                                                                                                                         \\ 
+%     \centering
+%     \caption{Common Errors}
+%%     \begin{tabular}{|l>{0.05\linewidth}|l|l|l|} 
+%          
+%%          \multicolumn{1}{|>{\centering}{0.05\linewidth}|}{No} & \multicolumn{1}{c|}{Class} & \multicolumn{1}{c|}{Error Message}                                                              & \multicolumn{1}{c|}{Cause of Error}                                                                                                                                         \\ 
 %\begin{tabular}{|>{\centering\hspace{0pt}}m{0.05\linewidth}|>{\hspace{0pt}}m{0.1\linewidth}|>{\hspace{0pt}}m{0.3\linewidth}|>{\hspace{0pt}}m{0.4\linewidth}|} 
-%	\hline
-%	No  & \multicolumn{1}{>{\centering\hspace{0pt}}m{0.1\linewidth}|}{Class} & \multicolumn{1}{>{\centering\hspace{0pt}}m{0.3\linewidth}|}{Error Message} & \multicolumn{1}{>{\centering\arraybackslash\hspace{0pt}}m{0.4\linewidth}|}{Cause of Error}  \\ 
-%	\hline
-%		1                        & e\_fileEnd                 & ! File ended while scanning use of \textbackslash{}end.                                         & Generally caused because of missing a brace                                                                                                                                 \\ 
-%		\hline
-%		2                        & e\_end                     & No message only an asterisk, i.e *                                                              & Missing \textbackslash{}end\{document\}                                                                                                                                     \\ 
-%		\hline
-%		3                        & e\_illegal                 & LaTeX Error: Illegal character in array arg                                                     & Usage of a letter other than r,l and c in tabular environment                                                                                                               \\ 
-%		\hline
-%		4                        & e\_tab                     & ! Misplaced alignment tab character                                                             & Missing \textbackslash{}begin\{tabular\} while using tabular environment                                                                                                    \\ 
-%		\hline
-%		5                        & e\_backslash               & ! Missing \textbackslash{}endcsname inserted                                                    & Usage of a backslash in front of the name of an environment, e.g 
-%		\textbackslash{}begin\{\textbackslash{}itemize\}                                                    \\ 
-%		\hline
-%		6                        & e\_delimiter               & ! LaTeX Error: Bad math environment delimiter                                                   & Missing \textbackslash{}right immediately after the array environment                                                                                                       \\ 
-%		\hline
-%		7                        & e\_right                   & ! Extra \textbackslash{}right                                                                   & \textbackslash{}right has no matching \textbackslash{}left OR \textbackslash{}end\{array\} is missing                                                                       \\ 
-%		\hline
-%		8                        & e\_package                 & ! LaTeX Error: Can only be used in preamble                                                     & Usage of \textbackslash{}usepackage outside the preamble                                                                                                                    \\ 
-%		\hline
-%		9                        & e\_math                    & ! Missing \$ inserted                                                                           & Missing a starting or ending \$ in Math mode, e.g m\_e instead of \$m\_e\$                                                                                                  \\ 
-%		\hline
-%		10                       & e\_parameter               & ! Illegal parameter number in definition of...                                                  & Usage of parameter number greater than the number of parameters  defined in \textbackslash{}newcommand, e.g \textbackslash{}newcommand\{\textbackslash{}test\}{[}1]\{\#3\}  \\ 
-%		\hline
-%		11                       & e\_cmd                     & ! LaTeX Error: Command ... already defined                                                      & Trying to define already existing command, e.g \textbackslash{}newcommand\{\textbackslash{}time\}                                                                           \\ 
-%		\hline
-%		12                       & e\_caption                 & ~! LaTeX Error: \textbackslash{}caption outside float                                           & \textbackslash{}caption\{...\} used outside table environment                                                                                                               \\ 
-%		\hline
-%		13                       & e\_braces                  & ~! Too many \}'s                                                                                & Missing \textbackslash{}begin\{table\}statement                                                                                                                             \\ 
-%		\hline
-%		14                       & e\_parbox                  & ~! Argument of \textbackslash{}@caption has an extra \}                                         & Usage of \textbackslash{}parbox in a \textbackslash{}caption                                                                                                                \\ 
-%		\hline
-%		15                       & e\_item                    & ~! LaTeX Error: Something's wrong--perhaps a missing \textbackslash{}item                       & Missing \textbackslash{}item within enumerate environment                                                                                                                   \\ 
-%		\hline
-%		16                       & e\_fraction                & ~! Argument of \textbackslash{}end has an extra \}                                              & Misuse of fraction cmd e.g \textbackslash{}frac\{1,2\}                                                                                                                      \\ 
-%		\hline
-%		17                       & e\_verb                    & ~! LaTeX Error: \textbackslash{}verb ended by end of line                                       & Newline after \textbackslash{}verb, e.g. \textbackslash{}verb*dir*                                                                                                          \\ 
-%		\hline
-%		18                       & e\_invalid                 & ~! LaTeX Error: Command \textbackslash{}end\{itemize\} invalid in math mode                     & Missing \$ while using math mode in \textbackslash{}itemize                                                                                                                 \\ 
-%		\hline
-%		19                       & e\_equation                & ~! Display math should end with \$\$                                                            & Usage of \$\$ inside equation mode                                                                                                                                          \\ 
-%		\hline
-%		20                       & e\_column                  & ~! Misplaced \textbackslash{}omit                                                               & Usage of \textbackslash{}newcommand and \textbackslash{}multicolumn within tabular environment                                                                              \\ 
-%		\hline
-%		21                       & e\_subscript               & ~! Double subscript.                                                                            & Usage of double subscript                                                                                                                                                   \\ 
-%		\hline
-%		22                       & e\_cls                     & ~! LaTeX Error: File \`{}artcle.cls' not found.                                                 & Missing .sty or .cls file                                                                                                                                                   \\ 
-%		\hline
-%		23                       & e\_nofile                  & ~! LaTeX Error: File \`{}file1.tex' not found.                                                  & Missing file1.tex, e.g. \textbackslash{}input\{file1.tex\}                                                                                                                  \\ 
-%		\hline
-%		24                       & e\_sty                     & ~! LaTeX Error: File \`{}anysize1.sty' not found                                                & Use of unavailable package                                                                                                                                                  \\ 
-%		\hline
-%		25                       & e\_doc\_class              & ~! LaTeX Error: Can be used only in preamble.                                                   & Usage of \textbackslash{}documentclass outside preamble                                                                                                                     \\ 
-%		\hline
-%		26                       & e\_circle                  & ~! LaTeX Error: Command \textbackslash{}circle invalid in math mode.                            & Usage of \textbackslash{}circle in math mode                                                                                                                                \\ 
-%		\hline
-%		27                       & e\_picture                 & ~! Use of \textbackslash{}pictur@ doesn't match its definition.                                 & Bad parameter to \textbackslash{}picture                                                                                                                                    \\ 
-%		\hline
-%		28                       & e\_line                    & ~! Use of \textbackslash{}put dosen't match its definition                                      & Badly formatted \textbackslash{}line directive                                                                                                                              \\ 
-%		\hline
-%		29                       & e\_line\_arg               & ~! LaTeX Error: Bad \textbackslash{}line or \textbackslash{}vector argument.                    & Bad \textbackslash{}line parameter                                                                                                                                          \\ 
-%		\hline
-%		30                       & e\_counter                 & ~! LaTeX Error: No counter '10' defined.                                                        & Counter undefined                                                                                                                                                           \\ 
-%		\hline
-%		31                       & e\_outer                   & ~! LaTeX Error: Not in outer par mode.                                                          & Using figure inside parbox                                                                                                                                                  \\ 
-%		\hline
-%		32                       & e\_minipage                & ~! LaTeX Error: Not in outer par mode.                                                          & Using figure minipage                                                                                                                                                       \\ 
-%		\hline
-%		33                       & e\_lost                    & ~! LaTeX Error: Float(s) lost.                                                                  & Counter undefined                                                                                                                                                           \\ 
-%		\hline
+%     \hline
+%     No  & \multicolumn{1}{>{\centering\hspace{0pt}}m{0.1\linewidth}|}{Class} & \multicolumn{1}{>{\centering\hspace{0pt}}m{0.3\linewidth}|}{Error Message} & \multicolumn{1}{>{\centering\arraybackslash\hspace{0pt}}m{0.4\linewidth}|}{Cause of Error}  \\ 
+%     \hline
+%          1                        & e\_fileEnd                 & ! File ended while scanning use of \textbackslash{}end.                                         & Generally caused because of missing a brace                                                                                                                                 \\ 
+%          \hline
+%          2                        & e\_end                     & No message only an asterisk, i.e *                                                              & Missing \textbackslash{}end\{document\}                                                                                                                                     \\ 
+%          \hline
+%          3                        & e\_illegal                 & LaTeX Error: Illegal character in array arg                                                     & Usage of a letter other than r,l and c in tabular environment                                                                                                               \\ 
+%          \hline
+%          4                        & e\_tab                     & ! Misplaced alignment tab character                                                             & Missing \textbackslash{}begin\{tabular\} while using tabular environment                                                                                                    \\ 
+%          \hline
+%          5                        & e\_backslash               & ! Missing \textbackslash{}endcsname inserted                                                    & Usage of a backslash in front of the name of an environment, e.g 
+%          \textbackslash{}begin\{\textbackslash{}itemize\}                                                    \\ 
+%          \hline
+%          6                        & e\_delimiter               & ! LaTeX Error: Bad math environment delimiter                                                   & Missing \textbackslash{}right immediately after the array environment                                                                                                       \\ 
+%          \hline
+%          7                        & e\_right                   & ! Extra \textbackslash{}right                                                                   & \textbackslash{}right has no matching \textbackslash{}left OR \textbackslash{}end\{array\} is missing                                                                       \\ 
+%          \hline
+%          8                        & e\_package                 & ! LaTeX Error: Can only be used in preamble                                                     & Usage of \textbackslash{}usepackage outside the preamble                                                                                                                    \\ 
+%          \hline
+%          9                        & e\_math                    & ! Missing \$ inserted                                                                           & Missing a starting or ending \$ in Math mode, e.g m\_e instead of \$m\_e\$                                                                                                  \\ 
+%          \hline
+%          10                       & e\_parameter               & ! Illegal parameter number in definition of...                                                  & Usage of parameter number greater than the number of parameters  defined in \textbackslash{}newcommand, e.g \textbackslash{}newcommand\{\textbackslash{}test\}{[}1]\{\#3\}  \\ 
+%          \hline
+%          11                       & e\_cmd                     & ! LaTeX Error: Command ... already defined                                                      & Trying to define already existing command, e.g \textbackslash{}newcommand\{\textbackslash{}time\}                                                                           \\ 
+%          \hline
+%          12                       & e\_caption                 & ~! LaTeX Error: \textbackslash{}caption outside float                                           & \textbackslash{}caption\{...\} used outside table environment                                                                                                               \\ 
+%          \hline
+%          13                       & e\_braces                  & ~! Too many \}'s                                                                                & Missing \textbackslash{}begin\{table\}statement                                                                                                                             \\ 
+%          \hline
+%          14                       & e\_parbox                  & ~! Argument of \textbackslash{}@caption has an extra \}                                         & Usage of \textbackslash{}parbox in a \textbackslash{}caption                                                                                                                \\ 
+%          \hline
+%          15                       & e\_item                    & ~! LaTeX Error: Something's wrong--perhaps a missing \textbackslash{}item                       & Missing \textbackslash{}item within enumerate environment                                                                                                                   \\ 
+%          \hline
+%          16                       & e\_fraction                & ~! Argument of \textbackslash{}end has an extra \}                                              & Misuse of fraction cmd e.g \textbackslash{}frac\{1,2\}                                                                                                                      \\ 
+%          \hline
+%          17                       & e\_verb                    & ~! LaTeX Error: \textbackslash{}verb ended by end of line                                       & Newline after \textbackslash{}verb, e.g. \textbackslash{}verb*dir*                                                                                                          \\ 
+%          \hline
+%          18                       & e\_invalid                 & ~! LaTeX Error: Command \textbackslash{}end\{itemize\} invalid in math mode                     & Missing \$ while using math mode in \textbackslash{}itemize                                                                                                                 \\ 
+%          \hline
+%          19                       & e\_equation                & ~! Display math should end with \$\$                                                            & Usage of \$\$ inside equation mode                                                                                                                                          \\ 
+%          \hline
+%          20                       & e\_column                  & ~! Misplaced \textbackslash{}omit                                                               & Usage of \textbackslash{}newcommand and \textbackslash{}multicolumn within tabular environment                                                                              \\ 
+%          \hline
+%          21                       & e\_subscript               & ~! Double subscript.                                                                            & Usage of double subscript                                                                                                                                                   \\ 
+%          \hline
+%          22                       & e\_cls                     & ~! LaTeX Error: File \`{}artcle.cls' not found.                                                 & Missing .sty or .cls file                                                                                                                                                   \\ 
+%          \hline
+%          23                       & e\_nofile                  & ~! LaTeX Error: File \`{}file1.tex' not found.                                                  & Missing file1.tex, e.g. \textbackslash{}input\{file1.tex\}                                                                                                                  \\ 
+%          \hline
+%          24                       & e\_sty                     & ~! LaTeX Error: File \`{}anysize1.sty' not found                                                & Use of unavailable package                                                                                                                                                  \\ 
+%          \hline
+%          25                       & e\_doc\_class              & ~! LaTeX Error: Can be used only in preamble.                                                   & Usage of \textbackslash{}documentclass outside preamble                                                                                                                     \\ 
+%          \hline
+%          26                       & e\_circle                  & ~! LaTeX Error: Command \textbackslash{}circle invalid in math mode.                            & Usage of \textbackslash{}circle in math mode                                                                                                                                \\ 
+%          \hline
+%          27                       & e\_picture                 & ~! Use of \textbackslash{}pictur@ doesn't match its definition.                                 & Bad parameter to \textbackslash{}picture                                                                                                                                    \\ 
+%          \hline
+%          28                       & e\_line                    & ~! Use of \textbackslash{}put dosen't match its definition                                      & Badly formatted \textbackslash{}line directive                                                                                                                              \\ 
+%          \hline
+%          29                       & e\_line\_arg               & ~! LaTeX Error: Bad \textbackslash{}line or \textbackslash{}vector argument.                    & Bad \textbackslash{}line parameter                                                                                                                                          \\ 
+%          \hline
+%          30                       & e\_counter                 & ~! LaTeX Error: No counter '10' defined.                                                        & Counter undefined                                                                                                                                                           \\ 
+%          \hline
+%          31                       & e\_outer                   & ~! LaTeX Error: Not in outer par mode.                                                          & Using figure inside parbox                                                                                                                                                  \\ 
+%          \hline
+%          32                       & e\_minipage                & ~! LaTeX Error: Not in outer par mode.                                                          & Using figure minipage                                                                                                                                                       \\ 
+%          \hline
+%          33                       & e\_lost                    & ~! LaTeX Error: Float(s) lost.                                                                  & Counter undefined                                                                                                                                                           \\ 
+%          \hline
 %
-%	\end{tabular}
+%     \end{tabular}
 %\end{sidewaystable}
 %
 %
 %\begin{sidewaystable}
-%	\centering
-%	\caption{Common Errors}
-%	%	\begin{tabular}{|l>{0.05\linewidth}|l|l|l|} 
-%		
-%		%		\multicolumn{1}{|>{\centering}{0.05\linewidth}|}{No} & \multicolumn{1}{c|}{Class} & \multicolumn{1}{c|}{Error Message}                                                              & \multicolumn{1}{c|}{Cause of Error}                                                                                                                                         \\ 
-%		\begin{tabular}{|>{\centering\hspace{0pt}}m{0.05\linewidth}|>{\hspace{0pt}}m{0.1\linewidth}|>{\hspace{0pt}}m{0.3\linewidth}|>{\hspace{0pt}}m{0.4\linewidth}|} 
-%			\hline
-%			No  & \multicolumn{1}{>{\centering\hspace{0pt}}m{0.1\linewidth}|}{Class} & \multicolumn{1}{>{\centering\hspace{0pt}}m{0.3\linewidth}|}{Error Message} & \multicolumn{1}{>{\centering\arraybackslash\hspace{0pt}}m{0.4\linewidth}|}{Cause of Error}  \\ 
-%			\hline
-%			34                       & e\_lonely                  & ~! LaTeX Error: Lonely \textbackslash{}item--perhaps a missing list environment.                & Usage of \textbackslash{}item outside list environment                                                                                                                      \\ 
-%			\hline
-%			35                       & e\_parg                    & ~! LaTeX Error: Missing p-arg in array arg.                                                     & Missing p argument in tabular environment                                                                                                                                   \\ 
-%			\hline
-%			36                       & e\_hash                    & ~! You can't use \`{}macro parameter character \#' in vertical mode.                            & Usage of \# in normal mode                                                                                                                                                  \\ 
-%			\hline
-%			37                       & e\_enlarge                 & ~! LaTeX Error: Suggested extra height (14454.0pt) dangerously 
-%			large.                    & Too big a number given in \textbackslash{}enlargethispage                                                                                                                   \\ 
-%			\hline
-%			38                       & e\_deftab                  & ~! LaTeX Error: Undefined tab position.                                                         & Undefined tabbing                                                                                                                                                           \\                                                                                                                            
-%			\hline
-%				39                       & e\_pushtab                 & ~! LaTeX Error: \textbackslash{}pushtabs and \textbackslash{}poptabs don't match.               & Unequal numbers of push and pop tabs        
-%			\\
-%			\hline
-%			40                       & e\_overtab                 & ~! LaTeX Error: Tab overflow.                                                                   & Too many \textbackslash{}= in tabbing environment                                                                                                                           \\ 
-%			\hline
-%			41                       & e\_nest                    & ~! LaTeX Error: Too deeply nested.                                                              & Too many list environments                                                                                                                                                  \\ 
-%			\hline
-%			42                       & e\_eqnarray                & ~! LaTeX Error: Too many columns in eqnarray environment.                                       & More than three columns in eqnarray                                                                                                                                         \\ 
-%			\hline
-%			43                       & e\_classpkg                & ~! LaTeX Error: \textbackslash{}usepackage before \textbackslash{}documentclass.                & Usage of usepackage before loading documentclass                                                                                                                            \\ 
-%			\hline
-%			44                       & e\_load                    & ~! LaTeX Error: Two \textbackslash{}LoadClass commands.                                         & More than one load class command                                                                                                                                            \\ 
-%			\hline
-%			45                       & e\_require                 & ~! LaTeX Error: \textbackslash{}RequirePackage or \textbackslash{}LoadClass in Options Section. & RequirePackage may not be used with \textbackslash{}DeclareOption                                                                                                           \\ 
-%			\hline
-%			46                       & e\_twoclass                & ~! LaTeX Error: Two \textbackslash{}documentclass or \textbackslash{}documentstyle commands.    & More than one documentclass declaration                                                                                                                                     \\ 
-%			\hline
-%			47                       & e\_font                    & ~! LaTeX Error: This NFSS system isn't set up properly.                                         & Invalid font used in \textbackslash{}DeclareErrorFont                                                                                                                       \\ 
-%			\hline
-%			48                       & e\_superscript             & ~! Double superscript.                                                                          & Usage of two superscripts for the same variable, e.g. 2\^{}3\^{}4                                                                                                           \\ 
-%			\hline
-%			49                       & e\_clash\_opt              & ~! LaTeX Error: Option clash for package csvtools.                                              & Clashing options for the same package                                                                                                                                       \\ 
-%			\hline
-%			50                       & e\_unknown\_opt            & ~! LaTeX Error: Unknown option ... for package ...                                              & Unkown option for a package                                                                                                                                                 \\ 
-%			\hline
-%			51                       & e\_hyphenation             & ~! Improper \textbackslash{}hyphenation will be flushed.                                        & Improper parameter to \textbackslash{}hyphenation                                                                                                                           \\ 
-%			\hline
-%			52                       & e\_stack\_size             & ~! TeX capacity exceeded, sorry [main memory size=1000000]                                      & Overflow of buffer due to mistake in command definition                                                                                                                     \\ 
-%			\hline
-%			53                       & e\_environment             & ~! LaTeX Error: Environment ... undefined.                                                      & Undefined environment                                                                                                                                                       \\ 
-%			\hline
-%			54                       & e\_midline                 & ~! LaTeX Error: \textbackslash{} in mid line                                                    & Command \textbackslash{} may appear only at the beginning of a line                                                                                                         \\ 
-%			\hline
-%			55                       & e\_infinite                & Goes into infinite loop                                                                         & Usage of \textbackslash{}\textbackslash{}strut\textbackslash{}hrule                                                                                                         \\
-%			\hline
-%		\end{tabular}
-%	\end{sidewaystable}
+%     \centering
+%     \caption{Common Errors}
+%     %     \begin{tabular}{|l>{0.05\linewidth}|l|l|l|} 
+%          
+%          %          \multicolumn{1}{|>{\centering}{0.05\linewidth}|}{No} & \multicolumn{1}{c|}{Class} & \multicolumn{1}{c|}{Error Message}                                                              & \multicolumn{1}{c|}{Cause of Error}                                                                                                                                         \\ 
+%          \begin{tabular}{|>{\centering\hspace{0pt}}m{0.05\linewidth}|>{\hspace{0pt}}m{0.1\linewidth}|>{\hspace{0pt}}m{0.3\linewidth}|>{\hspace{0pt}}m{0.4\linewidth}|} 
+%               \hline
+%               No  & \multicolumn{1}{>{\centering\hspace{0pt}}m{0.1\linewidth}|}{Class} & \multicolumn{1}{>{\centering\hspace{0pt}}m{0.3\linewidth}|}{Error Message} & \multicolumn{1}{>{\centering\arraybackslash\hspace{0pt}}m{0.4\linewidth}|}{Cause of Error}  \\ 
+%               \hline
+%               34                       & e\_lonely                  & ~! LaTeX Error: Lonely \textbackslash{}item--perhaps a missing list environment.                & Usage of \textbackslash{}item outside list environment                                                                                                                      \\ 
+%               \hline
+%               35                       & e\_parg                    & ~! LaTeX Error: Missing p-arg in array arg.                                                     & Missing p argument in tabular environment                                                                                                                                   \\ 
+%               \hline
+%               36                       & e\_hash                    & ~! You can't use \`{}macro parameter character \#' in vertical mode.                            & Usage of \# in normal mode                                                                                                                                                  \\ 
+%               \hline
+%               37                       & e\_enlarge                 & ~! LaTeX Error: Suggested extra height (14454.0pt) dangerously 
+%               large.                    & Too big a number given in \textbackslash{}enlargethispage                                                                                                                   \\ 
+%               \hline
+%               38                       & e\_deftab                  & ~! LaTeX Error: Undefined tab position.                                                         & Undefined tabbing                                                                                                                                                           \\                                                                                                                            
+%               \hline
+%                    39                       & e\_pushtab                 & ~! LaTeX Error: \textbackslash{}pushtabs and \textbackslash{}poptabs don't match.               & Unequal numbers of push and pop tabs        
+%               \\
+%               \hline
+%               40                       & e\_overtab                 & ~! LaTeX Error: Tab overflow.                                                                   & Too many \textbackslash{}= in tabbing environment                                                                                                                           \\ 
+%               \hline
+%               41                       & e\_nest                    & ~! LaTeX Error: Too deeply nested.                                                              & Too many list environments                                                                                                                                                  \\ 
+%               \hline
+%               42                       & e\_eqnarray                & ~! LaTeX Error: Too many columns in eqnarray environment.                                       & More than three columns in eqnarray                                                                                                                                         \\ 
+%               \hline
+%               43                       & e\_classpkg                & ~! LaTeX Error: \textbackslash{}usepackage before \textbackslash{}documentclass.                & Usage of usepackage before loading documentclass                                                                                                                            \\ 
+%               \hline
+%               44                       & e\_load                    & ~! LaTeX Error: Two \textbackslash{}LoadClass commands.                                         & More than one load class command                                                                                                                                            \\ 
+%               \hline
+%               45                       & e\_require                 & ~! LaTeX Error: \textbackslash{}RequirePackage or \textbackslash{}LoadClass in Options Section. & RequirePackage may not be used with \textbackslash{}DeclareOption                                                                                                           \\ 
+%               \hline
+%               46                       & e\_twoclass                & ~! LaTeX Error: Two \textbackslash{}documentclass or \textbackslash{}documentstyle commands.    & More than one documentclass declaration                                                                                                                                     \\ 
+%               \hline
+%               47                       & e\_font                    & ~! LaTeX Error: This NFSS system isn't set up properly.                                         & Invalid font used in \textbackslash{}DeclareErrorFont                                                                                                                       \\ 
+%               \hline
+%               48                       & e\_superscript             & ~! Double superscript.                                                                          & Usage of two superscripts for the same variable, e.g. 2\^{}3\^{}4                                                                                                           \\ 
+%               \hline
+%               49                       & e\_clash\_opt              & ~! LaTeX Error: Option clash for package csvtools.                                              & Clashing options for the same package                                                                                                                                       \\ 
+%               \hline
+%               50                       & e\_unknown\_opt            & ~! LaTeX Error: Unknown option ... for package ...                                              & Unkown option for a package                                                                                                                                                 \\ 
+%               \hline
+%               51                       & e\_hyphenation             & ~! Improper \textbackslash{}hyphenation will be flushed.                                        & Improper parameter to \textbackslash{}hyphenation                                                                                                                           \\ 
+%               \hline
+%               52                       & e\_stack\_size             & ~! TeX capacity exceeded, sorry [main memory size=1000000]                                      & Overflow of buffer due to mistake in command definition                                                                                                                     \\ 
+%               \hline
+%               53                       & e\_environment             & ~! LaTeX Error: Environment ... undefined.                                                      & Undefined environment                                                                                                                                                       \\ 
+%               \hline
+%               54                       & e\_midline                 & ~! LaTeX Error: \textbackslash{} in mid line                                                    & Command \textbackslash{} may appear only at the beginning of a line                                                                                                         \\ 
+%               \hline
+%               55                       & e\_infinite                & Goes into infinite loop                                                                         & Usage of \textbackslash{}\textbackslash{}strut\textbackslash{}hrule                                                                                                         \\
+%               \hline
+%          \end{tabular}
+%     \end{sidewaystable}
 
 
 
@@ -1623,7 +1508,7 @@ Latex 默认的章节编号大多是以阿拉伯数字开始的，但是对于�
 
 
 \begin{lstlisting}[language=tex]
-	CJKglue = {\hskip 0pt plus 0.08\baselineskip}
+     CJKglue = {\hskip 0pt plus 0.08\baselineskip}
 \end{lstlisting}
 
 设置 CJK 文字之间插入的 glue，上边是 xeCJK 的默认值。一般来说，除非有特殊需要(例如， 改变文字间距等)，否则不需要设置这个选项，使用默认值即可。如果要设置这个选项，为了行 末的对齐，设置的 glue 最好有一定的弹性。
@@ -1633,11 +1518,11 @@ Latex 默认的章节编号大多是以阿拉伯数字开始的，但是对于�
 \subsection{中文字体}
 
 \begin{lstlisting}[language=tex]
-	\newcommand{\song}{\CJKfamily{song}} % 宋体
-	\newcommand{\fs}{\CJKfamily{fs}} % 仿宋体
-	\newcommand{\kai}{\CJKfamily{kai}} % 楷体
-	\newcommand{\hei}{\CJKfamily{hei}} % 黑体
-	\newcommand{\li}{\CJKfamily{li}} % 隶书
+     \newcommand{\song}{\CJKfamily{song}} % 宋体
+     \newcommand{\fs}{\CJKfamily{fs}} % 仿宋体
+     \newcommand{\kai}{\CJKfamily{kai}} % 楷体
+     \newcommand{\hei}{\CJKfamily{hei}} % 黑体
+     \newcommand{\li}{\CJKfamily{li}} % 隶书
 \end{lstlisting}
 
 \subsection{字号、行距}
@@ -1649,37 +1534,37 @@ $\backslash$fontsize{字号}{行距}
 
 
 \begin{table}[htbp]
-	\resizebox{\textwidth}{!}{%
-		\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
-			\hline
-			字号     & 初号   & 小初   & 一号      & 小一     & 二号      & 小二     & 三号    & 小三     \\ \hline
-			大小     & 42pt & 36pt & 26pt    & 24pt   & 22pt    & 18pt   & 16pt  & 15pt   \\ \hline
-			1.5倍行距 & 63pt & 54pt & 39pt    & 36pt   & 33pt    & 27pt   & 24pt  & 22.5pt \\ \hline
-			字号     & 四号   & 小四   & 五号      & 小五     & 六号      & 小六     & 七号    & 小七     \\ \hline
-			大小     & 14pt & 12pt & 10.5pt  & 9pt    & 7.5pt   & 6.5pt  & 5.5pt & 5pt    \\ \hline
-			1.5倍行距 & 21pt & 18pt & 15.75pt & 13.5pt & 11.25pt & 9.75pt & 8.2pt & 7.5pt  \\ \hline
-		\end{tabular}%
-	}
+     \resizebox{\textwidth}{!}{%
+          \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+               \hline
+               字号     & 初号   & 小初   & 一号      & 小一     & 二号      & 小二     & 三号    & 小三     \\ \hline
+               大小     & 42pt & 36pt & 26pt    & 24pt   & 22pt    & 18pt   & 16pt  & 15pt   \\ \hline
+               1.5倍行距 & 63pt & 54pt & 39pt    & 36pt   & 33pt    & 27pt   & 24pt  & 22.5pt \\ \hline
+               字号     & 四号   & 小四   & 五号      & 小五     & 六号      & 小六     & 七号    & 小七     \\ \hline
+               大小     & 14pt & 12pt & 10.5pt  & 9pt    & 7.5pt   & 6.5pt  & 5.5pt & 5pt    \\ \hline
+               1.5倍行距 & 21pt & 18pt & 15.75pt & 13.5pt & 11.25pt & 9.75pt & 8.2pt & 7.5pt  \\ \hline
+          \end{tabular}%
+     }
 \end{table}
 
 
 %\begin{table}[htbp]
-%	\centering
-%	\begin{tabular}{|>{\centering\hspace{0pt}}m{0.1\linewidth}|>{\centering\hspace{0pt}}m{0.072\linewidth}|>{\centering\hspace{0pt}}m{0.072\linewidth}|>{\centering\hspace{0pt}}m{0.09\linewidth}|>{\centering\hspace{0pt}}m{0.08\linewidth}|>{\centering\hspace{0pt}}m{0.09\linewidth}|>{\centering\hspace{0pt}}m{0.08\linewidth}|>{\centering\hspace{0pt}}m{0.08\linewidth}|>{\centering\hspace{0pt}}m{0.09\linewidth}|} 
-%		\hline
-%		字号     & 初号   & 小除   & 一号      & 小一     & 二号      & 小二     & 三号    & 小三      \\ 
-%		\hline
-%		大小     & 42pt & 36pt & 26pt    & 24pt   & 22pt    & 18pt   & 16pt  & 15pt    \\ 
-%		\hline
-%		1.5倍行距 & 63pt & 54pt & 39pt    & 36pt   & 33pt    & 27pt   & 24pt  & 22.5pt  \\ 
-%		\hline
-%		字号     & 四号   & 小四   & 五号      & 小五     & 六号      & 小六     & 七号    & 小七      \\ 
-%		\hline
-%		大小     & 14pt & 12pt & 10.5pt  & 9pt    & 7.5pt   & 6.5pt  & 5.5pt & 5pt     \\ 
-%		\hline
-%		1.5倍行距 & 21pt & 18pt & 15.75pt & 13.5pt & 11.25pt & 9.75pt & 8.2pt & 7.5pt   \\
-%		\hline
-%	\end{tabular}
+%     \centering
+%     \begin{tabular}{|>{\centering\hspace{0pt}}m{0.1\linewidth}|>{\centering\hspace{0pt}}m{0.072\linewidth}|>{\centering\hspace{0pt}}m{0.072\linewidth}|>{\centering\hspace{0pt}}m{0.09\linewidth}|>{\centering\hspace{0pt}}m{0.08\linewidth}|>{\centering\hspace{0pt}}m{0.09\linewidth}|>{\centering\hspace{0pt}}m{0.08\linewidth}|>{\centering\hspace{0pt}}m{0.08\linewidth}|>{\centering\hspace{0pt}}m{0.09\linewidth}|} 
+%          \hline
+%          字号     & 初号   & 小除   & 一号      & 小一     & 二号      & 小二     & 三号    & 小三      \\ 
+%          \hline
+%          大小     & 42pt & 36pt & 26pt    & 24pt   & 22pt    & 18pt   & 16pt  & 15pt    \\ 
+%          \hline
+%          1.5倍行距 & 63pt & 54pt & 39pt    & 36pt   & 33pt    & 27pt   & 24pt  & 22.5pt  \\ 
+%          \hline
+%          字号     & 四号   & 小四   & 五号      & 小五     & 六号      & 小六     & 七号    & 小七      \\ 
+%          \hline
+%          大小     & 14pt & 12pt & 10.5pt  & 9pt    & 7.5pt   & 6.5pt  & 5.5pt & 5pt     \\ 
+%          \hline
+%          1.5倍行距 & 21pt & 18pt & 15.75pt & 13.5pt & 11.25pt & 9.75pt & 8.2pt & 7.5pt   \\
+%          \hline
+%     \end{tabular}
 %\end{table}
 
 
@@ -1697,16 +1582,16 @@ LaTeX font warning: size s stitutions with differences
 在进行中文文献排版过程中，写作人员会被要求采用按一定的字号来设置字体，如一号、二号等。在此，提供便利的方法，以供读者在排版供中使用。
 
 \begin{lstlisting}[language=tex,breaklines]
-	\newcommand{\yihao}{\fontsize{26pt}{36pt}\selectfont}           % 一号, 1.4 倍行距
-	\newcommand{\erhao}{\fontsize{22pt}{28pt}\selectfont}          % 二号, 1.25倍行距
-	\newcommand{\xiaoer}{\fontsize{18pt}{18pt}\selectfont}          % 小二, 单倍行距
-	\newcommand{\sanhao}{\fontsize{16pt}{24pt}\selectfont}        % 三号, 1.5倍行距
-	\newcommand{\xiaosan}{\fontsize{15pt}{22pt}\selectfont}        % 小三, 1.5倍行距
-	\newcommand{\sihao}{\fontsize{14pt}{21pt}\selectfont}            % 四号, 1.5 倍行距
-	\newcommand{\banxiaosi}{\fontsize{13pt}{19.5pt}\selectfont}    % 半小四, 1.5倍行距
-	\newcommand{\xiaosi}{\fontsize{12pt}{18pt}\selectfont}            % 小四, 1.5倍行距
-	\newcommand{\dawuhao}{\fontsize{11pt}{11pt}\selectfont}       % 大五号, 单倍行距
-	\newcommand{\wuhao}{\fontsize{10.5pt}{15.75pt}\selectfont}    % 五号, 单倍行距
+     \newcommand{\yihao}{\fontsize{26pt}{36pt}\selectfont}           % 一号, 1.4 倍行距
+     \newcommand{\erhao}{\fontsize{22pt}{28pt}\selectfont}          % 二号, 1.25倍行距
+     \newcommand{\xiaoer}{\fontsize{18pt}{18pt}\selectfont}          % 小二, 单倍行距
+     \newcommand{\sanhao}{\fontsize{16pt}{24pt}\selectfont}        % 三号, 1.5倍行距
+     \newcommand{\xiaosan}{\fontsize{15pt}{22pt}\selectfont}        % 小三, 1.5倍行距
+     \newcommand{\sihao}{\fontsize{14pt}{21pt}\selectfont}            % 四号, 1.5 倍行距
+     \newcommand{\banxiaosi}{\fontsize{13pt}{19.5pt}\selectfont}    % 半小四, 1.5倍行距
+     \newcommand{\xiaosi}{\fontsize{12pt}{18pt}\selectfont}            % 小四, 1.5倍行距
+     \newcommand{\dawuhao}{\fontsize{11pt}{11pt}\selectfont}       % 大五号, 单倍行距
+     \newcommand{\wuhao}{\fontsize{10.5pt}{15.75pt}\selectfont}    % 五号, 单倍行距
 \end{lstlisting}
 
 在文中需要对一些特殊的地方进行强调时，需要对字体进行加粗或斜体处理，所采用的命令分别为$\backslash$textbf\{文本\}，$\backslash$textit\{文本\}。
