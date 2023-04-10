@@ -1,14 +1,21 @@
 %!TEX program = xelatex
 %\documentclass[cn,12pt,math=newtx,citestyle=gb7714-2015,bibstyle=gb7714-2015]{elegantbook} 
-
 \documentclass[12pt]{book}
-%\usepackage[figuresright]{rotating}
-%\usepackage{ctex}
-\usepackage[fontset=windows]{ctex} %This package used for texstudio in mac.
-\usepackage{fontspec}
+
+%%%%% setting for environments%%%%%%%%
 \usepackage{geometry} %page setting 
 \geometry{a4paper,left=2.6cm,right=2.6cm,top=1.8cm,bottom=1.8cm}
 \usepackage[cache=false]{minted} % formate the latex language in latex code with some special characterize.
+%\usepackage{elegant} % This package of sty file, which lay the fold,  is found on internet and added to this project.
+\usepackage{hyperref} %% Insert the link for latex.
+\usepackage{elegant}
+
+%%%%setting for fonts%%%%%
+\usepackage{xeCJK}
+\setmainfont{Times New Roman}
+\usepackage[fontset=macnew]{ctex} %This package used for texstudio in mac.
+\usepackage{fontspec}
+\usepackage{metalogo} % latex logo
 
 %%%%%%%%%%%setting for tables%%%%%%%%%
 \usepackage{listings} % code in example
@@ -19,16 +26,20 @@
 \usepackage{longtable}
 %\usepackage{tabularx}
 %\usepackage{ltablex}
+
+
+%%%%%%setting for math%%%%%%%%%%%%
+\usepackage{amsmath}
+
+
 %%%%%%%%%%%setting for figures%%%%%%%%%
 \usepackage{graphicx}
 \graphicspath{{./figure/}} %%%%% path should be include in '{}'
 \usepackage{autobreak} % for too long line,autobreak it.
+%\usepackage[figuresright]{rotating}
+\usepackage[inkscapelatex=false]{svg} % insert svg file
+\svgsetup{inkscapeexe=/opt/homebrew/bin/inkscape}
 
-
-
-% fontset option have adobe fandol founder macnew macold ubuntu windows none.
-
-%\usepackage{elegant} % This package of sty file, which lay the fold,  is found on internet and added to this project.
 %\title{科技论文写作排版}
 \title{\LaTeX{} Writing}
 %\subtitle{\LaTeX{} 经典之作}
@@ -74,6 +85,51 @@
 
 TexLive这个发行版中附带了一个功能相对简单的编辑器Texworks，该编辑器的界面相对简陋，对初次使使用者来说可以完成一些简单的不含复杂表格和数学公式的文档，但面对复杂的排版任务和以\LaTeX{}为主要排版工具的使用者来说，Texworks编辑器的使用起来略显不便，对与提高排版效率来说不是那么容易。于此同时，有Texstudiuo和Texmaker两款\LaTeX{}专用编辑器和vim、Sublime等兼容编辑器。
 
+\section{常用编辑器}
+
+可以实现\LaTeX{}文档编写的软件较多，通常可以分为两类：可以实现texlive调用、编译的编辑软件，如Texstudio、Texworks、Emacs；通过插件来调用texlive实现编译的软件，如Vim、VScode等。texlive自带的Texworks编辑器轻量化，虽然功能上没有残缺，但是不适合打开较大的文件，且每个窗口只能打开一个tex文档，不便于结构化文档撰写和管理，同时界面过于简陋，对初学者的使用友好程度相对较低。VSCode虽然可以用来编写tex文档，但是其本身不是为编写tex文档而开发的，需要经过一番配置才可以运行，且软件本身过于庞大臃肿，不支持文档预览。Emacs和Vim两个强大的文本编辑器，经过一番配置之后，完全可以胜任\LaTeX{}的撰写和编译工作，但是这二者的入门学习成本相对较高。因此，重点介绍Texstudio编辑器。
+
+\subsection{Texstudio}
+TeXstudio是一款跨平台（Windows、Mac、Linux）的免费软件，用来编辑\LaTeX{}文档。TeXstudio软件针对\LaTeX{}设计了众多的快捷按键和便利的功能。例如：文件结构视图、代码补全和折叠、语法高亮和语法检查、行内实时预览和代码块、内置浏览等。TeXstudio对初学者入门\LaTeX{}完全够用，且学习的门槛相对较低。而非常熟悉\LaTeX{}的用户，可以在Texstudio软件内进行自定义宏，提高编写效率。Texstudio软件的下载途径：官网（目前很难访问），sourceforge（第三方的开源软件集合），\href{https://mirrors.tuna.tsinghua.edu.cn/github-release/texstudio-org/texstudio/}{清华大学的镜像}。
+
+软件安装完成之后，用户仅需要做一点点设置工作：
+
+1.用户根据自己的需要来设置显示语言和字体。读者可以根据自己的需要来设置语言和显示字体。如需要采用中文编写文件，则必须在option>Configure Texstudio 中，设置编译器为xeletex。如果在使用过成中用到了minted环境，则还需要在编译参数前添加一个选项：--shell-escape。
+
+\begin{center}
+	\includegraphics[scale=0.8]{./texstudio-lang.png}
+\end{center}
+2.根据排版的文字类型（中文或西文）来设置Texstudio在编译编译过程中调用的编译器类别：latex或xelatex。
+
+\begin{center}
+	\includegraphics[scale=0.8]{./texstudio-build.png}
+\end{center}
+3.大多数情况下，用户不需要更改xelatex编译器的参数。但在用到minted环境时，需要在xelatex后补充参数'-shell-escape'，即'xelatex.exe -shell-escape -synctex=1 -interaction=nonstopmopde \%.tex'。
+
+
+\begin{center}
+	\includegraphics[scale=0.65]{./texstudio-command.png}
+\end{center}
+TeXstudio提供了语言拼写检查功能，用户可以自己从软件提供的跳转\href{https://extensions.libreoffice.org/}{链接}，从libreoffice网站来下载相应语言的词典（词库），供软件进行拼写检查。
+
+
+\begin{center}
+	\includegraphics[width=0.8\linewidth]{./lang-check.png}
+\end{center}
+Texstudio的编译过程，对产生的错误和警告会在软件底部的`Message’栏显示给用户。通过双击改错误或警告，光标会自动跳转至相应的位置：如果是tex文档中的写法错误，光标会自动跳转至出现错误的行；如果是其他错误，如宏包调用问题、字体调用问题，则会跳转至相应的宏包文件。
+\begin{figure}[htbp]
+	\centering
+	\begin{minipage}[c]{0.45\linewidth}
+		\includegraphics[scale=0.4]{texstudio-message.png}
+	\end{minipage}
+	\begin{minipage}[c]{0.4\linewidth}
+		\includegraphics[scale=0.4]{texstudio-error.png}
+	\end{minipage}
+	\caption{Message信息栏}
+\end{figure}
+
+
+
 \subsection{Texstudio}
 
 \subsection{Texmaker}
@@ -84,10 +140,11 @@ TexLive这个发行版中附带了一个功能相对简单的编辑器Texworks�
 \chapter{宏包介绍}
 
 \section{常用宏包}
+
 \LaTeX{}中常用的宏包可以分为几个大类：整体环境设置、图形类、表格类、公式类
 
 
-\begin{longtable}[htbp]
+\begin{table}[htbp]
 	\centering
 	\begin{tabular}{|>{\centering\hspace{0pt}}m{0.075\linewidth}|>{\hspace{0pt}}m{0.084\linewidth}|>{\hspace{0pt}}m{0.779\linewidth}|} 
 		\hline
@@ -156,7 +213,7 @@ TexLive这个发行版中附带了一个功能相对简单的编辑器Texworks�
 		& gloss                                                               & 提供附录中的注视表功能                                                                       \\
 		\hline
 	\end{tabular}
-\end{longtable}
+\end{table}
 
 \subsection{格式设置类宏包}
 
@@ -214,6 +271,8 @@ natbib：文献引用显示类型。
 footbib：脚注式引用。、
 gbt7714：显示中文文献格式。
 gloss：附录中的注释表。
+
+
 
 
 \chapter{文字处理}
@@ -333,7 +392,396 @@ LaTeX中提供了一些调整字体大小的命令：$\backslash$tiny, $\backsla
 
 在\LaTeX{}中，设置纸张大小的参数是papersize。而papersize的参数如下：a0paper, a1paper, a2paper, a3paper, a4paper, a5paper, a6paper,b0paper, b1paper, b2paper, b3pa per, b4paper, b5paper, b6paper,c0paper, c1paper, c2paper, c3paper, c4paper, c5paper, c6paper,b0j, b1j, b2j, b3j, b4j, b5j, b6j,ansiapaper, ansibpaper, ansicpaper, ansidpaper, ansiepaper,letterpaper, executivepaper, legalpaper 。
 
+\section{字体设置}
+
+
+现行的\LaTeX{}版本使用UTF-8作为默认的文字编码。使用拉丁字母的文档保存为UTF-8编码，即可采用pdflatex进行直接编译，但是非拉丁字母，如西里尔字母、希腊字母、阿拉伯字母及东南亚文字等，依然无法直接在\LaTeX{}中直接使用。而较为现代的\TeX{}引擎，如\XeTeX{}和\LuaTeX{}，将非拉丁字母文档保存为UTF-8编码，借助fontspec宏包即可实现非拉丁字母的输入。特别的，在使用\LaTeX{}进行中文排版时，需要处理对中文字体的支持，包括：字体设置、行距、断句、标点符号的位置、编译引擎的选择（\XeLaTeX{})等问题。
+
+
+\subsection{全局字体设置}
+
+\LaTeX{}中的字体可以分为三类：衬线字体（罗马体）、无衬线字体和等宽字体（打字机字体）。
+
+``fontspec"宏包用来设置文档中的西文字体环境。在文档用采用\textbackslash
+setmainfont\{\}\textbackslash setsansfont\{\}\textbackslash
+setmonofont\{\}三种命令分别来设置西文字体中的衬线体、无衬线体和等宽字体。在使用过程中根据自己的需要采用其中一个命令或多个名来设置相应的字体。
+
+``xeCJK"宏包负责在文档中提供中日韩文字环境。在文档中要显示中日韩文字时，需要\textbackslash
+usepackage\{xeCJK\}命令来调用宏包，使用\textbackslash setCJKmainfont
+\textbackslash setCJKsansfont\{\}\textbackslash setCJKmonofont\{\}三种命令来设置相应的中文字体。
+
+fontspec和xeCJK的使用方法如下：
+
+\begin{minted}{tex}
+	% 拉丁字母设置
+	\setmainfont{font name}[font features]%中括号内为字体的特征，如黑体、斜体等。
+	\setsansfont{font name}[font features]
+	\setmonofant{font name}[font features]
+	%中文字体设置
+	\setCJKmainfont{font name}[font features]
+	\setCJKsansfont{font name}[font features]
+	\setCJKmonofont{font name}[font features]
+	%举例
+	\setCJKmainfont{SimSun}[BoldFont=SimHei,ItalicFont=KaiTi]
+\end{minted}
+
+上面的案例中SimHei，KaiTi为操作系统中已经存在的中文字体名称。
+
+关于操作系统中已经存在的中文字体名称的查询方法：
+在Windows系统中打开终端程序cmd，输入命令``fc-list :lang=zh"来查询系统中的中文字体，会输出所有中文字体在系统中的相关信息。`fc-list'命令在系统安装texlive之后即可直接使用，但cmd程序中对中文的支持并不友好，此处展示了采用git软件输出的结果，如图\ref{fc-list}。该命令中的字符均为英文状态输入，包括冒号。
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.8\linewidth]{lang=zh.jpg}
+	\caption{fc-list命令结果}
+	\label{fc-list}
+\end{figure}
+
+图\ref{fc-list}中，红色框位置的内容即为中文字体在系统中的名称，在\LaTeX{}中调用字体，需要输入系统中的字体名称。
+
+在使用ctex宏包时，经常会遇到各种warning，如：
+
+warning 1
+\begin{minted}{tex}
+	Package fontspec warning: Font "FandolSong-Regular" does not contain
+	requested 
+	(fontspec)                Script ``CJK"
+\end{minted}
+
+warning 2
+\begin{minted}{tex}
+	Package xeCJK Warning: Redefining CJKfamily `\CJKrmdefault'
+	(xeCJK)                (FandolSong-Regular(0))
+\end{minted}
+
+warning 3
+\begin{minted}{tex}
+	Package xeCJK Warning: Redefining CJKfamily `\CJKsfdefault'
+	(xeCJK)                (FandolHei-Regular)
+\end{minted}
+
+warning 4
+\begin{minted}{tex}
+	Package xeCJK Warning: Redefining CJKfamily `\CJKttdefault'
+	(xeCJK)                (FandolFang-Regular)
+\end{minted}
+
+warning1和warning2可以通过对ctex包添加参数来实现。
+\begin{minted}{tex}
+	\usepackage[fontset=none]{ctex}
+\end{minted}
+
+warning2-4可以采用打补丁的方式进行修正。
+\begin{minted}{tex}
+	\usepackage{ctex}
+	\usepackage{xpatch}
+\end{minted}
+
+\subsection{局部字体设置}
+
+在\LaTeX{}中如需要对正文中局部字体类型进行自定义，可以通过两类命令来实现：textrm\{\}和rmfamily,textsf\{\}和sffamily,texttt\{\}和ttfamily。这三组命令分别调用衬线字体（罗马体）、无衬线字体、等宽字体（打字机字体）。这两类命令的区别在于：前者是将参数(括号内的部分)设置成对应的字体族，而后者将该命令的作用区域内的文字变成对应的字体族。
+
+\begin{minted}[breaklines=true,breakanywhere,linenos=true]{tex}
+	\textrm{This is a example.} % text系列命令对大括号内的字体起作用
+	{\rmfamily This is a example.} %family系列命令，需要将自己和需要定义字体的内容都放入大括号内。
+\end{minted}
+
+\subsection{字体修饰}
+
+
+在\LaTeX{}中对文字加粗、斜体、强调等操作分别通过以下代码实现：
+
+\begin{minted}{tex}
+	%加粗
+	\textbf{}% 文本加粗
+	\boldmath{} % 数学环境内加粗，需要调用amsmath宏包
+	\boldsymbol{} % 可以对希腊字母加粗，需要调用amsmath宏包
+	
+	%斜体
+	\textit{}
+	
+	%强调
+	\emph{}
+\end{minted}
+
+特别的，当需要对局部文件进行下划线与其他文字进行区别的时候需要注意，默认的\textbackslash
+underline
+命令可以实现文字的下划线功能，但是当下划线部分的文字段落过长需要换行的时候，该命令就无法实现了。因此，需要对此进行重点说明。
+在\LaTeX{}中英文和中文的下划线换行过程中需要采用不同的宏包进行处理。具体用法如下：
+\begin{minted}{tex}
+	%下划线
+	\underline{} %此命令可以在文字下面生成下划线，但无法在行末进行自动换行。
+	
+	% 在中文环境中进行换行时采用以下宏包和命令
+	\usepackage{CJKfntef} 
+	\uline{} 
+	
+	% 在英文环境中进行换行时采用以下宏包和命令
+	\usepackage{ulem}
+	\uline
+\end{minted}
+
+
+\subsection{字体大小}
+
+\LaTeX{}中字体的大小取决于定义文档类型时设定的字体大小，又被称为绝对字体大小。表\ref{absolute-font}列出了标准文档中的字体绝对大小，单位为pt。例如：
+\begin{minted}{tex}
+	\documentclass[a4,12pt]{article} 
+\end{minted}
+此处定义了一个期刊文章类型的文档，采用A4纸张大小，绝对字体大小12pt。如在文章中采用\textbackslash tiny字体，则字体的大小会被认为是6pt，参见表\ref{absolute-font}。其他的字体大小可按照类似的方法设定。但在实际使用过程中也可以根据需要采用\textbackslash fontsize\{<size>\}\{<base line-skip>\}进行任意设定。
+
+\begin{longtable}{|c|m{4.5cm}<{\centering}|m{3.5cm}<{\centering}|m{2.5cm}<{\centering}|}
+	\caption{\label{absolute-font}标准文档类中的字号大小。}
+	\\
+	\hline
+	字号 & 10pt & 11pt & 12pt\\
+	\hline
+	\endfirsthead
+	\multicolumn{4}{l}{Continued from previous page} \\
+	\hline
+	
+	字号 & 10pt & 11pt & 12pt \\
+	
+	\hline
+	\endhead
+	\hline\multicolumn{4}{r}{Continued on next page} \\
+	\endfoot
+	\endlastfoot
+	\hline
+	\textbackslash tiny & 5pt & 6pt & 6pt\\
+	\hline
+	\textbackslash scriptsize & 7pt & 8pt & 8pt\\
+	\hline
+	\textbackslash footnotesize & 8pt & 9pt & 10pt\\
+	\hline
+	\textbackslash small & 9pt & 10pt & 10.95pt\\
+	\hline
+	\textbackslash normalsize & 10pt & 10.95pt & 12pt\\
+	\hline
+	\textbackslash large & 12pt & 12pt & 14.4pt\\
+	\hline
+	\textbackslash Large & 14.4pt & 14.4pt & 17.28pt\\
+	\hline
+	\textbackslash LARGE & 17.28pt & 17.28pt & 20.74pt\\
+	\hline
+	\textbackslash huge & 20.74pt & 20.74pt & 24.88pt\\
+	\hline
+	\textbackslash Huge & 24.88pt & 24.88pt & 24.88pt\\
+	\hline
+\end{longtable}
+
 \chapter{图表处理}
+
+\section{图形}
+
+
+\subsection{常规的图片插入方法}
+
+通常在\LaTeX{}中，通常使用的图片都是jpg和png格式。前者存储更小，但质量有损失；而后者可以做到无损压缩。但是这二者都不能做到放大不失真。为了达到放大不失真的效果，就需要采用矢量图。目前的矢量图的格式有：svg，eps，pdf。
+
+在\LaTeX{}中标准插图方法为：
+\begin{figure}[htbp]
+	\begin{minipage}{0.45\textwidth}
+		\begin{minted}{tex}
+			\begin{figure}[htbp]
+				\centering
+				\includegraphics[scale=0.5]{filename.png}
+				\caption{name of figure}
+			\end{figure}
+		\end{minted}
+	\end{minipage}
+	\begin{minipage}{0.45\textwidth}
+		\centering
+		\includegraphics[scale=0.2]{logo.png}
+		\caption{name of figure}
+	\end{minipage}
+\end{figure}
+
+\textbackslash includegraphics命令支持的图片格式为jpg，png，eps，pdf。不支持svg格式的矢量图。如果要插入svg格式的矢量图，则需要采用svg宏包。使用方法如下：
+
+\begin{figure}[htbp]
+	\begin{minipage}{0.45\textwidth}
+		\begin{minted}{tex}
+			\usepackage{svg}
+			\begin{figure}
+				\centering
+				\includesvg{filename.svg}
+				\caption{name of svg}
+			\end{figure}
+		\end{minted}
+	\end{minipage}
+	\begin{minipage}{0.45\textwidth}
+		\centering
+		%\includeinkscape[inkscapeformat=pdf,scale=0.3]{logo-svg.svg}
+		\includesvg[scale=0.3]{logo-svg.svg}
+		\caption{name of svg}
+	\end{minipage}
+\end{figure}
+如果在使用svg格式的矢量图时，出现字体和大小不正常现实的时候，采用\textbackslash usepackage[inkscapelatex=false]\{svg\}。
+
+插入图片的时候，可以给\textbackslash includegraphics命令加上option选项，可以实现比例和长宽的自定义。
+\begin{figure}[htbp]
+	\begin{minipage}{0.45\textwidth}
+		\begin{minted}{tex}
+			\begin{figure}
+				\centering
+				\includegraphics[width=5cm]{finename.png}
+				\caption{name of figure}
+			\end{figure}
+		\end{minted}
+	\end{minipage}
+	\begin{minipage}{0.45\textwidth}
+		\centering
+		\includegraphics[width=3cm]{logo.png}
+		\caption{name of figure}
+	\end{minipage}
+\end{figure}
+
+\textbackslash caption命令在\textbackslash includegrpahics 的前后决定了图题在图片的前后位置。
+
+特别的对eps格式的图片，由三种方法进行调用。
+
+第一种，采用psfig宏包。
+
+\begin{minted}{tex}
+	\usepackage{psfig}
+	\psfig{figure=图片文件名,height=高度} \\
+	\psfig{figure=图片文件名,width=宽度}
+\end{minted}
+
+第二种，采用epsfig宏包。
+
+\begin{minted}{tex}
+	\usepackage{epsfig}
+	\epsfig{figure=图片文件名,height=高度} \\ %或者
+	\epsfig{figure=图片文件名,width=宽度}
+\end{minted}
+
+
+第三种，采用epsf宏包。
+
+\begin{minted}{tex}
+	\usepackage{epsf}
+	\epsfxsize=宽度\epsffile{图片文件名} \\ %或者
+	\epsfysize=高度\epsffile{图片文件名}
+\end{minted}
+
+其中的"高度"和"宽度"是指希望图片打印的高度和宽度, 必须给出单位, 可用厘米(cm)或英寸(in)。
+
+\subsection{调用法插入图片}
+
+
+在\LaTeX{}文章排版过程中，会遇到一种情形：希望引用文献中的图片，但是无法找到文献中的图片原文件，采用截图的方式可能会使图片的清晰程度下降。可以利用includegraphics的不同参数选项来实现。举例如下：
+\begin{minted}{tex}
+	\usepacage{graphicx}
+	
+	\begin{figure}
+		\centering
+		\includegraphics[page=xx,viewport=xx yy zz nn,clip,scale=rate]{./filename.pdf}
+	\end{figure}
+\end{minted}
+
+includegraphics的选项中，page表示页码，viewport表示希望引用的图的位置，用xx yy表示图片的左下角的坐标值，zz nn表示图片的右上角的坐标值，scale用来设置缩放比例。在\LaTeX{}中，默认纸张的左下角为坐标原点。filename.pdf即含有希望引用图片的原文件。
+
+\subsection{图片位置的排版}
+
+
+1.浮动
+
+在\LaTeX{}中，图片的位置通常会遵循浮动的原则。在figure环境添加浮动选项可以控制图片的浮动位置。
+
+figure的参数中，h表示当前位置，t表示顶部，b表示底部，p表示浮动。通常遵循h-t-b的顺序。单用h参数是没有效果，常用的选项ht，htbp。如果强制需要图片方法某个位置不变，可以采用float宏包，提供的[H]选项。但出现的空白页情况，则需要手动调节。
+
+2.环绕
+
+对一些特殊的期刊文章，需要在文章的开始地方有问题环绕图片的情形。此时需要wrapfig宏包提供的wrapfigure环境来实现。wrapfigure的参数：[number]\{r\}\{0.5$\backslash$textwidth\}行数，位置，宽度
+
+\begin{minted}[breaklines,breakanywhere]{tex}
+	\usepackage{wrapfig}
+	\begin{wrapfigure}[number]{r}{0.5\textwidth}
+		\centering
+		\includegraphics[scale=0.8]{filename}
+		\caption{title of fig}
+	\end{minted}
+	
+	3.子图
+	
+	在文章排版过程中遇到需要多图并列的效果，需要由subfigure宏包提供的子图环境来实现。
+	
+	\begin{minted}{tex}
+		\usepackage{graphicx}
+		\usepackage{folat}
+		\usepackage{subfigure}
+		\begin{document}
+			\begin{figure}[H]
+				\centering  %图片全局居中
+				\subfigure[name1]{
+					\label{Fig.sub.1}
+					\includegraphics[width=0.45\textwidth]{filename1}}
+				\subfigure[name2]{
+					\label{Fig.sub.2}
+					\includegraphics[width=0.45\textwidth]{filename2}}
+				\caption{Main name}
+			\end{figure}
+		\end{document}
+	\end{minted}
+	4.（多行）并列
+	
+	学术文献中经常会让多张结果照片并列显示，有时可能还会出现多行并列显示。这个功能可以通过minipage环境来实现。
+	\begin{minted}{tex}
+		\begin{figure}[htbp]
+			\centering
+			\begin{minipage}[c]{0.45\linewidth}
+				\includegraphics[scale=0.15]{filename1.png}
+			\end{minipage}
+			\begin{minipage}[c]{0.45\linewidth}
+				\includegraphics[scale=0.15]{filename2.png}
+			\end{minipage}
+			\caption{name of figure}
+		\end{figure}
+	\end{minted}
+	
+	5.图题设置
+	
+	\LaTeX{}默认的图题中含有冒号，根据需要将冒号去掉或改成点。
+	\begin{minted}{tex}
+		\usepackage{caption}
+		\captionsetup[figure]{label=period} %period 表示图xx和标题之间有符号``点“。
+		\captionsetup[table]{label=space} %space 表示图xx和标题之间为空格。
+	\end{minted}
+	
+	在排版过程遇到图片或图题距离上下的距离或图片和图题之间的距离需要调整的情形，可以采用一下代码。
+	\begin{minted}{tex}
+		\vspace{-1cm} %调整图片与上文的垂直距离
+		\setlength{\abovecaptionskip}{-0.5cm} %调整图片标题与图距的距离
+		\setlength{\belowcaptionskip}{-0.5cm} %调整图片标题与下文之间距离
+	\end{minted}
+	
+	\subsection{图片引用}
+
+	在文章中对图片进行交叉引用方法如下：
+	
+	\begin{minted}{tex}
+		\usepackage{graphicx}
+		\usepackage{float} 
+		\usepackage{subfigure}
+		\usepackage{caption}
+		\begin{document}
+			\begin{figure}[H]
+				\centering  %图片全局居中
+				\subfigure[name1]{
+					\label{Fig.sub.1}
+					\includegraphics[width=0.45\textwidth]{filename1}}
+				\subfigure[name2]{
+					\label{Fig.sub.2}
+					\includegraphics[width=0.45\textwidth]{filename2}}
+				\caption{Main name}
+				\label{Fig.main}
+			\end{figure}
+		\end{document}
+	\end{minted}
+	
+
 
 \section{图}
 
@@ -455,7 +903,427 @@ Latex在处理图形编号时，会自动根据$\backslash$begin\{figure\}和$\b
 
 \section{公式}
 
+\section{常用公式录入}
+
+
+\LaTeX{}中数学公式的排版，大部分功能都由amsmath宏包提供。amsfont、amssymb宏包提供了大量的数学符号；amsthm宏包提供了扩展的\LaTeX{}定理证明格式。
+
+
+\subsection{行内公式}
+
+
+行内公式，顾名思义，公式在文字的行内，属于文字公式混排。此类公式没有公式编号，通常由一对``\$"包裹，例如：
+
+\begin{example}
+	勾股定理可表示为：$a^{2}+b^{2}=c^{2}$。
+\end{example}
+
+\subsection{行间公式}
+
+
+行间公式处于文字段落之外，可以采用equation环境书写，此时行间公式默认有公式编号。采用equation*环境可以提供不带编号的行间公式。利用\textbackslash
+ref命令来进行引用，或利用amsmath宏包提供的\eqref（会默认对引用添加括号）命令来进行引用。如果需要自定以公式编号，可以采用\textbackslash
+label进行自定义；也可以采用\textbackslash
+tag对公式进行自定义编号；或者采用\textbackslash notag取消公式编号。
+\begin{example}
+	\begin{equation}
+		a^{2} + b^{2} = c^{2} \label{Pythagoras}
+	\end{equation}
+	公式\eqref{Pythagoras}被称为勾股定理。
+\end{example}
+
+如果需要不提供编号的行间公式，可以采用\textbackslash[和\textbackslash]提供的行间公式环境或者利用displaymath环境提供的行间公式。
+\begin{example}
+	\[ a^{2} + b^{2} = c^{2} \]
+	
+	\begin{displaymath}
+		a^{2} + b^{2} = c^{2}
+	\end{displaymath}
+	
+	\begin{equation*}
+		a^{2} + b^{2} = c^{2}
+	\end{equation*}
+\end{example}
+
+\subsection{行间多行公式}
+
+
+在数学证明方面，可能会出现很长的、需要折行的公式，通过amsmath宏包提供的multline环境来完成。
+\begin{example}
+	\begin{multline}
+		a + b + c + d = e + f + g + h \\
+		= i + j + k + l\\
+		= m + n + o + p\\
+		= q + r + s = t
+	\end{multline}
+\end{example}
+
+在证明过程中可能会用到多个公式联立，并在等号处对其。此时，可以采用align环境。
+
+\begin{example}
+	\begin{align}
+		x + y &= 5 \\
+		3x + y &= 8
+	\end{align}
+\end{example}
+
+
+如果不需要多行公式对其时，则可以采用gather环境完成。
+\begin{example}
+	\begin{gather}
+		x +y = 5\\ %\\用来分割各行
+		2x + y = 8
+	\end{gather}
+\end{example}
+
+multline、gather和align环境都会自动生成公式符号，如果不需要公式编号的时候，在gather和align后面添加“*”，即multline*、gather*和align*。需要注意的是，aligh和gather环境会给每一个公式添加编号；如果只需要一个公式编号，则需要将align或gather嵌套如equation环境中即可。
+
+\subsection{单侧括号公式块}
+
+\begin{example}
+	\begin{equation}
+		\left.
+		\begin{align}
+			x + y &> 10 \\
+			x - y &> 2
+		\end{align}
+		\right \}\Rightarrow x^{2}-y^{2} > 20
+	\end{equation}
+\end{example}
+
+对一个分段函数来说
+\begin{example}
+	\[ |x| = \left\{
+	\begin{array}{rl}
+		-x & \text{if } x < 0,\\
+		0 & \text{if } x = 0,\\
+		x & \text{if } x > 0.
+	\end{array} \right. \]
+\end{example}
+
+也可以采用amsmath宏包提供的case环境来实现。
+
+\begin{example}
+	\[ |x| =
+	\begin{cases}
+		-x & \text{if } x < 0,\\
+		0 & \text{if } x = 0,\\
+		x & \text{if } x > 0.
+	\end{cases} \]
+\end{example}
+
+
+
+
+\section{常用公式录入}
+
+
+\LaTeX{}中数学公式的排版，大部分功能都由amsmath宏包提供。amsfont、amssymb宏包提供了大量的数学符号；amsthm宏包提供了扩展的\LaTeX{}定理证明格式。
+
+
+\subsection{行内公式}
+
+
+行内公式，顾名思义，公式在文字的行内，属于文字公式混排。此类公式没有公式编号，通常由一对``\$"包裹，例如：
+
+\begin{example}
+	勾股定理可表示为：$a^{2}+b^{2}=c^{2}$。
+\end{example}
+
+\subsection{行间公式}
+
+行间公式处于文字段落之外，可以采用equation环境书写，此时行间公式默认有公式编号。采用equation*环境可以提供不带编号的行间公式。利用\textbackslash
+ref命令来进行引用，或利用amsmath宏包提供的\eqref（会默认对引用添加括号）命令来进行引用。如果需要自定以公式编号，可以采用\textbackslash
+label进行自定义；也可以采用\textbackslash
+tag对公式进行自定义编号；或者采用\textbackslash notag取消公式编号。
+\begin{example}
+	\begin{equation}
+		a^{2} + b^{2} = c^{2} \label{Pythagoras}
+	\end{equation}
+	公式\eqref{Pythagoras}被称为勾股定理。
+\end{example}
+
+如果需要不提供编号的行间公式，可以采用\textbackslash[和\textbackslash]提供的行间公式环境或者利用displaymath环境提供的行间公式。
+\begin{example}
+	\[ a^{2} + b^{2} = c^{2} \]
+	
+	\begin{displaymath}
+		a^{2} + b^{2} = c^{2}
+	\end{displaymath}
+	
+	\begin{equation*}
+		a^{2} + b^{2} = c^{2}
+	\end{equation*}
+\end{example}
+
+\subsection{行间多行公式}
+
+在数学证明方面，可能会出现很长的、需要折行的公式，通过amsmath宏包提供的multline环境来完成。
+\begin{example}
+	\begin{multline}
+		a + b + c + d = e + f + g + h \\
+		= i + j + k + l\\
+		= m + n + o + p\\
+		= q + r + s = t
+	\end{multline}
+\end{example}
+
+在证明过程中可能会用到多个公式联立，并在等号处对其。此时，可以采用align环境。
+
+\begin{example}
+	\begin{align}
+		x + y &= 5 \\
+		3x + y &= 8
+	\end{align}
+\end{example}
+
+
+如果不需要多行公式对其时，则可以采用gather环境完成。
+\begin{example}
+	\begin{gather}
+		x +y = 5\\ %\\用来分割各行
+		2x + y = 8
+	\end{gather}
+\end{example}
+
+multline、gather和align环境都会自动生成公式符号，如果不需要公式编号的时候，在gather和align后面添加“*”，即multline*、gather*和align*。需要注意的是，aligh和gather环境会给每一个公式添加编号；如果只需要一个公式编号，则需要将align或gather嵌套如equation环境中即可。
+
+\subsection{单侧括号公式块}
+
+\begin{example}
+	\begin{equation}
+		\left.
+		\begin{aligned}
+			x + y &> 10 \\
+			x - y &> 2
+		\end{aligned}
+		\right \} \Rightarrow x^{2}-y^{2} > 20
+	\end{equation}
+\end{example}
+
+对一个分段函数来说
+\begin{example}
+	\[ |x| = \left\{
+	\begin{array}{rl}
+		-x & \text{if } x < 0,\\
+		0 & \text{if } x = 0,\\
+		x & \text{if } x > 0.
+	\end{array} \right. \]
+\end{example}
+
+也可以采用amsmath宏包提供的case环境来实现。
+
+\begin{example}
+	\[ |x| =
+	\begin{cases}
+		-x & \text{if } x < 0,\\
+		0 & \text{if } x = 0,\\
+		x & \text{if } x > 0.
+	\end{cases} \]
+\end{example}
+
+
 \chapter{参考文献}
+\section{参考文献引用}
+
+
+\LaTeX{}中引用参考文献有两种方式。通常针对内容较小的文档或参考文献较少的文档中，可以采用thebibliography环境来提供文献引用；对于文献较多的文档，则建议采用的.bib格式文件来进行参考文献引用。
+
+\subsection{Thebibliography}
+
+
+thebibliography方法相对简单，直接将参考文献的内容存放的document环境之内，清晰明了。当参考文献的数量相对较少，或对参考文献的格式没有特殊的要求时，相对来说是一种比较方便的引用方法。
+\begin{minted}{tex}
+	\documentclass{article}
+	
+	\begin{document}
+		
+		\section{Introduction}
+		
+		这是一个测试案例，用来介绍引用参考文献的引用方法\cite{ref1}。%ref1只是一个引用符号，可以是任何字符。
+		
+		\begin{thebibliography}{99}%99是指参考文献的最大数量，可以自行设定
+			\bibitem{ref1} xxxxxxxxxxx %和前面的ref1对应，后面添加参考文献的内容。
+			\bibitem{ref2} xxxxxxx
+		\end{thebibliography}
+	\end{document}
+\end{minted}
+
+
+\subsection{bib}
+
+对参考文献的排版有特殊的格式要求、管理的便捷、大量的参考文献条目、希望\TeX{}文档整体有条理时，可以采用bib文件的方式来进行参考文献管理。
+\begin{minted}{tex}
+	@article{name1,
+		title = {标题},
+		author = {作者，多个作者用and连接},
+		year = {年份},
+		journal = {期刊名称},
+		volume = {卷},
+		pages = {页码},
+		abstract = {摘要},
+	}
+	
+	@mastersthesis{name2,  %masterthesis 表示学位论文。
+		type = {硕士},
+		title = {标题},
+		author = {作者},
+		year = {年份},
+		abstract = {摘要},
+		school = {武汉科技大学},
+	}
+\end{minted}
+
+在\LaTeX{}文档中，需要引用文献的地方插入文献使用$\backslash$cite命令。在文档结束之前的地方插入bib文件名称。
+
+\begin{minted}{tex}
+	\documentclass{article}
+	
+	\begin{document}
+		
+		\section{Introduction}
+		
+		xxxxxxxxxxx
+		
+		\bibliographystyle{style} %style为希望展示的参考文献格式
+		\bibliography{reference} %reference为bib文件的名称，
+	\end{document}
+\end{minted}
+
+\section{文献检索}
+
+文献信息检索通常是指从以任何方式组成的文献信息集合中，查找特点用户在特定时间和条件下所需要信息的方法和过程。在学术论文写作过程中，需要撰写研究领域内的研究进展，就需要通过检索相同或相近领域内的相应文献。而这些文献信息可以被归纳为：图书、期刊、报告、会议、专利、学位论文等类型，而其中以期刊文献占绝大多数。
+\subsection{英文文献检索}
+
+英文期刊文献主要通过几大专业文献数据来进行检索，如WOS、PubMed（医学）、ScienceDirect等。WOS提供了大量的标题和摘要检索，几乎涵盖了中英文期刊、会议、专利等方面文献。
+
+\subsection{中文文献检索}
+
+中国知网CNKI全文数据库是国内规模最大的多功能学术期刊全文检索系统，也是国际上最大的动态持续更新的中文期刊全文数据库。同时CNKI还提供国内的专利、学位论文的检索服务。
+
+
+文献的检索常用有以下三类途径：学术搜索引擎（谷歌学术、必应学术、百度学术等）、专业数据库（WOS、CNKI、PubMed、ProQuest、ScienceDirect等）以及RSS学术文献追踪。
+
+\section{参考文献管理}
+
+参考文献在科技论文写作中占有非常重要的地位，体现了文章成果有前人研究基础上的继承性。一篇文章的参考文献少则10来篇，多则几百篇。当引用文献数量较少时，手工录入不是什么大问题，但几百篇参考文献在文章中的不同位置出现时，引用起来就很费时、费力，而且容易出错，有可能导致引文与文献编号对应错误。再者在文章中通过纯手工方式插入参考文献，调整起来也很难，特别是文献编号要求从头到尾顺序编排时更是如此。在此，介绍几个比较流行的参考文献管理软件。
+
+作为参考文献管理软件，其功能强大，支持自定义特性，即可以自定义EndNote的输出格式、滤件和链接论文件等。但其不足页非常明显：分组管理功能仅支持二级目录，也不支持标签功能；对中文的支持并不友好；且属于商业软件，个人用户不容易取得授权文件。
+
+\subsection{Mendeley}
+
+
+ScienceDirect出品，免费使用，支持多平台使用（网页、Windows、Linux、Mac、iPhone、iPad），可以与Word、LibreOffice、Latex等无缝链接，文献多级目录管理，支持PDF标记功能。其特色为学术社区群组功能，形成学术小组，组内成员共享文献。但其缺点也非常明确：对中文的支持并不友好。
+
+\subsection{NoteExpress}
+
+后来出现了国产软件 NoteExpress，功能差不多，可以管理文献条目、作为 Word 插件可以在文档中方便插入文献、定制输出样式等，而且可针对中、英文献分别定制输出样式，目前流行度很高。以上提到的参考文献管理软件均为商业软件，经常为版本升级而导致原先建立的文献库无法打开，另使用者痛苦万分。
+
+\subsection{Zotero}
+
+
+开源软件，利用浏览器插件（支持Chrome、Firefox、Safrai等）和客户端可以无缝抓取网页中的多种参考文献（书籍、会议、学术文章、报纸、电视、报告、手稿、杂质等）。Zotero支持无线级的目录分类，即一个目录下可以生成多个子目录；同时支持文献标签功能，可以对位于不同目录下的文献采用相同的标签管理，对大量文献管理的使用者来说较为方便。在多平台方面，支持Windows、Mac、Linux、iOS，同时每个注册账户赠送300MB的网络同步存储空间。且支持采用WebDav来同步文献中的PDF文件。
+具有群组文献管理功能，多个用户加入同一个组（group），可以无限制同步文献条目（不同步文献条目下的附件），如需要同步附件，则需要购买官方提供的网络存储空间。中文支持程度较好，且可以使用GB输出中文参考文献。对word的支持程度良好。
+
+
+\subsection{JabRef}
+
+开源参考文献管理软件，最大的特点就是基于BibTex格式进行文献管理。其数据库本质上为文本文件，透明度高，存储数据结构化。可以采用其他支持bib格式的参考文献管理软件打开，从而实现多平台和不同写作环境下使用同一个参考文献数据库。
+
+\section{文献引用}
+
+
+\subsection{西文参考文献}
+
+
+在\LaTeX{}文档中添加参考文献，需要做好几个步骤：准备bib格式的参考文献，在\LaTeX{}文档中调用相应的宏包，编译生成pdf文档。
+
+bib格式的参考文献必须具备的内容：author,title,journal,volume,year,number。举例如下：
+
+\begin{minted}[breaklines,breakanywhere]{tex}
+	@article{name1, %name1为正文中需要引用的关键词，即\cite{name1}。
+		title = {文章标题},
+		author = {作者, 多个作者用 and 连接},
+		journal = {期刊名},
+		volume = {卷},
+		number = {页码},
+		pages={},
+		year = {年份},
+		publisher={出版社}
+	}
+\end{minted}
+
+在\LaTeX{}文档中，首先在导言区调用cite宏包，在正文区内设置需要显示的参考文献风格类型，设置参考文献bib文件的位置。\LaTeX{}默认提供的参考文献样式有8种：
+\begin{minted}[breaklines,breakanywhere]{tex}
+	\centering
+	plain，按字母的顺序排列，比较次序为作者、年度和标题.
+	unsrt，样式同plain，只是按照引用的先后排序.
+	alpha，用作者名首字母+年份后两位作标号，以字母顺序排序.
+	abbrv，类似plain，将月份全拼改为缩写，更显紧凑.
+	ieeetr，国际电气电子工程师协会期刊样式.
+	acm，美国计算机学会期刊样式.
+	siam，美国工业和应用数学学会期刊样式.
+	apalike，美国心理学学会期刊样式.
+\end{minted}
+
+完整的引用案例如下：
+
+\begin{minted}[breaklines,breakanywhere]{tex}
+	\documentclass{article}
+	\usepackage{cite}
+	
+	\begin{document}
+		这是一个参考文献引用方法的举例\cite{key}。
+		\bibliographystyle{unsrt} %设置参考文献的显示风格。
+		\bibliography{reference} % reference为存放参考文献的bib文件名，该文件默认和tex主文档放在同一个目录下；如果发生了路径变化，则需要提供相对路径。
+		
+	\end{document}
+\end{minted}
+参考文献的引用需要在导言区添加相应的宏包，在正文中需要引用参考文献的地方，添加相应的文献。添加单个或多个不连续的文献，方式如下：
+
+\begin{minted}{tex}
+	\usepackage{cite}%导言区添加
+	
+	文献表明：这个问题可以通过这种方式来解决\cite{bibtex1,bibtex3,bibtex5}。%正文区
+\end{minted}
+
+输入结果如下：
+
+\begin{minted}{tex}
+	文献表明：这个问题可以通过这种方式来解决[1,3,5]。
+\end{minted}
+
+添加多个连续的参考文献，方式如下：
+
+\begin{minted}{tex}
+	\usepackage{cite} %导言区
+	\usepackage[number,sort&compress]{natbib} %导言区
+	文献表明：这个问题可以通过这种方式来解决\cite{key1,key2,key3}
+\end{minted}
+
+输出结果如下：
+\begin{minted}{tex}
+	文献表明：这个问题可以通过这种方式来解决[1-3]。
+\end{minted}
+
+
+\subsection{中文参考文献}
+
+
+中文参考文献可以遵循GB/T 7714-2015。使用\LaTeX{}对中文学术论文进行排版时，可以按照GB/T 7714-2015来设置参考文献的格式。用法如下：
+\begin{minted}[breaklines,breakanywhere]{tex}
+	\documentclass{article}
+	\usepackage{ctex}%ctex宏包中包含了cite，可以不必单独调用宏包。
+	\usepackage{gbt7714}
+	
+	\begin{document}
+		
+		充足的睡眠有利用身体健康\cite{key1}
+		
+		\bibliographstyle{gbt7714-numerical} %利用GB/T 7714-2015宏包来设置参考文献的格式
+		\bibliography{ref} %ref代表存放参考文献的bib文件名称。
+	\end{document}
+\end{minted}
 
 \section{格式}
 
@@ -475,7 +1343,7 @@ Latex在处理图形编号时，会自动根据$\backslash$begin\{figure\}和$\b
 
 本文仅用于总结近期使用Latex整理书籍的一些常用宏包的用法。
 
-\section*{Latex 使用总结}
+\chapter*{Latex 使用总结}
 
 \subsection{页眉页脚}
 
@@ -865,6 +1733,10 @@ https://github.com/lrtfm/nputhesis  硕博论文
 https://github.com/NPUSCG/npu-dissertation-proposal 选题报告
 
 https://github.com/kidozh/LaTeX-Template-For-NPU-Thesis  硕博论文
+
+\section{论文模版}
+
+\LaTeX{}模板中包含了.tex、.cls、.bib、.bst、.eps等文件。.tex文件为\LaTeX{}的源文件，.cls文件是\LaTeX{}的样式文件，.bib文件是参数文件数据库，.bst文件是bibtex处理参考文献后生成的格式，即定义参考文献的排版效果，.eps文件是\LaTeX{}插入的图片文件。
 
 
 
