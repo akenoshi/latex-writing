@@ -297,6 +297,15 @@ gloss：附录中的注释表。
 
 \section{文章结构}
 
+\subsection{章节编号}
+
+Latex 默认的章节编号大多是以阿拉伯数字开始的，但是对于一些经常采用非阿拉伯数字编号的使用者来说就显得有点不友好。因此，在进行章节编号的时候，使用者就需要根据自己的需要来对章节的编号进行自定义。Latex中的提供了几类编号方式：$\backslash$arabic 阿拉伯数字，$\backslash$roman 小写的罗马数字，$\backslash$Roman 大写的罗马数字，$\backslash$alph 小写字母，$\backslash$Alph 大写字母。如果使用者希望采用非阿拉伯数字的方式进行编号，利用$\backslash$renewcommand命令进行定义编号的格式。在整理液压传动的时候对章节的编号进行自定义的代码如下：
+
+\begin{lstlisting}[language=tex,breaklines]
+	\renewcommand{\thesection}{\color[RGB]{60,113,183} \arabic{chapter}-\arabic{section}} %设置section的格式为章序号-节序号
+	\renewcommand{\thesubsection}{\chinese{subsection}、} %子节的序号为中文序号+顿号
+	\renewcommand{\thesubsubsection}{\arabic{subsubsection}.} 
+\end{lstlisting}
 
 \subsection{目录}
 
@@ -388,6 +397,59 @@ LaTeX中提供了一些调整字体大小的命令：$\backslash$tiny, $\backsla
 \section{页面布局}
 
 在\LaTeX{}中，设置纸张大小的参数是papersize。而papersize的参数如下：a0paper, a1paper, a2paper, a3paper, a4paper, a5paper, a6paper,b0paper, b1paper, b2paper, b3pa per, b4paper, b5paper, b6paper,c0paper, c1paper, c2paper, c3paper, c4paper, c5paper, c6paper,b0j, b1j, b2j, b3j, b4j, b5j, b6j,ansiapaper, ansibpaper, ansicpaper, ansidpaper, ansiepaper,letterpaper, executivepaper, legalpaper 。
+
+\section{页眉页脚}
+
+在用 LaTeX 排版文章、书籍时，缺省定义了四种页眉页脚的格式：
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{ll}
+		empty      & 没有页眉和页脚              \\
+		plain      & 没有页眉，页脚中部放置页码        \\
+		headings   & 没有页脚，页眉包含章节的标题和页码    \\
+		myheadings & 没有页脚，页眉页码和使用者所定义的信息 
+	\end{tabular}
+\end{table}
+
+对于article 类文档缺省使用 plain 格式，而 book类文档则使用 headings 格式。一般情况下，Latex提供的这四种格式基本可以满足大多数的排版需求。但是在某些特殊的情况下，特别是使用者想在某一些页面使用自定义的页眉页脚或全文使用自定义的页眉页脚，这时就会遇到很多限制和麻烦。例如，仅想在某些页面不出现任何页眉页脚，而其余部分按照正常情况还显示页眉页脚，这个时候就可以使用$\backslash$pagestyle命令，其用法为$\backslash$pagestyle\{empty\}，将其放置在需要取消页眉页脚的部分，变可实现取消页眉页脚的作用。用法如下：
+\begin{lstlisting}[language=tex]
+	%\input{preface}   %引言部分
+	\newpage  %原文档为双面，故此处插入空白页面
+	\thispagestyle{empty}  %清除引言部分的页眉页脚信息
+\end{lstlisting}
+\begin{lstlisting}[language=tex]
+	\usepackage{cite}
+	
+	这里是正文\cite{bib2,bibt2,bibt3}
+\end{lstlisting}
+
+但对于那些完全需要自定义页眉页脚的格式的使用者来说，还需要使用额外的宏包"fancyhdr"。该宏包的主要通过定义$\backslash$fancyhead和$\backslash$fancyfoot两个命令对页眉页脚进行控制，这两个命令的参数如下。在编辑教材的时候，由于书籍采用了双面显示，奇数页的页眉不同且没有页脚的显示方式，故利用"fancyhdr"对页眉页脚进行了重新定义。使用的代码如下。
+\begin{table}[h]
+	\centering
+	\begin{tabular}{ll}
+		E &     偶数页\\
+		O &     奇数页 \\
+		L &     页眉或页脚的左边部分\\
+		C &     页眉或页脚的中间部分\\
+		R &     页眉或页脚的右边部分\\
+		H &     页眉\\
+		F &     页脚
+	\end{tabular}
+\end{table}
+\begin{lstlisting}[language=tex,breaklines]
+	\requirepackage{fancyhdr}
+	\fancyhf{} 
+	%fancyfoot[c]{\color{structurecolor}\scriptsize\thepage} %取消页脚页码
+	\if@twoside
+	\fancyhead[CO]{\color{structurecolor}\cnormal\leftmark} %leftmark章节名称，奇数页页眉中部显示章节名称
+	\fancyhead[OR]{\color{structurecolor}\cnormal\thepage} %奇数页右侧页码
+	\fancyhead[EL]{\color{structurecolor}\cnormal\thepage} %偶数页左侧页码
+	\fancyhead[CE]{\color{structurecolor}\cnormal\@title} % @title教材名称，偶数页页眉中部显示教材名称
+	\else
+	\fancyhead[R]{\color{structurecolor}\cnormal\rightmark}
+	\fi
+\end{lstlisting}
 
 \section{字体设置}
 
@@ -1211,7 +1273,6 @@ bib格式的参考文献必须具备的内容：author,title,journal,volume,year
 
 \section{格式}
 
-\section{引用}
 
 \section{插入引文}
 
@@ -1228,70 +1289,6 @@ bib格式的参考文献必须具备的内容：author,title,journal,volume,year
 本文仅用于总结近期使用Latex整理书籍的一些常用宏包的用法。
 
 \chapter*{Latex 使用总结}
-
-\subsection{页眉页脚}
-
-在用 LaTeX 排版文章、书籍时，缺省定义了四种页眉页脚的格式：
-
-\begin{table}[h]
-     \centering
-     \begin{tabular}{ll}
-          empty      & 没有页眉和页脚              \\
-          plain      & 没有页眉，页脚中部放置页码        \\
-          headings   & 没有页脚，页眉包含章节的标题和页码    \\
-          myheadings & 没有页脚，页眉页码和使用者所定义的信息 
-     \end{tabular}
-\end{table}
-
-对于article 类文档缺省使用 plain 格式，而 book类文档则使用 headings 格式。一般情况下，Latex提供的这四种格式基本可以满足大多数的排版需求。但是在某些特殊的情况下，特别是使用者想在某一些页面使用自定义的页眉页脚或全文使用自定义的页眉页脚，这时就会遇到很多限制和麻烦。例如，仅想在某些页面不出现任何页眉页脚，而其余部分按照正常情况还显示页眉页脚，这个时候就可以使用$\backslash$pagestyle命令，其用法为$\backslash$pagestyle\{empty\}，将其放置在需要取消页眉页脚的部分，变可实现取消页眉页脚的作用。用法如下：
-\begin{lstlisting}[language=tex]
-     %\input{preface}   %引言部分
-     \newpage  %原文档为双面，故此处插入空白页面
-     \thispagestyle{empty}  %清除引言部分的页眉页脚信息
-\end{lstlisting}
-\begin{lstlisting}[language=tex]
-     \usepackage{cite}
-     
-     这里是正文\cite{bib2,bibt2,bibt3}
-\end{lstlisting}
-
-但对于那些完全需要自定义页眉页脚的格式的使用者来说，还需要使用额外的宏包"fancyhdr"。该宏包的主要通过定义$\backslash$fancyhead和$\backslash$fancyfoot两个命令对页眉页脚进行控制，这两个命令的参数如下。在编辑教材的时候，由于书籍采用了双面显示，奇数页的页眉不同且没有页脚的显示方式，故利用"fancyhdr"对页眉页脚进行了重新定义。使用的代码如下。
-\begin{table}[h]
-     \centering
-     \begin{tabular}{ll}
-          E &     偶数页\\
-          O &     奇数页 \\
-          L &     页眉或页脚的左边部分\\
-          C &     页眉或页脚的中间部分\\
-          R &     页眉或页脚的右边部分\\
-          H &     页眉\\
-          F &     页脚
-     \end{tabular}
-\end{table}
-\begin{lstlisting}[language=tex,breaklines]
-     \requirepackage{fancyhdr}
-     \fancyhf{} 
-     %fancyfoot[c]{\color{structurecolor}\scriptsize\thepage} %取消页脚页码
-     \if@twoside
-     \fancyhead[CO]{\color{structurecolor}\cnormal\leftmark} %leftmark章节名称，奇数页页眉中部显示章节名称
-     \fancyhead[OR]{\color{structurecolor}\cnormal\thepage} %奇数页右侧页码
-     \fancyhead[EL]{\color{structurecolor}\cnormal\thepage} %偶数页左侧页码
-     \fancyhead[CE]{\color{structurecolor}\cnormal\@title} % @title教材名称，偶数页页眉中部显示教材名称
-     \else
-     \fancyhead[R]{\color{structurecolor}\cnormal\rightmark}
-     \fi
-\end{lstlisting}
-
-\subsection{章节编号}
-
-Latex 默认的章节编号大多是以阿拉伯数字开始的，但是对于一些经常采用非阿拉伯数字编号的使用者来说就显得有点不友好。因此，在进行章节编号的时候，使用者就需要根据自己的需要来对章节的编号进行自定义。Latex中的提供了几类编号方式：$\backslash$arabic 阿拉伯数字，$\backslash$roman 小写的罗马数字，$\backslash$Roman 大写的罗马数字，$\backslash$alph 小写字母，$\backslash$Alph 大写字母。如果使用者希望采用非阿拉伯数字的方式进行编号，利用$\backslash$renewcommand命令进行定义编号的格式。在整理液压传动的时候对章节的编号进行自定义的代码如下：
-
-\begin{lstlisting}[language=tex,breaklines]
-     \renewcommand{\thesection}{\color[RGB]{60,113,183} \arabic{chapter}-\arabic{section}} %设置section的格式为章序号-节序号
-     \renewcommand{\thesubsection}{\chinese{subsection}、} %子节的序号为中文序号+顿号
-     \renewcommand{\thesubsubsection}{\arabic{subsubsection}.} 
-\end{lstlisting}
-
 
 
 \section{常见错误}
