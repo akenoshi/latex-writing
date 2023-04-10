@@ -13,7 +13,7 @@
 %%%%setting for fonts%%%%%
 \usepackage{xeCJK}
 \setmainfont{Times New Roman}
-\usepackage[fontset=macnew]{ctex} %This package used for texstudio in mac.
+%\usepackage[fontset=macnew]{ctex} %This package used for texstudio in mac.
 \usepackage{fontspec}
 \usepackage{metalogo} % latex logo
 
@@ -84,8 +84,6 @@
 \section{Editor}
 
 TexLive这个发行版中附带了一个功能相对简单的编辑器Texworks，该编辑器的界面相对简陋，对初次使使用者来说可以完成一些简单的不含复杂表格和数学公式的文档，但面对复杂的排版任务和以\LaTeX{}为主要排版工具的使用者来说，Texworks编辑器的使用起来略显不便，对与提高排版效率来说不是那么容易。于此同时，有Texstudiuo和Texmaker两款\LaTeX{}专用编辑器和vim、Sublime等兼容编辑器。
-
-\section{常用编辑器}
 
 可以实现\LaTeX{}文档编写的软件较多，通常可以分为两类：可以实现texlive调用、编译的编辑软件，如Texstudio、Texworks、Emacs；通过插件来调用texlive实现编译的软件，如Vim、VScode等。texlive自带的Texworks编辑器轻量化，虽然功能上没有残缺，但是不适合打开较大的文件，且每个窗口只能打开一个tex文档，不便于结构化文档撰写和管理，同时界面过于简陋，对初学者的使用友好程度相对较低。VSCode虽然可以用来编写tex文档，但是其本身不是为编写tex文档而开发的，需要经过一番配置才可以运行，且软件本身过于庞大臃肿，不支持文档预览。Emacs和Vim两个强大的文本编辑器，经过一番配置之后，完全可以胜任\LaTeX{}的撰写和编译工作，但是这二者的入门学习成本相对较高。因此，重点介绍Texstudio编辑器。
 
@@ -218,58 +216,57 @@ Texstudio的编译过程，对产生的错误和警告会在软件底部的`Mess
 \section{格式设置类宏包}
 
 \LaTeX{}中用于学术论文排版的整体环境设置宏包有：
-ctex：提供了一个统一的中文\LaTeX{}文档框架，默认包含了cterart、ctexrep、ctexbook三种不同的文档类型。
-geometry：对纸张大小、显示页面大小（尺寸）设定。
-layout：对页面布局进行设定。
-fancyhdr：页眉页脚设置。
-afterpage：用来处理图标在页面的浮动。float和afterpage的区别是啥？
-multicol：提供了全文和局部分栏处理功能，但会影响浮动体（图表）的处理，建议在分栏环境内不使用浮动体。
-titlesec：对文章内的标题格式设定。
+ctex：提供了一个统一的中文\LaTeX{}文档框架，默认包含了cterart、ctexrep、ctexbook三种不同的文档类型。\\
+geometry：对纸张大小、显示页面大小（尺寸）设定。\\
+layout：对页面布局进行设定。\\
+fancyhdr：页眉页脚设置。\\
+afterpage：用来处理图标在页面的浮动。\textit{float和afterpage的区别是啥？}\\
+multicol：提供了全文和局部分栏处理功能，但会影响浮动体（图表）的处理，建议在分栏环境内不使用浮动体。\\
+titlesec：对文章内的标题格式设定。\\
 titlesoc：对文章的目录格式设定。
 
 
 \section{字体类宏包}
 
-xeCJK：提供中文字体设置
+xeCJK：提供中文字体设置 \\
 fontspec：提供西文字体的自定义设置
 
 \section{插图类宏包}
 
 在图形排版方面常用到的宏包：
-graphicx：提供插图环境和相关命令。
-subfigure：提供子图环境及题图标题设置。
-wrapfig：提供文字环绕图形的环境。
-caption：图表的标题格式设置。
+graphicx：提供插图环境和相关命令。\\
+subfigure：提供子图环境及题图标题设置。\\
+wrapfig：提供文字环绕图形的环境。\\
+caption：图表的标题格式设置。\\
 sidecap：提供侧向图题的功能。
 
 \section{表格类宏包}
 
 
 常用到的表格类宏包：
-array、
-table：提供普通的表格设置功能。
-longtable：提供了跨页表格功能。
-tabularx：提供了表格内嵌套高级功能的功能。
-dcolumn：表格内多位小数的对其功能，从小数点对齐。
-multirow：单元格合并功能。
-makecell：单元格内设置单元格。
-diagbox：左上角表头内斜线表格。
+array、table：提供普通的表格设置功能。\\
+longtable：提供了跨页表格功能。\\
+tabularx：提供了表格内嵌套高级功能的功能。\\
+dcolumn：表格内多位小数的对其功能，从小数点对齐。\\
+multirow：单元格合并功能。\\
+makecell：单元格内设置单元格。\\
+diagbox：左上角表头内斜线表格。\\
 booktabs：三线表。
 
 
 \section{公式类宏包}
 
 常用到的公式类宏包：
-amsmath：提供数学符号。
-ppchtex：提供化学符号。
+amsmath：提供数学符号。\\
+ppchtex：提供化学符号。\\
 harpoon：提供上下带箭头的字符。
 
 \subsection{参考文献类宏包}
 
-bibtex：文献类型。
-natbib：文献引用显示类型。
-footbib：脚注式引用。、
-gbt7714：显示中文文献格式。
+bibtex：文献类型。\\
+natbib：文献引用显示类型。\\
+footbib：脚注式引用。\\
+gbt7714：显示中文文献格式。\\
 gloss：附录中的注释表。
 
 
@@ -295,6 +292,8 @@ gloss：附录中的注释表。
      \end{@twocolumnfalse}
           ]     
 \end{lstlisting}
+
+该模式下，双列的图片和表格的位置并不能随心所欲的排布，会默认放在页面的顶部或底部，很难居中显示。
 
 \section{文章结构}
 
