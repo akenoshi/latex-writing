@@ -13,7 +13,7 @@
 %%%%setting for fonts%%%%%
 \usepackage{xeCJK}
 \setmainfont{Times New Roman}
-%\usepackage[fontset=macnew]{ctex} %This package used for texstudio in mac.
+\usepackage[fontset=macnew]{ctex} %This package used for texstudio in mac.
 \usepackage{fontspec}
 \usepackage{metalogo} % latex logo
 
@@ -30,7 +30,7 @@
 
 %%%%%%setting for math%%%%%%%%%%%%
 \usepackage{amsmath}
-
+\usepackage{cases}
 
 %%%%%%%%%%%setting for figures%%%%%%%%%
 \usepackage{graphicx}
@@ -102,7 +102,7 @@ TeXstudio是一款跨平台（Windows、Mac、Linux）的免费软件，用来�
 \begin{center}
      \includegraphics[scale=0.8]{./texstudio-build.png}
 \end{center}
-3.大多数情况下，用户不需要更改xelatex编译器的参数。但在用到minted环境时，需要在xelatex后补充参数'-shell-escape'，即'xelatex.exe -shell-escape -synctex=1 -interaction=nonstopmopde \%.tex'。
+3.大多数情况下，用户不需要更改xelatex编译器的参数。但在用到minted环境时，需要在xelatex后补充参数`-shell-escape'，即`xelatex.exe -shell-escape -synctex=1 -interaction=\\nonstopmopde \%.tex'。
 
 
 \begin{center}
@@ -283,19 +283,19 @@ listings:插入代码。
 在期刊类型的排版的文档，为了节省版面，经常需要安排双列排版。在documentclass中设定相关选取为：twocolumn即可实现双列排版。但文章标题和摘要（中英文）却又是单列排版，要想实现这种排版，在导言区之后，采用如下代码结构，即可实现标题和中英的单列排版。
 
 \begin{lstlisting}[language=tex,breaklines]
-	\twocolumn[
-	\begin{@twocolumnfalse} % let the two column mode fail temporary。
-		\maketitle % maketitle command must put in this environment.
-		\begin{document} % after this, abstract and main session start.
-		\begin{abstract}
-			\textbf{Abstract}：
-			\noident Keywords:
-		\end{abstract}
-	\end{@twocolumnfalse}]     
+    \twocolumn[
+    \begin{@twocolumnfalse} % let the two column mode fail temporary。
+        \maketitle % maketitle command must put in this environment.
+        \begin{document} % after this, abstract and main session start.
+        \begin{abstract}
+            \textbf{Abstract}：
+            \noident Keywords:
+        \end{abstract}
+    \end{@twocolumnfalse}]     
 \end{lstlisting}
-	
+    
 该模式下，占据单列位置的图片可以在h参数的作用下，在插入图片的位置显示；而双列的图片和表格的位置则很难，会被默认放在页面的底部或顶部。
-	
+    
 \section{文档结构}
 
 
@@ -312,26 +312,26 @@ Report类型的文章结构：
 $\backslash$part,$\backslash$chapter,$\backslash$section,$\backslash$subsection,$\backslash$subsubsection, Abstract 单独成页且包含页码。
 
 \section{目录及章节编号}
-	
+    
 \subsection{目录编号}
-	
+    
 目录在不同的文章类型中的要求不尽相同，学术文章中很少用的目录，而学位论文的排版中则需要出现目录，而且列表和插图也要体现在目录中，因此目录进行深度控制。在\LaTeX{}中采用$\backslash$setcounter\{tocdepth\}\{X\}命来来实现不同深度的目录。$\backslash$setcounter\{secnumberdepth\}\{Y\} 来实现章节编号的深度。
-	
-	\begin{center}
-		\begin{itemize}
-			\item -1 part                    
-			\item  0 chapter               
-			\item  1 section                
-			\item  2 subsection          
-			\item  3 subsubsection     
-			\item  4 paragraph            
-			\item  5 subparagarph   
-		\end{itemize}
-	\end{center}
-	
-	
+    
+    \begin{center}
+        \begin{itemize}
+            \item -1 part                    
+            \item  0 chapter               
+            \item  1 section                
+            \item  2 subsection          
+            \item  3 subsubsection     
+            \item  4 paragraph            
+            \item  5 subparagarph   
+        \end{itemize}
+    \end{center}
+    
+    
 利用$\backslash$renewcommand命令，将文档的一些标题从英文转化为中文标题。如：$\backslash$renew command$\backslash$abstractname\{$\backslash$hei 摘要\}，将英文abstractname改为摘要。
-	
+    
 %\begin{lstlisting}% breaklines,用于自动换行；columns空格控制，fixed默认参数，flexible灵活处理空格，fullflexible强制使用空格。
 %\renewcommand\abstractname{\hei 摘要}
 %\renewcommand\refname{\hei 参考文献}
@@ -351,9 +351,9 @@ $\backslash$part,$\backslash$chapter,$\backslash$section,$\backslash$subsection,
 \LaTeX{} 默认的章节编号大多是以阿拉伯数字开始的，但是对于一些经常采用非阿拉伯数字编号的使用者来说就显得有点不友好。因此，在进行章节编号的时候，使用者就需要根据自己的需要来对章节的编号进行自定义。\LaTeX{}中的提供了几类编号方式：$\backslash$arabic 阿拉伯数字，$\backslash$roman 小写的罗马数字，$\backslash$Roman 大写的罗马数字，$\backslash$alph 小写字母，$\backslash$Alph 大写字母。如果使用者希望采用非阿拉伯数字的方式进行编号，利用$\backslash$renewcommand命令进行定义编号的格式。在整理液压传动的时候对章节的编号进行自定义的代码如下：
 
 \begin{lstlisting}[language=tex,breaklines]
-	\renewcommand{\thesection}{\color[RGB]{60,113,183} \arabic{chapter}-\arabic{section}} %设置section的格式为章序号-节序号
-	\renewcommand{\thesubsection}{\chinese{subsection}、} %子节的序号为中文序号+顿号
-	\renewcommand{\thesubsubsection}{\arabic{subsubsection}.} 
+    \renewcommand{\thesection}{\color[RGB]{60,113,183} \arabic{chapter}-\arabic{section}} %设置section的格式为章序号-节序号
+    \renewcommand{\thesubsection}{\chinese{subsection}、} %子节的序号为中文序号+顿号
+    \renewcommand{\thesubsubsection}{\arabic{subsubsection}.} 
 \end{lstlisting}
 
 \chapter{字体处理}
@@ -384,48 +384,48 @@ $\backslash$part,$\backslash$chapter,$\backslash$section,$\backslash$subsection,
 
 \LaTeX{}中字体的大小取决于定义文档类型时设定的字体大小，又被称为绝对字体大小。表\ref{absolute-font}列出了标准文档中的字体绝对大小，单位为pt。例如：
 \begin{minted}{tex}
-	\documentclass[a4,12pt]{article} 
+  \documentclass[a4,12pt]{article} 
 \end{minted}
 此处定义了一个期刊文章类型的文档，采用A4纸张大小，绝对字体大小12pt。如在文章中采用\textbackslash tiny字体，则字体的大小会被认为是6pt，参见表\ref{absolute-font}。其他的字体大小可按照类似的方法设定。但在实际使用过程中也可以根据需要采用\textbackslash fontsize\{<size>\}\{<base line-skip>\}进行任意设定。
 
 \begin{longtable}{|c|m{4.5cm}<{\centering}|m{3.5cm}<{\centering}|m{2.5cm}<{\centering}|}
-	\caption{\label{absolute-font}标准文档类中的字号大小。}
-	\\
-	\hline
-	字号 & 10pt & 11pt & 12pt\\
-	\hline
-	\endfirsthead
-	\multicolumn{4}{l}{Continued from previous page} \\
-	\hline
-	
-	字号 & 10pt & 11pt & 12pt \\
-	
-	\hline
-	\endhead
-	\hline\multicolumn{4}{r}{Continued on next page} \\
-	\endfoot
-	\endlastfoot
-	\hline
-	\textbackslash tiny & 5pt & 6pt & 6pt\\
-	\hline
-	\textbackslash scriptsize & 7pt & 8pt & 8pt\\
-	\hline
-	\textbackslash footnotesize & 8pt & 9pt & 10pt\\
-	\hline
-	\textbackslash small & 9pt & 10pt & 10.95pt\\
-	\hline
-	\textbackslash normalsize & 10pt & 10.95pt & 12pt\\
-	\hline
-	\textbackslash large & 12pt & 12pt & 14.4pt\\
-	\hline
-	\textbackslash Large & 14.4pt & 14.4pt & 17.28pt\\
-	\hline
-	\textbackslash LARGE & 17.28pt & 17.28pt & 20.74pt\\
-	\hline
-	\textbackslash huge & 20.74pt & 20.74pt & 24.88pt\\
-	\hline
-	\textbackslash Huge & 24.88pt & 24.88pt & 24.88pt\\
-	\hline
+    \caption{\label{absolute-font}标准文档类中的字号大小。}
+    \\
+    \hline
+    字号 & 10pt & 11pt & 12pt\\
+    \hline
+    \endfirsthead
+    \multicolumn{4}{l}{Continued from previous page} \\
+    \hline
+    
+    字号 & 10pt & 11pt & 12pt \\
+    
+    \hline
+    \endhead
+    \hline\multicolumn{4}{r}{Continued on next page} \\
+    \endfoot
+    \endlastfoot
+    \hline
+    \textbackslash tiny & 5pt & 6pt & 6pt\\
+    \hline
+    \textbackslash scriptsize & 7pt & 8pt & 8pt\\
+    \hline
+    \textbackslash footnotesize & 8pt & 9pt & 10pt\\
+    \hline
+    \textbackslash small & 9pt & 10pt & 10.95pt\\
+    \hline
+    \textbackslash normalsize & 10pt & 10.95pt & 12pt\\
+    \hline
+    \textbackslash large & 12pt & 12pt & 14.4pt\\
+    \hline
+    \textbackslash Large & 14.4pt & 14.4pt & 17.28pt\\
+    \hline
+    \textbackslash LARGE & 17.28pt & 17.28pt & 20.74pt\\
+    \hline
+    \textbackslash huge & 20.74pt & 20.74pt & 24.88pt\\
+    \hline
+    \textbackslash Huge & 24.88pt & 24.88pt & 24.88pt\\
+    \hline
 \end{longtable}
 
 \subsection{字体修饰}
@@ -434,16 +434,16 @@ $\backslash$part,$\backslash$chapter,$\backslash$section,$\backslash$subsection,
 在\LaTeX{}中对文字加粗、斜体、强调等操作分别通过以下代码实现：
 
 \begin{minted}{tex}
-	%加粗
-	\textbf{}% 文本加粗
-	\boldmath{} % 数学环境内加粗，需要调用amsmath宏包
-	\boldsymbol{} % 可以对希腊字母加粗，需要调用amsmath宏包
-	
-	%斜体
-	\textit{}
-	
-	%强调
-	\emph{}
+    %加粗
+    \textbf{}% 文本加粗
+    \boldmath{} % 数学环境内加粗，需要调用amsmath宏包
+    \boldsymbol{} % 可以对希腊字母加粗，需要调用amsmath宏包
+    
+    %斜体
+    \textit{}
+    
+    %强调
+    \emph{}
 \end{minted}
 
 特别的，当需要对局部文件进行下划线与其他文字进行区别的时候需要注意，默认的\textbackslash
@@ -451,16 +451,16 @@ underline
 命令可以实现文字的下划线功能，但是当下划线部分的文字段落过长需要换行的时候，该命令就无法实现了。因此，需要对此进行重点说明。
 在\LaTeX{}中英文和中文的下划线换行过程中需要采用不同的宏包进行处理。具体用法如下：
 \begin{minted}{tex}
-	%下划线
-	\underline{} %此命令可以在文字下面生成下划线，但无法在行末进行自动换行。
-	
-	% 在中文环境中进行换行时采用以下宏包和命令
-	\usepackage{CJKfntef} 
-	\uline{} 
-	
-	% 在英文环境中进行换行时采用以下宏包和命令
-	\usepackage{ulem}
-	\uline
+    %下划线
+    \underline{} %此命令可以在文字下面生成下划线，但无法在行末进行自动换行。
+    
+    % 在中文环境中进行换行时采用以下宏包和命令
+    \usepackage{CJKfntef} 
+    \uline{} 
+    
+    % 在英文环境中进行换行时采用以下宏包和命令
+    \usepackage{ulem}
+    \uline
 \end{minted}
 
 \subsection{全局字体设置}
@@ -478,16 +478,16 @@ usepackage\{xeCJK\}命令来调用宏包，使用\textbackslash setCJKmainfont
 fontspec和xeCJK的使用方法如下：
 
 \begin{minted}{tex}
-	% 拉丁字母设置
-	\setmainfont{font name}[font features]%中括号内为字体的特征，如黑体、斜体等。
-	\setsansfont{font name}[font features]
-	\setmonofant{font name}[font features]
-	%中文字体设置
-	\setCJKmainfont{font name}[font features]
-	\setCJKsansfont{font name}[font features]
-	\setCJKmonofont{font name}[font features]
-	%举例
-	\setCJKmainfont{SimSun}[BoldFont=SimHei,ItalicFont=KaiTi]
+    % 拉丁字母设置
+    \setmainfont{font name}[font features]%中括号内为字体的特征，如黑体、斜体等。
+    \setsansfont{font name}[font features]
+    \setmonofant{font name}[font features]
+    %中文字体设置
+    \setCJKmainfont{font name}[font features]
+    \setCJKsansfont{font name}[font features]
+    \setCJKmonofont{font name}[font features]
+    %举例
+    \setCJKmainfont{SimSun}[BoldFont=SimHei,ItalicFont=KaiTi]
 \end{minted}
 
 上面的案例中SimHei，KaiTi为操作系统中已经存在的中文字体名称。
@@ -496,10 +496,10 @@ fontspec和xeCJK的使用方法如下：
 在Windows系统中打开终端程序cmd，输入命令``fc-list :lang=zh"来查询系统中的中文字体，会输出所有中文字体在系统中的相关信息。`fc-list'命令在系统安装texlive之后即可直接使用，但cmd程序中对中文的支持并不友好，此处展示了采用git软件输出的结果，如图\ref{fc-list}。该命令中的字符均为英文状态输入，包括冒号。
 
 \begin{figure}[htbp]
-	\centering
-	\includegraphics[width=0.8\linewidth]{lang=zh.jpg}
-	\caption{fc-list命令结果}
-	\label{fc-list}
+    \centering
+    \includegraphics[width=0.8\linewidth]{lang=zh.jpg}
+    \caption{fc-list命令结果}
+    \label{fc-list}
 \end{figure}
 
 图\ref{fc-list}中，红色框位置的内容即为中文字体在系统中的名称，在\LaTeX{}中调用字体，需要输入系统中的字体名称。
@@ -508,38 +508,38 @@ fontspec和xeCJK的使用方法如下：
 
 warning 1
 \begin{minted}{tex}
-	Package fontspec warning: Font "FandolSong-Regular" does not contain
-	requested 
-	(fontspec)                Script ``CJK"
+    Package fontspec warning: Font "FandolSong-Regular" does not contain
+    requested 
+    (fontspec)                Script ``CJK"
 \end{minted}
 
 warning 2
 \begin{minted}{tex}
-	Package xeCJK Warning: Redefining CJKfamily `\CJKrmdefault'
-	(xeCJK)                (FandolSong-Regular(0))
+    Package xeCJK Warning: Redefining CJKfamily `\CJKrmdefault'
+    (xeCJK)                (FandolSong-Regular(0))
 \end{minted}
 
 warning 3
 \begin{minted}{tex}
-	Package xeCJK Warning: Redefining CJKfamily `\CJKsfdefault'
-	(xeCJK)                (FandolHei-Regular)
+    Package xeCJK Warning: Redefining CJKfamily `\CJKsfdefault'
+    (xeCJK)                (FandolHei-Regular)
 \end{minted}
 
 warning 4
 \begin{minted}{tex}
-	Package xeCJK Warning: Redefining CJKfamily `\CJKttdefault'
-	(xeCJK)                (FandolFang-Regular)
+    Package xeCJK Warning: Redefining CJKfamily `\CJKttdefault'
+    (xeCJK)                (FandolFang-Regular)
 \end{minted}
 
 warning1和warning2可以通过对ctex包添加参数来实现。
 \begin{minted}{tex}
-	\usepackage[fontset=none]{ctex}
+    \usepackage[fontset=none]{ctex}
 \end{minted}
 
 warning2-4可以采用打补丁的方式进行修正。
 \begin{minted}{tex}
-	\usepackage{ctex}
-	\usepackage{xpatch}
+    \usepackage{ctex}
+    \usepackage{xpatch}
 \end{minted}
 
 \subsection{局部字体设置}
@@ -547,8 +547,8 @@ warning2-4可以采用打补丁的方式进行修正。
 在\LaTeX{}中如需要对正文中局部字体类型进行自定义，可以通过两类命令来实现：textrm\{\}和rmfamily,textsf\{\}和sffamily,texttt\{\}和ttfamily。这三组命令分别调用衬线字体（罗马体）、无衬线字体、等宽字体（打字机字体）。这两类命令的区别在于：前者是将参数(括号内的部分)设置成对应的字体族，而后者将该命令的作用区域内的文字变成对应的字体族。
 
 \begin{minted}[breaklines=true,breakanywhere,linenos=true]{tex}
-	\textrm{This is a example.} % text系列命令对大括号内的字体起作用
-	{\rmfamily This is a example.} %family系列命令，需要将自己和需要定义字体的内容都放入大括号内。
+    \textrm{This is a example.} % text系列命令对大括号内的字体起作用
+    {\rmfamily This is a example.} %family系列命令，需要将自己和需要定义字体的内容都放入大括号内。
 \end{minted}
 
 \section{中文字体}
@@ -588,52 +588,52 @@ warning2-4可以采用打补丁的方式进行修正。
 在用 \LaTeX{} 排版文章、书籍时，缺省定义了四种页眉页脚的格式：
 
 \begin{table}[h]
-	\centering
-	\begin{tabular}{ll}
-		empty      & 没有页眉和页脚              \\
-		plain      & 没有页眉，页脚中部放置页码        \\
-		headings   & 没有页脚，页眉包含章节的标题和页码    \\
-		myheadings & 没有页脚，页眉页码和使用者所定义的信息 
-	\end{tabular}
+    \centering
+    \begin{tabular}{ll}
+        empty      & 没有页眉和页脚              \\
+        plain      & 没有页眉，页脚中部放置页码        \\
+        headings   & 没有页脚，页眉包含章节的标题和页码    \\
+        myheadings & 没有页脚，页眉页码和使用者所定义的信息 
+    \end{tabular}
 \end{table}
 
 对于article 类文档缺省使用 plain 格式，而 book类文档则使用 headings 格式。一般情况下，\LaTeX{}提供的这四种格式基本可以满足大多数的排版需求。但是在某些特殊的情况下，特别是使用者想在某一些页面使用自定义的页眉页脚或全文使用自定义的页眉页脚，这时就会遇到很多限制和麻烦。例如，仅想在某些页面不出现任何页眉页脚，而其余部分按照正常情况还显示页眉页脚，这个时候就可以使用$\backslash$pagestyle命令，其用法为$\backslash$pagestyle\{empty\}，将其放置在需要取消页眉页脚的部分，变可实现取消页眉页脚的作用。用法如下：
 \begin{lstlisting}[language=tex]
-	%\input{preface}   %引言部分
-	\newpage  %原文档为双面，故此处插入空白页面
-	\thispagestyle{empty}  %清除引言部分的页眉页脚信息
+    %\input{preface}   %引言部分
+    \newpage  %原文档为双面，故此处插入空白页面
+    \thispagestyle{empty}  %清除引言部分的页眉页脚信息
 \end{lstlisting}
 \begin{lstlisting}[language=tex]
-	\usepackage{cite}
-	
-	这里是正文\cite{bib2,bibt2,bibt3}
+    \usepackage{cite}
+    
+    这里是正文\cite{bib2,bibt2,bibt3}
 \end{lstlisting}
 
 但对于那些完全需要自定义页眉页脚的格式的使用者来说，还需要使用额外的宏包"fancyhdr"。该宏包的主要通过定义$\backslash$fancyhead和$\backslash$fancyfoot两个命令对页眉页脚进行控制，这两个命令的参数如下。在编辑教材的时候，由于书籍采用了双面显示，奇数页的页眉不同且没有页脚的显示方式，故利用"fancyhdr"对页眉页脚进行了重新定义。使用的代码如下。
 \begin{table}[h]
-	\centering
-	\begin{tabular}{ll}
-		E &     偶数页\\
-		O &     奇数页 \\
-		L &     页眉或页脚的左边部分\\
-		C &     页眉或页脚的中间部分\\
-		R &     页眉或页脚的右边部分\\
-		H &     页眉\\
-		F &     页脚
-	\end{tabular}
+    \centering
+    \begin{tabular}{ll}
+        E &     偶数页\\
+        O &     奇数页 \\
+        L &     页眉或页脚的左边部分\\
+        C &     页眉或页脚的中间部分\\
+        R &     页眉或页脚的右边部分\\
+        H &     页眉\\
+        F &     页脚
+    \end{tabular}
 \end{table}
 \begin{lstlisting}[language=tex,breaklines]
-	\requirepackage{fancyhdr}
-	\fancyhf{} 
-	%fancyfoot[c]{\color{structurecolor}\scriptsize\thepage} %取消页脚页码
-	\if@twoside
-	\fancyhead[CO]{\color{structurecolor}\cnormal\leftmark} %leftmark章节名称，奇数页页眉中部显示章节名称
-	\fancyhead[OR]{\color{structurecolor}\cnormal\thepage} %奇数页右侧页码
-	\fancyhead[EL]{\color{structurecolor}\cnormal\thepage} %偶数页左侧页码
-	\fancyhead[CE]{\color{structurecolor}\cnormal\@title} % @title教材名称，偶数页页眉中部显示教材名称
-	\else
-	\fancyhead[R]{\color{structurecolor}\cnormal\rightmark}
-	\fi
+    \requirepackage{fancyhdr}
+    \fancyhf{} 
+    %fancyfoot[c]{\color{structurecolor}\scriptsize\thepage} %取消页脚页码
+    \if@twoside
+    \fancyhead[CO]{\color{structurecolor}\cnormal\leftmark} %leftmark章节名称，奇数页页眉中部显示章节名称
+    \fancyhead[OR]{\color{structurecolor}\cnormal\thepage} %奇数页右侧页码
+    \fancyhead[EL]{\color{structurecolor}\cnormal\thepage} %偶数页左侧页码
+    \fancyhead[CE]{\color{structurecolor}\cnormal\@title} % @title教材名称，偶数页页眉中部显示教材名称
+    \else
+    \fancyhead[R]{\color{structurecolor}\cnormal\rightmark}
+    \fi
 \end{lstlisting}
 
 
@@ -650,12 +650,12 @@ warning2-4可以采用打补丁的方式进行修正。
 在\LaTeX{}中标准插图方法为：
 \begin{figure}[htbp]
      \begin{minipage}{0.45\textwidth}
-          \begin{minted}{tex}
-               \begin{figure}[htbp]
-                    \centering
-                    \includegraphics[scale=0.5]{filename.png}
-                    \caption{name of figure}
-               \end{figure}
+          \begin{minted}[breaklines,breakanywhere]{tex}
+           \begin{figure}[htbp]
+            \centering
+            \includegraphics[scale=0.5]{filename.png}
+            \caption{name of figure}
+            \end{figure}
           \end{minted}
      \end{minipage}
      \begin{minipage}{0.45\textwidth}
@@ -669,13 +669,13 @@ warning2-4可以采用打补丁的方式进行修正。
 
 \begin{figure}[htbp]
      \begin{minipage}{0.45\textwidth}
-          \begin{minted}{tex}
-               \usepackage{svg}
-               \begin{figure}
-                    \centering
-                    \includesvg{filename.svg}
-                    \caption{name of svg}
-               \end{figure}
+          \begin{minted}[breaklines,breakanywhere]{tex}
+           \usepackage{svg}
+           \begin{figure}
+           \centering
+           \includesvg{filename.svg}
+           \caption{name of svg}
+           \end{figure}
           \end{minted}
      \end{minipage}
      \begin{minipage}{0.45\textwidth}
@@ -685,17 +685,19 @@ warning2-4可以采用打补丁的方式进行修正。
           \caption{name of svg}
      \end{minipage}
 \end{figure}
-如果在使用svg格式的矢量图时，出现字体和大小不正常现实的时候，采用\textbackslash usepackage[inkscapelatex=false]\{svg\}。
+
+
+如果在使用svg格式的矢量图时，出现字体和大小不正常现实的时候，采用\textbackslash usepackage [inkscapelatex=false]\{svg\}。
 
 插入图片的时候，可以给\textbackslash includegraphics命令加上option选项，可以实现比例和长宽的自定义。
 \begin{figure}[htbp]
      \begin{minipage}{0.45\textwidth}
-          \begin{minted}{tex}
-               \begin{figure}
-                    \centering
-                    \includegraphics[width=5cm]{finename.png}
-                    \caption{name of figure}
-               \end{figure}
+          \begin{minted}[breaklines,breakanywhere]{tex}
+          \begin{figure}
+          \centering
+          \includegraphics[width=5cm]{finename.png}
+          \caption{name of figure}
+          \end{figure}
           \end{minted}
      \end{minipage}
      \begin{minipage}{0.45\textwidth}
@@ -711,7 +713,7 @@ warning2-4可以采用打补丁的方式进行修正。
 
 第一种，采用psfig宏包。
 
-\begin{minted}{tex}
+\begin{minted}[breaklines]{tex}
      \usepackage{psfig}
      \psfig{figure=图片文件名,height=高度} \\
      \psfig{figure=图片文件名,width=宽度}
@@ -719,7 +721,7 @@ warning2-4可以采用打补丁的方式进行修正。
 
 第二种，采用epsfig宏包。
 
-\begin{minted}{tex}
+\begin{minted}[breaklines]{tex}
      \usepackage{epsfig}
      \epsfig{figure=图片文件名,height=高度} \\ %或者
      \epsfig{figure=图片文件名,width=宽度}
@@ -728,7 +730,7 @@ warning2-4可以采用打补丁的方式进行修正。
 
 第三种，采用epsf宏包。
 
-\begin{minted}{tex}
+\begin{minted}[breaklines]{tex}
      \usepackage{epsf}
      \epsfxsize=宽度\epsffile{图片文件名} \\ %或者
      \epsfysize=高度\epsffile{图片文件名}
@@ -740,7 +742,7 @@ warning2-4可以采用打补丁的方式进行修正。
 
 
 在\LaTeX{}文章排版过程中，会遇到一种情形：希望引用文献中的图片，但是无法找到文献中的图片原文件，采用截图的方式可能会使图片的清晰程度下降。可以利用includegraphics的不同参数选项来实现。举例如下：
-\begin{minted}{tex}
+\begin{minted}[breaklines]{tex}
      \usepacage{graphicx}
      
      \begin{figure}
@@ -758,7 +760,7 @@ includegraphics的选项中，page表示页码，viewport表示希望引用的�
 
 在\LaTeX{}中，图片的位置通常会遵循浮动的原则。在figure环境添加浮动选项可以控制图片的浮动位置。
 
-figure的参数中，h表示当前位置，t表示顶部，b表示底部，p表示浮动。通常遵循h-t-b的顺序。单用h参数是没有效果，常用的选项ht，htbp。如果强制需要图片方法某个位置不变，可以采用float宏包，提供的[H]选项。但出现的空白页情况，则需要手动调节。
+figure的参数中，h表示当前位置，t表示顶部，b表示底部，p表示浮动。通常遵循h-t-b的顺序。单用h参数是没有效果，常用的选项ht，htbp。如果强制需要图片在某个位置不变，可以采用float宏包，提供的[H]选项。但出现的空白页情况，则需要手动调节。
 
 2.环绕
 
@@ -776,7 +778,7 @@ figure的参数中，h表示当前位置，t表示顶部，b表示底部，p表�
 
 在文章排版过程中遇到需要多图并列的效果，需要由subfigure宏包提供的子图环境来实现。
 
-\begin{minted}{tex}
+\begin{minted}[breaklines]{tex}
 \usepackage{graphicx}
 \usepackage{folat}
 \usepackage{subfigure}
@@ -798,7 +800,7 @@ figure的参数中，h表示当前位置，t表示顶部，b表示底部，p表�
 学术文献中经常会让多张结果照片并列显示，有时可能还会出现多行并列显示。这个功能可以通过minipage环境来实现。
 \begin{minted}{tex}
      \begin{figure}[htbp]
-     	\begin{minipage}{0.45\linewidth}
+         \begin{minipage}{0.45\linewidth}
           \centering
                \includegraphics[scale=0.15]{filename1.png}
           \end{minipage}
@@ -812,14 +814,14 @@ figure的参数中，h表示当前位置，t表示顶部，b表示底部，p表�
 5.图题设置
 
 \LaTeX{}默认的图题中含有冒号，根据需要将冒号去掉或改成点。
-\begin{minted}{tex}
+\begin{minted}[breaklines]{tex}
      \usepackage{caption}
-     \captionsetup[figure]{label=period} %period 表示图xx和标题之间有符号``点“。
+     \captionsetup[figure]{label=period} %period 表示图xx和标题之间有符号``点"。
      \captionsetup[table]{label=space} %space 表示图xx和标题之间为空格。
 \end{minted}
 
 在排版过程遇到图片或图题距离上下的距离或图片和图题之间的距离需要调整的情形，可以采用一下代码。
-\begin{minted}{tex}
+\begin{minted}[breaklines]{tex}
      \vspace{-1cm} %调整图片与上文的垂直距离
      \setlength{\abovecaptionskip}{-0.5cm} %调整图片标题与图距的距离
      \setlength{\belowcaptionskip}{-0.5cm} %调整图片标题与下文之间距离
@@ -829,7 +831,7 @@ figure的参数中，h表示当前位置，t表示顶部，b表示底部，p表�
 
 在文章中对图片进行交叉引用方法如下：
 
-\begin{minted}{tex}
+\begin{minted}[breaklines]{tex}
      \usepackage{graphicx}
      \usepackage{float} 
      \usepackage{subfigure}
@@ -861,7 +863,7 @@ figure的参数中，h表示当前位置，t表示顶部，b表示底部，p表�
      \end{figure}
 \end{lstlisting}
 
-一般的图形标题都比较短，所以在显示的过程中不会出现比较一些换行的问题。但是对于一些比较长的图题，而且图处于文字环绕的环境中，图题的换行问题就显得比较突出和重要了。图题的换行问题可以利用宏包"caption"配以相应的参数hang即可解决。caption产生的图题中的图号和文字之间产生一个冒号，通过$\backslash$captionsetup的参数labelsep=space即可去除这个冒号。
+一般的图形标题都比较短，所以在显示的过程中不会出现比较一些换行的问题。但是对于一些比较长的图题，而且图处于文字环绕的环境中，图题的换行问题就显得比较突出和重要了。图题的换行问题可以利用宏包``caption"配以相应的参数hang即可解决。caption产生的图题中的图号和文字之间产生一个冒号，通过$\backslash$captionsetup的参数labelsep=space即可去除这个冒号。
 \begin{lstlisting}[language=tex,breaklines]
      \requirepackage[font=small,labelfont={bf,color=sturcturcolor},hang]{caption} %hang解决了图题过长时的自动换行问题
      \captionsetup[table]{skip=3pt}
@@ -979,7 +981,7 @@ figure的参数中，h表示当前位置，t表示顶部，b表示底部，p表�
 行内公式，顾名思义，公式在文字的行内，属于文字公式混排。此类公式没有公式编号，通常由一对``\$"包裹，例如：
 
 \begin{example}
-     勾股定理可表示为：$a^{2}+b^{2}=c^{2}$。
+勾股定理可表示为:$a^{2}+b^{2}=c^{2}$。
 \end{example}
 
 \subsection{行间公式}
@@ -990,10 +992,10 @@ ref命令来进行引用，或利用amsmath宏包提供的\eqref（会默认对�
 label进行自定义；也可以采用\textbackslash
 tag对公式进行自定义编号；或者采用\textbackslash notag取消公式编号。
 \begin{example}
-     \begin{equation}
-          a^{2} + b^{2} = c^{2} \label{Pythagoras}
-     \end{equation}
-     公式\eqref{Pythagoras}被称为勾股定理。
+\begin{equation}
+    a^{2} + b^{2} = c^{2} \label{Pythagoras}
+\end{equation}
+公式\eqref{Pythagoras}被称为勾股定理。
 \end{example}
 
 如果需要不提供编号的行间公式，可以采用\textbackslash[和\textbackslash]提供的行间公式环境或者利用displaymath环境提供的行间公式。
@@ -1014,12 +1016,12 @@ tag对公式进行自定义编号；或者采用\textbackslash notag取消公式
 
 在数学证明方面，可能会出现很长的、需要折行的公式，通过amsmath宏包提供的multline环境来完成。
 \begin{example}
-     \begin{multline}
-          a + b + c + d = e + f + g + h \\
-          = i + j + k + l\\
-          = m + n + o + p\\
-          = q + r + s = t
-     \end{multline}
+  \begin{multline}
+     a + b + c + d = e + f + g + h \\
+     = i + j + k + l\\
+     = m + n + o + p\\
+     = q + r + s = t
+  \end{multline}
 \end{example}
 
 在证明过程中可能会用到多个公式联立，并在等号处对其。此时，可以采用align环境。
@@ -1045,14 +1047,14 @@ multline、gather和align环境都会自动生成公式符号，如果不需要�
 \subsection{单侧括号公式块}
 
 \begin{example}
-     \begin{equation}
-          \left.
-          \begin{align}
-               x + y &> 10 \\
-               x - y &> 2
-          \end{align}
-          \right \}\Rightarrow x^{2}-y^{2} > 20
-     \end{equation}
+	\begin{equation}
+		 \left. 
+		\begin{aligned}
+			x + y & > 10 \\
+			x - y  & > 2
+		\end{aligned}
+		\right \} \Rightarrow x^{2}-y^{2} > 20
+	\end{equation}
 \end{example}
 
 对一个分段函数来说
@@ -1068,12 +1070,12 @@ multline、gather和align环境都会自动生成公式符号，如果不需要�
 也可以采用amsmath宏包提供的case环境来实现。
 
 \begin{example}
-     \[ |x| =
-     \begin{cases}
+ \[ |x| =
+    \begin{cases}
           -x & \text{if } x < 0,\\
           0 & \text{if } x = 0,\\
           x & \text{if } x > 0.
-     \end{cases} \]
+     \end{cases} \] 
 \end{example}
 
 
@@ -1083,20 +1085,20 @@ multline、gather和align环境都会自动生成公式符号，如果不需要�
 \section{参考文献引用}
 
 
-\LaTeX{}中引用参考文献有两种方式。通常针对内容较小的文档或参考文献较少的文档中，可以采用thebibliography环境来提供文献引用；对于文献较多的文档，则建议采用的.bib格式文件来进行参考文献引用。
+\LaTeX{}中管理参考文献的方法有两类：一、针对文献数量较少时，可以直接采用thebibliography环境来管理参考文献；二、采用bib文档，调用相应的参考文献格式来进行管理文献。
 
 \subsection{Thebibliography}
 
 
 thebibliography方法相对简单，直接将参考文献的内容存放的document环境之内，清晰明了。当参考文献的数量相对较少，或对参考文献的格式没有特殊的要求时，相对来说是一种比较方便的引用方法。
-\begin{minted}{tex}
+\begin{minted}[breaklines,breakanywhere]{tex}
      \documentclass{article}
      
      \begin{document}
           
           \section{Introduction}
           
-          这是一个测试案例，用来介绍引用参考文献的引用方法\cite{ref1}。%ref1只是一个引用符号，可以是任何字符。
+          这是一个测试案例，用来介绍引用参考文献的引用方法\cite{ref1}。\\%ref1只是一个引用符号，可以是任何字符。
           
           \begin{thebibliography}{99}%99是指参考文献的最大数量，可以自行设定
                \bibitem{ref1} xxxxxxxxxxx %和前面的ref1对应，后面添加参考文献的内容。
@@ -1237,7 +1239,7 @@ bib格式的参考文献必须具备的内容：author,title,journal,volume,year
 \end{minted}
 参考文献的引用需要在导言区添加相应的宏包，在正文中需要引用参考文献的地方，添加相应的文献。添加单个或多个不连续的文献，方式如下：
 
-\begin{minted}{tex}
+\begin{minted}[breaklines,breakanywhere]{tex}
      \usepackage{cite}%导言区添加
      
      文献表明：这个问题可以通过这种方式来解决\cite{bibtex1,bibtex3,bibtex5}。%正文区
