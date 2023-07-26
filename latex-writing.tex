@@ -13,7 +13,7 @@
 %%%%setting for fonts%%%%%
 \usepackage{xeCJK}
 \setmainfont{Times New Roman}
-\usepackage[fontset=macnew]{ctex} %This package used for texstudio in mac.
+%\usepackage[fontset=macnew]{ctex} %This package used for texstudio in mac.
 \usepackage{fontspec}
 \usepackage{metalogo} % latex logo
 
@@ -277,12 +277,14 @@ listings:插入代码。
 
 \section{文档类型}
 
+\LaTeX{}中的文档类型(documentclass)可以分为：期刊、报告、书籍、幻灯片(beamer)、书信等。
+
 \subsection{期刊}
 
 \subsubsection{中文双列}
 在期刊类型的排版的文档，为了节省版面，经常需要安排双列排版。在documentclass中设定相关选取为：twocolumn即可实现双列排版。但文章标题和摘要（中英文）却又是单列排版，要想实现这种排版，在导言区之后，采用如下代码结构，即可实现标题和中英的单列排版。
 
-\begin{lstlisting}[language=tex,breaklines]
+\begin{minted}[breaklines]{tex}
     \twocolumn[
     \begin{@twocolumnfalse} % let the two column mode fail temporary。
         \maketitle % maketitle command must put in this environment.
@@ -292,7 +294,7 @@ listings:插入代码。
             \noident Keywords:
         \end{abstract}
     \end{@twocolumnfalse}]     
-\end{lstlisting}
+\end{minted}
     
 该模式下，占据单列位置的图片可以在h参数的作用下，在插入图片的位置显示；而双列的图片和表格的位置则很难，会被默认放在页面的底部或顶部。
     
@@ -332,7 +334,7 @@ $\backslash$part,$\backslash$chapter,$\backslash$section,$\backslash$subsection,
     
 利用$\backslash$renewcommand命令，将文档的一些标题从英文转化为中文标题。如：$\backslash$renew command$\backslash$abstractname\{$\backslash$hei 摘要\}，将英文abstractname改为摘要。
     
-%\begin{lstlisting}% breaklines,用于自动换行；columns空格控制，fixed默认参数，flexible灵活处理空格，fullflexible强制使用空格。
+%\begin{minted}% breaklines,用于自动换行；columns空格控制，fixed默认参数，flexible灵活处理空格，fullflexible强制使用空格。
 %\renewcommand\abstractname{\hei 摘要}
 %\renewcommand\refname{\hei 参考文献}
 %\renewcommand\figurename{\hei 图}
@@ -344,17 +346,17 @@ $\backslash$part,$\backslash$chapter,$\backslash$section,$\backslash$subsection,
 %\newtheorem{tuilun} [dingli]{\hei  推论~}
 %\newtheorem{mingti}[dingli]{\hei 命题~}
 %\newtheorem{lizi}{<!-- -->{例子}}
-%\end{lstlisting}
+%\end{minted}
 
 \subsection{章节编号}
 
 \LaTeX{} 默认的章节编号大多是以阿拉伯数字开始的，但是对于一些经常采用非阿拉伯数字编号的使用者来说就显得有点不友好。因此，在进行章节编号的时候，使用者就需要根据自己的需要来对章节的编号进行自定义。\LaTeX{}中的提供了几类编号方式：$\backslash$arabic 阿拉伯数字，$\backslash$roman 小写的罗马数字，$\backslash$Roman 大写的罗马数字，$\backslash$alph 小写字母，$\backslash$Alph 大写字母。如果使用者希望采用非阿拉伯数字的方式进行编号，利用$\backslash$renewcommand命令进行定义编号的格式。在整理液压传动的时候对章节的编号进行自定义的代码如下：
 
-\begin{lstlisting}[language=tex,breaklines]
+\begin{minted}[breaklines]{tex}
     \renewcommand{\thesection}{\color[RGB]{60,113,183} \arabic{chapter}-\arabic{section}} %设置section的格式为章序号-节序号
     \renewcommand{\thesubsection}{\chinese{subsection}、} %子节的序号为中文序号+顿号
     \renewcommand{\thesubsubsection}{\arabic{subsubsection}.} 
-\end{lstlisting}
+\end{minted}
 
 \chapter{字体处理}
 
@@ -450,7 +452,7 @@ $\backslash$part,$\backslash$chapter,$\backslash$section,$\backslash$subsection,
 underline
 命令可以实现文字的下划线功能，但是当下划线部分的文字段落过长需要换行的时候，该命令就无法实现了。因此，需要对此进行重点说明。
 在\LaTeX{}中英文和中文的下划线换行过程中需要采用不同的宏包进行处理。具体用法如下：
-\begin{minted}{tex}
+\begin{minted}[breaklines]{tex}
     %下划线
     \underline{} %此命令可以在文字下面生成下划线，但无法在行末进行自动换行。
     
@@ -477,7 +479,7 @@ usepackage\{xeCJK\}命令来调用宏包，使用\textbackslash setCJKmainfont
 
 fontspec和xeCJK的使用方法如下：
 
-\begin{minted}{tex}
+\begin{minted}[breaklines]{tex}
     % 拉丁字母设置
     \setmainfont{font name}[font features]%中括号内为字体的特征，如黑体、斜体等。
     \setsansfont{font name}[font features]
@@ -507,26 +509,26 @@ fontspec和xeCJK的使用方法如下：
 在使用ctex宏包时，经常会遇到各种warning，如：
 
 warning 1
-\begin{minted}{tex}
+\begin{minted}[breaklines]{tex}
     Package fontspec warning: Font "FandolSong-Regular" does not contain
     requested 
     (fontspec)                Script ``CJK"
 \end{minted}
 
 warning 2
-\begin{minted}{tex}
+\begin{minted}[breaklines]{tex}
     Package xeCJK Warning: Redefining CJKfamily `\CJKrmdefault'
     (xeCJK)                (FandolSong-Regular(0))
 \end{minted}
 
 warning 3
-\begin{minted}{tex}
+\begin{minted}[breaklines]{tex}
     Package xeCJK Warning: Redefining CJKfamily `\CJKsfdefault'
     (xeCJK)                (FandolHei-Regular)
 \end{minted}
 
 warning 4
-\begin{minted}{tex}
+\begin{minted}[breaklines]{tex}
     Package xeCJK Warning: Redefining CJKfamily `\CJKttdefault'
     (xeCJK)                (FandolFang-Regular)
 \end{minted}
@@ -598,16 +600,16 @@ warning2-4可以采用打补丁的方式进行修正。
 \end{table}
 
 对于article 类文档缺省使用 plain 格式，而 book类文档则使用 headings 格式。一般情况下，\LaTeX{}提供的这四种格式基本可以满足大多数的排版需求。但是在某些特殊的情况下，特别是使用者想在某一些页面使用自定义的页眉页脚或全文使用自定义的页眉页脚，这时就会遇到很多限制和麻烦。例如，仅想在某些页面不出现任何页眉页脚，而其余部分按照正常情况还显示页眉页脚，这个时候就可以使用$\backslash$pagestyle命令，其用法为$\backslash$pagestyle\{empty\}，将其放置在需要取消页眉页脚的部分，变可实现取消页眉页脚的作用。用法如下：
-\begin{lstlisting}[language=tex]
+\begin{minted}[breaklines]{tex}
     %\input{preface}   %引言部分
     \newpage  %原文档为双面，故此处插入空白页面
     \thispagestyle{empty}  %清除引言部分的页眉页脚信息
-\end{lstlisting}
-\begin{lstlisting}[language=tex]
+\end{minted}
+\begin{minted}[breaklines]{tex}
     \usepackage{cite}
     
     这里是正文\cite{bib2,bibt2,bibt3}
-\end{lstlisting}
+\end{minted}
 
 但对于那些完全需要自定义页眉页脚的格式的使用者来说，还需要使用额外的宏包"fancyhdr"。该宏包的主要通过定义$\backslash$fancyhead和$\backslash$fancyfoot两个命令对页眉页脚进行控制，这两个命令的参数如下。在编辑教材的时候，由于书籍采用了双面显示，奇数页的页眉不同且没有页脚的显示方式，故利用"fancyhdr"对页眉页脚进行了重新定义。使用的代码如下。
 \begin{table}[h]
@@ -622,7 +624,7 @@ warning2-4可以采用打补丁的方式进行修正。
         F &     页脚
     \end{tabular}
 \end{table}
-\begin{lstlisting}[language=tex,breaklines]
+\begin{minted}[breaklines]{tex}
     \requirepackage{fancyhdr}
     \fancyhf{} 
     %fancyfoot[c]{\color{structurecolor}\scriptsize\thepage} %取消页脚页码
@@ -634,7 +636,7 @@ warning2-4可以采用打补丁的方式进行修正。
     \else
     \fancyhead[R]{\color{structurecolor}\cnormal\rightmark}
     \fi
-\end{lstlisting}
+\end{minted}
 
 
 
@@ -854,42 +856,42 @@ figure的参数中，h表示当前位置，t表示顶部，b表示底部，p表�
 \subsection{图形编号}
 
 \LaTeX{}在处理图形编号时，会自动根据$\backslash$begin\{figure\}和$\backslash$end\{figure\}对图形的编号进行自动累加。在实际使用过程中，会经常遇到一些好几个图公用一个图题的情况，如果将这些图都放置在一个环境中，有些图可能会因为纸面大小的关系而无法显示，但是如果分开放置到两个或三个图形环境中，这些图题会自动增加。此时需要使用$\backslash$ContinuedFloat命令，即可让图的编号不自动增加，而是和上一个环境链接起来，当一个图形环境来使用。在液压传动教材中的多图排版中采用如下的方式让图形编号不间断。
-\begin{lstlisting}[language=tex,breaklines]
-     \begin{figure}[htbp]
-          content...
-     \end{figure}
-     \begin{figure}[htbp]
-          \ContinuedFloat %链接上下两个图形环境，使其编号不自动增加
-     \end{figure}
-\end{lstlisting}
+\begin{minted}[breaklines]{tex}
+    \begin{figure}[htbp]
+         content...
+    \end{figure}
+    \begin{figure}[htbp]
+         \ContinuedFloat %链接上下两个图形环境，使其编号不自动增加
+    \end{figure}
+\end{minted}
 
 一般的图形标题都比较短，所以在显示的过程中不会出现比较一些换行的问题。但是对于一些比较长的图题，而且图处于文字环绕的环境中，图题的换行问题就显得比较突出和重要了。图题的换行问题可以利用宏包``caption"配以相应的参数hang即可解决。caption产生的图题中的图号和文字之间产生一个冒号，通过$\backslash$captionsetup的参数labelsep=space即可去除这个冒号。
-\begin{lstlisting}[language=tex,breaklines]
+\begin{minted}[breaklines]{tex}
      \requirepackage[font=small,labelfont={bf,color=sturcturcolor},hang]{caption} %hang解决了图题过长时的自动换行问题
      \captionsetup[table]{skip=3pt}
      \captionsetup[figure]{skip=3pt}
      \captionsetup{labelformat=default,labelsep=space} %去除图片编号中的冒号
-\end{lstlisting}
+\end{minted}
 
 去除图表caption中的冒号。
-\begin{lstlisting}[breaklines]
+\begin{minted}[breaklines]{tex}
      \usepackage{caption}
      \captionsetup[table]{labelsep=space} % 表
      \captionsetup[figure]{labelsep=space} % 图
      
      \captionsetup{labelformat=default,labelsep=space} %去除冒号
-\end{lstlisting}
+\end{minted}
   
 
 
 \subsection{图形的浮动和环绕}
 
 通常我们在 \LaTeX{} 插入图片时，要为图片单独设置一个环境，即$\backslash$begin\{figure\}和$\backslash$end\{figure\}。
-\begin{lstlisting}[language=tex]
+\begin{minted}[breaklines]{tex}
      \begin{figure}
           \includegraphics[keyvals]{imagefile}
      \end{figure}
-\end{lstlisting}
+\end{minted}
 
 在这个环境中可以设置输入图片的类型，$\backslash$includegraphics命令来实现对输入图片的操作。常用的一些基本参数如下：
 
@@ -906,15 +908,15 @@ figure的参数中，h表示当前位置，t表示顶部，b表示底部，p表�
 
 对于经常使用\LaTeX{}进行论文排版的使用者来说，常见的图片排版问题莫过于多图的并列排版。对于实现多图排版，\LaTeX{}中要多种方式可以实现。当图片的版幅较大，无法两图并排放在一起，如果缩放不影响显示效果的情况下，可以连用$\backslash$includegraphics来实现，并列排放的效果。另外也可以利用$\backslash$minipage环境来实现多图的并列。
 
-\begin{lstlisting}[language=tex,breaklines]
+\begin{minted}[breaklines]{tex}
      \begin{figure}[htbp] % htbp用来浮动，h-here，t-top，b-buttom
           \centering
           \includegraphics[scale=0.9]{fig0203.pdf}
           \includegraphics[scale=0.9]{fig0204.pdf}
      \end{figure}
-\end{lstlisting}
+\end{minted}
 
-\begin{lstlisting}[language=tex]
+\begin{minted}[breaklines]{tex}
      \begin{minipage}[t]{0.48\textwidth} %设置图形宽度
           \centering
           \includegraphics{fig0124.pdf}  
@@ -923,11 +925,11 @@ figure的参数中，h表示当前位置，t表示顶部，b表示底部，p表�
           \centering
           \includegraphics{fig0125.pdf}  
      \end{minipage}
-\end{lstlisting}
+\end{minted}
 
 在对图片进行排版的过程中，可能会遇到图片较小或图片宽度较小、长度方向较大的情况，如果此时对图片进行单独占行进行排版，会留下大量的空白，影响整体的排版的美观性。因此，在排版过程中对图片进行环绕处理。在对图片的环绕处理时利用的$\backslash$begin\{wrapfigure\}和$\backslash$end\{wrapfigure\}环境来实现。wrapfigure的参数主要分为：[行数]、\{位置\}、\{宽度\}。
 
-\begin{lstlisting}[language=tex,breaklines]
+\begin{minted}[breaklines]{tex}
      \begin{wrapfigure}[num]{r}{8cm}% num表示要环绕的行数，r和l分别表示从右侧和左侧环绕；8cm为环绕留给图形的宽度
           \centering
           \ifOpenSource
@@ -938,32 +940,32 @@ figure的参数中，h表示当前位置，t表示顶部，b表示底部，p表�
           \caption{能量转换示意}
           \label{fig:fig0201}
      \end{wrapfigure}
-\end{lstlisting}
+\end{minted}
 
 
 对于一些占幅面较大的图片，可能需要横向排布才能显示较全的信息，此时有两种方式来实现图片的旋转功能。$\backslash$includegraphics[angle=xxx]\{fig.png\}或利用$\backslash$begin\{side waysfigure\}和$\backslash$end\{sidewaysfigure\}来实现。
-\begin{lstlisting}[language=tex,breaklines]
+\begin{minted}[breaklines]{tex}
      \begin{figure}[htbp]
           \centering
           \includegraphics[angle=xxx]{imagefile} %图片旋转，可自定义旋转角度
           \caption{text}
      \end{figure}
-\end{lstlisting}
+\end{minted}
 
-\begin{lstlisting}[language=tex]
+\begin{minted}[breaklines]{tex}
      \begin{sidewaysfigure} %图片横向排版环境
           \centering 
           \includegraphics[width=4in]{graphic.eps} 
           \caption{Sidewaysfigure Figure} 
      \end{sidewaysfigure}
-\end{lstlisting}
+\end{minted}
 
 通常情况下，图片和文字是按照一定顺序来进行排放的。但是有些期刊的排版会要求作者将图片和文字分开排版，即文字在前，图片和表格在后的排版方式。在\LaTeX{}中实现这种文字在前、图片在后的排版方式，仅需引入一个endfloat宏包即可实现。
 
-\begin{lstlisting}[language=tex]
+\begin{minted}[breaklines]{tex}
      \usepackage[noheads,nolists,nomarkers]{endfloat}
      \renewcommand{\efloatseparator}{\mbox{}}
-\end{lstlisting}
+\end{}
 
 \section{表}
 
@@ -1087,7 +1089,7 @@ multline、gather和align环境都会自动生成公式符号，如果不需要�
 
 \LaTeX{}中管理参考文献的方法有两类：一、针对文献数量较少时，可以直接采用thebibliography环境来管理参考文献；二、采用bib文档，调用相应的参考文献格式来进行管理文献。
 
-\subsection{Thebibliography}
+\subsection{thebibliography}
 
 
 thebibliography方法相对简单，直接将参考文献的内容存放的document环境之内，清晰明了。当参考文献的数量相对较少，或对参考文献的格式没有特殊的要求时，相对来说是一种比较方便的引用方法。
@@ -1105,7 +1107,7 @@ thebibliography方法相对简单，直接将参考文献的内容存放的docum
                \bibitem{ref2} xxxxxxx
           \end{thebibliography}
      \end{document}
-\end{minted}
+\end{}
 
 
 \subsection{bib}
@@ -1134,7 +1136,7 @@ thebibliography方法相对简单，直接将参考文献的内容存放的docum
 
 在\LaTeX{}文档中，需要引用文献的地方插入文献使用$\backslash$cite命令。在文档结束之前的地方插入bib文件名称。
 
-\begin{minted}{tex}
+\begin{minted}[breaklines]{tex}
      \documentclass{article}
      
      \begin{document}
@@ -1285,6 +1287,18 @@ bib格式的参考文献必须具备的内容：author,title,journal,volume,year
 
 \section{格式}
 
+\LaTeX{}在文档最后编排的参考文献格式被成为`style'，调用时采用$\backslash$bibliographystyle{style}，$\backslash$bibliography{ｒｅｆｅｒｅｎｃｅ}。
+
+常见的几种格式如下：
+
+plain，按字母的顺序排列，比较次序为作者、年度和标题.  
+unsrt，样式同plain，只是按照引用的先后排序.  
+alpha，用作者名首字母+年份后两位作标号，以字母顺序排序.  
+abbrv，类似plain，将月份全拼改为缩写，更显紧凑.  
+ieeetr，国际电气电子工程师协会期刊样式.  
+acm，美国计算机学会期刊样式.  
+siam，美国工业和应用数学学会期刊样式.  
+apalike，美国心理学学会期刊样式.
 
 \section{插入引文}
 
@@ -1515,9 +1529,9 @@ bib格式的参考文献必须具备的内容：author,title,journal,volume,year
 \section{CJK}
 
 
-\begin{lstlisting}[language=tex]
+\begin{minted}[breaklines]{tex}
      CJKglue = {\hskip 0pt plus 0.08\baselineskip}
-\end{lstlisting}
+\end{minted}
 
 设置 CJK 文字之间插入的 glue，上边是 xeCJK 的默认值。一般来说，除非有特殊需要(例如， 改变文字间距等)，否则不需要设置这个选项，使用默认值即可。如果要设置这个选项，为了行 末的对齐，设置的 glue 最好有一定的弹性。
 
@@ -1525,13 +1539,13 @@ bib格式的参考文献必须具备的内容：author,title,journal,volume,year
 
 \subsection{中文字体}
 
-\begin{lstlisting}[language=tex]
+\begin{minted}[breaklines]{tex}
      \newcommand{\song}{\CJKfamily{song}} % 宋体
      \newcommand{\fs}{\CJKfamily{fs}} % 仿宋体
      \newcommand{\kai}{\CJKfamily{kai}} % 楷体
      \newcommand{\hei}{\CJKfamily{hei}} % 黑体
      \newcommand{\li}{\CJKfamily{li}} % 隶书
-\end{lstlisting}
+\end{minted}
 
 \subsection{字号、行距}
 
@@ -1576,7 +1590,7 @@ $\backslash$fontsize{字号}{行距}
 %\end{table}
 
 
-\begin{lstlisting}[language=tex,breaklines]
+\begin{minted}[breaklines]{tex}
 错误：
 \LaTeX{} font warning: font shape `OT1/cmr/m/n' in size <15> not available
 
@@ -1585,11 +1599,11 @@ $\backslash$fontsize{字号}{行距}
 
 解决方案：\usepackage{type1cm}
 
-\end{lstlisting}
+\end{minted}
 
 在进行中文文献排版过程中，写作人员会被要求采用按一定的字号来设置字体，如一号、二号等。在此，提供便利的方法，以供读者在排版供中使用。
 
-\begin{lstlisting}[language=tex,breaklines]
+\begin{minted}[breaklines]{tex}
      \newcommand{\yihao}{\fontsize{26pt}{36pt}\selectfont}           % 一号, 1.4 倍行距
      \newcommand{\erhao}{\fontsize{22pt}{28pt}\selectfont}          % 二号, 1.25倍行距
      \newcommand{\xiaoer}{\fontsize{18pt}{18pt}\selectfont}          % 小二, 单倍行距
@@ -1600,7 +1614,7 @@ $\backslash$fontsize{字号}{行距}
      \newcommand{\xiaosi}{\fontsize{12pt}{18pt}\selectfont}            % 小四, 1.5倍行距
      \newcommand{\dawuhao}{\fontsize{11pt}{11pt}\selectfont}       % 大五号, 单倍行距
      \newcommand{\wuhao}{\fontsize{10.5pt}{15.75pt}\selectfont}    % 五号, 单倍行距
-\end{lstlisting}
+\end{minted}
 
 在文中需要对一些特殊的地方进行强调时，需要对字体进行加粗或斜体处理，所采用的命令分别为$\backslash$textbf\{文本\}，$\backslash$textit\{文本\}。
 
