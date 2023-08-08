@@ -13,7 +13,7 @@
 %%%%setting for fonts%%%%%
 \usepackage{xeCJK}
 \setmainfont{Times New Roman}
-%\usepackage[fontset=macnew]{ctex} %This package used for texstudio in mac.
+\usepackage[fontset=macnew]{ctex} %This package used for texstudio in mac.
 \usepackage{fontspec}
 \usepackage{metalogo} % latex logo
 
@@ -114,7 +114,8 @@ TeXstudio提供了语言拼写检查功能，用户可以自己从软件提供�
 \begin{center}
      \includegraphics[width=0.8\linewidth]{./lang-check.png}
 \end{center}
-Texstudio的编译过程，对产生的错误和警告会在软件底部的`Message’栏显示给用户。通过双击改错误或警告，光标会自动跳转至相应的位置：如果是tex文档中的写法错误，光标会自动跳转至出现错误的行；如果是其他错误，如宏包调用问题、字体调用问题，则会跳转至相应的宏包文件。
+
+Texstudio软件会对编译过程中产生的错误和警告会在软件底部的`Message’栏显示给用户。通过双击改错误或警告，光标会自动跳转至相应的位置：如果是\TeX{}文档中的写法错误，光标会自动跳转至出现错误的行；如果是其他错误，如宏包调用问题、字体调用问题，则会跳转至相应的宏包文件。
 \begin{figure}[htbp]
      \centering
      \begin{minipage}[c]{0.45\linewidth}
@@ -128,7 +129,7 @@ Texstudio的编译过程，对产生的错误和警告会在软件底部的`Mess
 
 
 
-\subsection{Texstudio}
+\subsection{Texwork}
 
 \subsection{Texmaker}
 
@@ -139,115 +140,43 @@ Texstudio的编译过程，对产生的错误和警告会在软件底部的`Mess
 
 \section{常用宏包}
 
-\LaTeX{}中常用的宏包可以分为几个大类：整体环境设置、图形类、表格类、公式类
+\LaTeX{}中常用的宏包可以分为几个大类：整体环境设置、图形类、表格类、公式类，此处仅介绍使用率较高的一些宏包。
 
-%
-%\begin{table}[htbp]
-%     \centering
-%     \begin{tabular}{|>{\centering\hspace{0pt}}m{0.075\linewidth}|>{\hspace{0pt}}m{0.084\linewidth}|>{\hspace{0pt}}m{0.779\linewidth}|} 
-%          \hline
-%          类别  & \multicolumn{1}{>{\centering\hspace{0pt}}m{0.084\linewidth}|}{宏包名称} & \multicolumn{1}{>{\centering\arraybackslash\hspace{0pt}}m{0.779\linewidth}|}{作用}  \\ 
-%          \hline
-%          \multirow{8}{0.075\linewidth}{\hspace{0pt}\centering{}格式}   & ctex                                                                & 提供了一个统一的中文\textbackslash{}LaTeX\{\}文档框架，默认包含了cterart、ctexrep、ctexbook三种不同的文档类型。   \\ 
-%          \cline{2-3}
-%          & geometry                                                            & 对纸张大小、显示页面大小（尺寸）设定。                                                               \\ 
-%          \cline{2-3}
-%          & layout                                                              & 对页面布局进行设定。                                                                        \\ 
-%          \cline{2-3}
-%          & fancyhdr                                                            & 页眉页脚设置。                                                                           \\ 
-%          \cline{2-3}
-%          & afterpage                                                           & 用来处理图标在页面的浮动。float和afterpage的区别是啥？                                                \\ 
-%          \cline{2-3}
-%          & multicol                                                            & 提供了全文和局部分栏处理功能，但会影响浮动体（图表）的处理，建议在分栏环境内不使用浮动体。                                     \\ 
-%          \cline{2-3}
-%          & titlesec                                                            & 对文章内的标题格式设定。                                                                      \\ 
-%          \cline{2-3}
-%          & titlesoc                                                            & 对文章的目录格式设定。                                                                       \\ 
-%          \hline
-%          \multirow{2}{0.075\linewidth}{\hspace{0pt}\centering{}字体}   & xecjk                                                               & 提供中文字体设置                                                                          \\ 
-%          \cline{2-3}
-%          & fontspec                                                            & 提供西文字体设置                                                                          \\ 
-%          \hline
-%          \multirow{5}{0.075\linewidth}{\hspace{0pt}\centering{}插图}   & graphicx                                                            & 提供插图环境                                                                            \\ 
-%          \cline{2-3}
-%          & subfigure                                                           & 提供多图（子图）环境                                                                        \\ 
-%          \cline{2-3}
-%          & wrapfigure                                                          & 提供文字环绕图片环境·                                                                       \\ 
-%          \cline{2-3}
-%          & caption                                                             & 图/表的标题格式设置                                                                        \\ 
-%          \cline{2-3}
-%          & sidecap                                                             & 提供侧向的图题设置                                                                         \\ 
-%          \hline
-%          \multirow{9}{0.075\linewidth}{\hspace{0pt}\centering{}表格}   & array                                                               &                                                                                   \\ 
-%          \cline{2-3}
-%          & table                                                               & 提供表格环境                                                                            \\ 
-%          \cline{2-3}
-%          & longtable                                                           & 提供跨页表格环境                                                                          \\ 
-%          \cline{2-3}
-%          & tabularx                                                            & 提供表格内嵌的高级功能环境                                                                     \\ 
-%          \cline{2-3}
-%          & dcolumn                                                             & 提供表格内小数点处对齐的功能                                                                    \\ 
-%          \cline{2-3}
-%          & multirow                                                            & 提供单元格合并功能                                                                         \\ 
-%          \cline{2-3}
-%          & makecell                                                            & 提供单元格内的分割单元功能                                                                     \\ 
-%          \cline{2-3}
-%          & diagbox                                                             & 提供表头左上角斜线功能                                                                       \\ 
-%          \cline{2-3}
-%          & booktabs                                                            & 提供三线表环境                                                                           \\ 
-%          \hline
-%          \multirow{3}{0.075\linewidth}{\hspace{0pt}\centering{}}     & amsmath                                                             & 提供数学符号功能                                                                          \\ 
-%          \cline{2-3}
-%          & ppchtex                                                             & 提供化学符号                                                                            \\ 
-%          \cline{2-3}
-%          & harpoon                                                             & 提供一些带箭头的符号                                                                        \\ 
-%          \hline
-%          \multirow{4}{0.075\linewidth}{\hspace{0pt}\centering{}参考文献} & bibtex                                                              & 提供参考文献类型                                                                          \\ 
-%          \cline{2-3}
-%          & natbib                                                              & 提供不同的参考文献显示类型                                                                     \\ 
-%          \cline{2-3}
-%          & gbt7714                                                             & 提供中文的参考文献格式                                                                       \\ 
-%          \cline{2-3}
-%          & gloss                                                               & 提供附录中的注视表功能                                                                       \\
-%          \hline
-%     \end{tabular}
-%\end{table}
+
 
 \section{格式设置类宏包}
 
-\LaTeX{}中用于学术论文排版的整体环境设置宏包有：\\
-ctex：提供了一个统一的中文\LaTeX{}文档框架，默认包含了ctexart、ctexrep、ctexbook三种不同的文档类型。\\
-geometry：对纸张大小、显示页面大小（尺寸）设定。\\
-layout：对页面布局进行设定。\\
-fancyhdr：页眉页脚设置。\\
-afterpage：用来处理图标在页面的浮动。\textit{float和afterpage的区别是啥？}\\
-multicol：提供了全文和局部分栏处理功能，但会影响浮动体（图表）的处理，建议在分栏环境内不使用浮动体。\\
-titlesec：对文章内的标题格式设定。\\
-titlesoc：对文章的目录格式设定。\\
-hyperref:设置超链接。\\
-minted:格式化代码。
+
+ctex：中文\LaTeX{}文档框架，默认包含了ctexart、ctexrep、ctexbook三种不同的文档类型。对与中文使用者来说可以免去较多的格式设定问题。\\
+geometry：用于设定输出文章的纸张大小、页边距等尺寸相关的内容。\\
+layout：用于对文章内容的页面布局，横版、竖版等布局进行设定。\\
+fancyhdr：用来自定义页眉、页脚的内容、格式。\\
+afterpage：用来处理图表在页面的浮动。\textit{float和afterpage的区别是啥？}\\
+multicol：提供了全文和局部分栏处理功能。但该功能会影响浮动体（图表）的处理，建议在分栏环境内不使用浮动体，例如图、表格等。\\
+titlesec：用来对文档内容的标题格式进行设定。一级标题、二级标题等的字体、大小、位置、颜色等进行设定。\\
+titlesoc：用于对整个文档的目录格式管理。\\
+hyperref：给文档的内容提供一个超文本的链接功能。\\
+minted：用于提供格式话的代码引用环境，包含了大量的编程语言以及非编程语言。同时需要配合Pygments（Python）软件包以及`-shell-escap' 编译参数。
 
 
 \section{字体类宏包}
 
-xeCJK：提供中文字体设置 \\
+\noindent xeCJK：提供中文字体设置 \\
 fontspec：提供西文字体的自定义设置
 
 \section{插图类宏包}
 
-在图形排版方面常用到的宏包：\\
-graphicx：提供插图环境和相关命令。\\
-subfigure：提供子图环境及题图标题设置。\\
-wrapfig：提供文字环绕图形的环境。\\
-caption：图表的标题格式设置。\\
-sidecap：提供侧向图题的功能。 \\
-metalogo:提供\LaTeX{} Logo。
+\noindent graphicx：用于文档内容的插图处理，插图位置、插图大小（比例缩放、非比例缩放）、插图类型以及多行图片的环境。\\
+subfigure：用于多子图及子图标题的设置。\\
+wrapfig：用于特殊情况的插图设定，例如文字环绕、半环绕等情形。\\
+caption：用于对文档中的插图标题进行自定义格式设定，字体、位置、大小等。\\
+sidecap：用于一些特殊情形的图题设定，例如外文文档的侧边图题设定。 \\
+metalogo：提供\LaTeX{} Logo。
 
 \section{表格类宏包}
 
 
-常用到的表格类宏包：\\
-array、table：提供普通的表格设置功能。\\
+\noindent array、table：提供普通的表格设置功能。\\
 longtable：提供了跨页表格功能。\\
 tabularx：提供了表格内嵌套高级功能的功能。\\
 dcolumn：表格内多位小数的对其功能，从小数点对齐。\\
@@ -259,14 +188,14 @@ rotfloat:旋转表格
 
 \section{公式类宏包}
 
-常用到的公式类宏包：\\
-amsmath：提供数学符号。\\
+
+\noindent amsmath：提供数学公式的编辑环境，如行间公式和行内公式等。\\
 ppchtex：提供化学符号。\\
 harpoon：提供上下带箭头的字符。
 
-\section{参考$\backslash$注释类宏包}
+\section{参考/注释类宏包}
 
-bibtex：文献类型。\\
+\noindent bibtex：文献类型。\\
 natbib：文献引用显示类型。\\
 footbib：脚注式引用。\\
 gbt7714：显示中文文献格式。\\
@@ -317,7 +246,7 @@ $\backslash$part,$\backslash$chapter,$\backslash$section,$\backslash$subsection,
     
 \subsection{目录编号}
     
-目录在不同的文章类型中的要求不尽相同，学术文章中很少用的目录，而学位论文的排版中则需要出现目录，而且列表和插图也要体现在目录中，因此目录进行深度控制。在\LaTeX{}中采用$\backslash$setcounter\{tocdepth\}\{X\}命来来实现不同深度的目录。$\backslash$setcounter\{secnumberdepth\}\{Y\} 来实现章节编号的深度。
+目录在不同的文章类型中的要求不尽相同，学术文章中很少用的目录，而学位论文的排版中则需要出现目录，而且列表和插图也要体现在目录中，因此目录进行深度控制。在\LaTeX{}中采用$\backslash$setcounter\{tocdepth\}\{X\}命来来实现不同深度的目录。$\backslash$setcounter\{secnu-mberdepth\}\{Y\} 来实现章节编号的深度。
     
     \begin{center}
         \begin{itemize}
