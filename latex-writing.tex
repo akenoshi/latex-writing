@@ -510,9 +510,26 @@ warning2-4可以采用打补丁的方式进行修正。
 
 此外，我们也可以用一个名叫setspace的宏包。也就是说，在导言区使用$\backslash$usepackage \{setspace\}.然后使用$\backslash$setstretch\{lineSpread\} 来设置linespread（不用加\selectfont）. 这个命令的好处在于会同时修改数学公式、浮动体等的间距，使之与正文间距适应。
 
+\section{自动换行}
+
+\LaTeX{} 中换行的方法针对文字（西文和中文）在操作上略有不同，\LaTeX{}默认对西文进行换行是可以采用$\backslash$ulem package.
+
+对带有下划线的文本进行换行时，如果为英文内容，可采用ulem package提供的$\backslash$uline命令或采用soul package提供的$\backslash$ul 命令来实现。
+
+\section{两端对齐}
+
+两端对齐常用的有两种方法：begin{sloppypar}环境和ragged2e package配合$\backslash$justifying 命令。
+
 \section{页面布局}
 
 在\LaTeX{}中，设置纸张大小的参数是papersize。而papersize的参数如下：a0paper, a1paper, a2paper, a3paper, a4paper, a5paper, a6paper,b0paper, b1paper, b2paper, b3pa per, b4paper, b5paper, b6paper,c0paper, c1paper, c2paper, c3paper, c4paper, c5paper, c6paper,b0j, b1j, b2j, b3j, b4j, b5j, b6j,ansiapaper, ansibpaper, ansicpaper, ansidpaper, ansiepaper,letterpaper, executivepaper, legalpaper 。
+
+自定义页面大小：使用geometry package，结合$\backslash$geometry命令，设置纸张长宽（paperwidth=10cm,paperheight=15cm），页边距（left=0.2cm,right=2.5cm,top=0.5cm,bottom=0.5cm），文字区域的长宽（textwidth=7.3cm）等参数。完整命令如下：
+
+\begin{minted}[breaklines,breakanywhere]{tex}
+     \geometry{paperwidth=10cm,paperheight=15cm,left=0.2cm,right=2.5cm,top=0.5cm,bottom=0.5cm,textwidth=7.3cm,textwidth=12cm}
+\end{minted}
+
 
 \section{页眉页脚}
 
@@ -572,6 +589,8 @@ warning2-4可以采用打补丁的方式进行修正。
 \chapter{图表处理}
 
 \section{图形}
+
+
 
 
 \subsection{常规的图片插入方法}
@@ -1242,6 +1261,8 @@ apalike，美国心理学学会期刊样式.
 \section{引文文件}
 
 本文仅用于总结近期使用\LaTeX{}整理书籍的一些常用宏包的用法。
+
+\chapter{批注}
 
 \chapter*{\LaTeX{} 使用总结}
 
