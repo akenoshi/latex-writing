@@ -1318,7 +1318,7 @@ bib格式的参考文献必须具备的内容：author,title,journal,volume,year
 
 \section{格式}
 
-\LaTeX{}在文档最后编排的参考文献格式被成为`style'，调用时采用$\backslash$bibliographystyle{style}，$\backslash$bibliography{ｒｅｆｅｒｅｎｃｅ}。
+\LaTeX{}在文档最后编排的参考文献格式被成为`style'，调用时采用$\backslash$bibliographystyl\{style\}，$\backslash$bibliography\{reference\}。
 
 常见的几种格式如下：
 
@@ -1442,8 +1442,115 @@ apalike，美国心理学学会期刊样式.
 %
 %\LaTeX{}模板中包含了.tex、.cls、.bib、.bst、.eps等文件。.tex文件为\LaTeX{}的源文件，.cls文件是\LaTeX{}的样式文件，.bib文件是参数文件数据库，.bst文件是bibtex处理参考文献后生成的格式，即定义参考文献的排版效果，.eps文件是\LaTeX{}插入的图片文件。
 
+\chapter{批注与修订}
+
+⼿动标记：changes, todonotes, annmark，soul + color；或采用自动对比 latexdiff宏包。
+\section{changes}
+
+changes宏包用来在\LaTeX{}中实现增加、删除、替换、批注等修订功能。该宏包主要提供了$\backslash$added,$\backslash$deleted, $\backslash$replaced,$\backslash$comment四条修订命令。\\
+
+在使用过程中需要在导言区调用changes宏包，并采用$\backslash$definechangesauthor命令自定义作者信息以及修订过程中所要显示的颜色；不同的作者可以采用不同颜色进行显示。
+\begin{minted}[breaklines,breakanywhere]{tex}
+    \documentclass{article}
+    \usepackage{changes}
+    \definechangesauthor[name={Per cusse}, color=orange]{per}
+    %\setremarkmarkup{(#2)}}
+    \begin{document}
+    This is \added[id=per,remark={we need this}]{new} text.
+    This is \added[remark={has to be in it}]{new} text.
+    This is \deleted[id=per,remark=obsolete]{unnecessary}text.
+    This is \replaced{nice}{bad} text.
+    \listofchanges
+    \end{document}
+\end{minted}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[scale=1.5]{changes.jpg}
+\end{figure}
+
+\section{todonotes}
+
+\begin{minted}[breaklines,breakanywhere]{tex}
+    \documentclass{article}
+    \usepackage{lipsum} % Dummytext
+    \usepackage{xargs} % Use more than one optional parameter in a new commands
+    \usepackage[pdftex,dvipsnames]{xcolor} % Coloured text etc.
+    %
+    \usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+    \newcommandx{\unsure}[2][1=]{\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red,#1]{#2}}
+    \newcommandx{\change}[2][1=]{\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}}
+    \newcommandx{\info}[2][1=]{\todo[linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGre
+        en,#1]{#2}}
+    \newcommandx{\improvement}[2][1=]{\todo[linecolor=Plum,backgroundcolor=Plum!25,bordercolor=Plum,#1]{#\newcommandx{\thiswillnotshow}[2][1=]{\todo[disable,#1]{#2}}
+    
+    \begin{document}
+    \pagestyle{empty}
+    \listoftodos[Notes] % Show todo list or not
+    \todo[inline]{The original todo note withouth changed colours.\newline Here's another line.}
+    \lipsum[11]\unsure{Is this correct?}\unsure{I'm unsure about also!}
+    \lipsum[11]\change{Change this!}
+    \lipsum[11]\info{This can help me in chapter seven!}
+    \lipsum[11]\improvement{This really needs to be improved!\newline\newline What was I thinking?!}
+    \lipsum[11]
+    \thiswillnotshow{This is hidden since option `disable' is chosen!}
+    \improvement[inline]{The following section needs to be rewritten!}
+    \lipsum[11]
+    \end{document}
+\end{minted}
+
+\section{annmark}
+
+\begin{minted}[breaklines,breakanywhere]{tex}
+\documentclass[11pt, a4paper, UTF8]{article}
+\usepackage{bm}
+\usepackage{ctex}
+\usepackage{tikz}
+\usepackage{marginnote}
+\newcommand{\annmark}[1]{%
+\textcolor{red}{$\bm\langle$#1$\bm\rangle$}%
+    }%
+\newcommand{\ann}[1]{%
+\begin{tikzpicture}[remember picture, baseline=-0.75ex]%
+    \node[coordinate] (inText) {};%
+\end{tikzpicture}%
+\marginpar{%
+    \renewcommand{\baselinestretch}{1.0}%
+    \begin{tikzpicture}[remember picture]%
+\definecolor{orange}{rgb}{1,0.5,0}%
+\draw node[fill=red!20,rounded corners,text width=\marginparwidth] (inNote){\footnotesize
+    ;%
+	\end{tikzpicture}%
+    }%
+    \begin{tikzpicture}[remember picture, overlay]%
+\draw[draw = orange, thick]
+([yshift=-0.2cm] inText)
+-| ([xshift=-0.2cm] inNote.west)
+-| (inNote.west);%
+    \end{tikzpicture}%
+}%
+\setlength{\marginparwidth}{2.5cm}
+\renewcommand{\baselinestretch}{1.3}
+\renewcommand{\thefootnote}{\alph{footnote}}
+% 可以改变为希腊字母，默认是阿拉伯数字
+% \usepackage{verbatim}
+\begin{document}
+    这是一段测试用的\annmark{语言}\ann{xxxx}，这里并没有什么特殊之处\footnote{xxxx}，仅仅用来做{示例}\marginnote{xxxx}。
+% \begin{comment}
+    % 此处是注释啊
+    % \end{comment}
+% ⼀样是静悄悄的罢．
+    \end{document}
+\end{minted}
 
 
+\section{latexdiff}
+
+使用latexdiff工具对修改前后的tex文档进行对比，并自动生成具有差异的tex文件，编译之后即可生成对应的修改版文档。latexdiff工具依赖perl语言，需要提供在计算上安装perl语言安装包。
+
+\begin{minted}{shell}
+    latexdiff -so draft.tex revised.tex > diff.tex
+\end{minted}
 
 
 \end{document}
