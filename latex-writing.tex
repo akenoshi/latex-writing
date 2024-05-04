@@ -13,7 +13,7 @@
 %%%%setting for fonts%%%%%
 \usepackage{xeCJK}
 \setmainfont{Times New Roman}
-%\usepackage[fontset=macnew]{ctex} %This package used for texstudio in mac.
+\usepackage[fontset=macnew]{ctex} %This package used for texstudio in mac.
 \usepackage{fontspec}
 \usepackage{metalogo} % latex logo
 
@@ -201,6 +201,7 @@ footbib：脚注式引用。\\
 gbt7714：显示中文文献格式。\\
 gloss：附录中的注释表。\\
 listings:插入代码。
+
 
 \chapter{文档类型}
 
@@ -682,7 +683,7 @@ $\backslash$fontsize{字号}{行距}
 
 在\LaTeX{}中标准插图方法为：
 \begin{figure}[htbp]
-     \begin{minipage}{0.45\textwidth}
+     \begin{minipage}{0.6\textwidth}
           \begin{minted}[breaklines,breakanywhere]{tex}
            \begin{figure}[htbp]
             \centering
@@ -691,7 +692,7 @@ $\backslash$fontsize{字号}{行距}
             \end{figure}
           \end{minted}
      \end{minipage}
-     \begin{minipage}{0.45\textwidth}
+     \begin{minipage}{0.4\textwidth}
           \centering
           \includegraphics[scale=0.2]{logo.png}
           \caption{name of figure}
@@ -701,7 +702,7 @@ $\backslash$fontsize{字号}{行距}
 \textbackslash includegraphics命令支持的图片格式为jpg，png，eps，pdf。不支持svg格式的矢量图。如果要插入svg格式的矢量图，则需要采用svg宏包。使用方法如下：
 
 \begin{figure}[htbp]
-     \begin{minipage}{0.45\textwidth}
+     \begin{minipage}{0.6\textwidth}
           \begin{minted}[breaklines,breakanywhere]{tex}
            \usepackage{svg}
            \begin{figure}
@@ -711,7 +712,7 @@ $\backslash$fontsize{字号}{行距}
            \end{figure}
           \end{minted}
      \end{minipage}
-     \begin{minipage}{0.45\textwidth}
+     \begin{minipage}{0.4\textwidth}
           \centering
           %\includeinkscape[inkscapeformat=pdf,scale=0.3]{logo-svg.svg}
           \includesvg[scale=0.3]{logo-svg.svg}
@@ -809,25 +810,29 @@ figure的参数中，h表示当前位置，t表示顶部，b表示底部，p表�
 
 3.子图
 
-在文章排版过程中遇到需要多图并列的效果，需要由subfigure宏包提供的子图环境来实现。
+对多子图并列排布的图片效果，可采用由subcaption或subfig宏包(subfigure宏包已被放弃)提供的subfigure环境实现，同时可对每个子图标题进行定义。示例代码如下：
 
 \begin{minted}[breaklines]{tex}
 \usepackage{graphicx}
 \usepackage{folat}
-\usepackage{subfigure}
-     \begin{document}
-          \begin{figure}[H]
-               \centering  %图片全局居中
-               \subfigure[name1]{
-               \label{Fig.sub.1}
-               \includegraphics[width=0.45\textwidth]{filename1}}
-               \subfigure[name2]{
-               \label{Fig.sub.2}
-               \includegraphics[width=0.45\textwidth]{filename2}}
-               \caption{Main name}
-          \end{figure}
+\usepackage{subcaption}
+     \begin{document}  % 3张子图并列排布
+         \begin{subfigure}{0.3\textwidth}
+             \includegraphics[width=0.3\textwidth]{filename1} %0.3\textwidh 图片的宽度，可以认为是3张子图并列
+             \caption{(a)}
+         \end{subfigure}
+         \begin{subfigure}{0.3\textwidth}
+             \includegraphics[width=0.3\textwidth]{filename2}
+             \caption{(b)}
+          \end{subfigure}
+        \begin{subfigure}{0.3\textwidth}
+            \includegraphics[width=0.3\textwidth]{filename2}
+            \caption{(c)}
+         \end{subfigure}
+         \label{example} %标签
      \end{document}
 \end{minted}
+
 4.（多行）并列
 
 学术文献中经常会让多张结果照片并列显示，有时可能还会出现多行并列显示。这个功能可以通过minipage环境来实现。
@@ -1339,6 +1344,8 @@ apalike，美国心理学学会期刊样式.
 
 
 在\LaTeX{}{} 中使用中文参考文献，其格式需要参照GB/T 7714-2015来执行，但是在LaTeX{} 本身的支持中却没有该选项。因此，需要通过自定义功能来实现，在github上https://github.com/zepinglee/gbt7714-bibtex-style。
+
+$\backslash$cite, $\backslash$citep, $\backslash$citet 三种格式。
 
 
 \section{引文文件}
